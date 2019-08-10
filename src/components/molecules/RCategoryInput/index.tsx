@@ -53,7 +53,7 @@ export default class RCategory extends React.Component<
                     inputProps={{ "aria-label": "naked" }}
                     onChange={event => {
                       this.setState({
-                        name: event.target.value.trim(),
+                        name: event.target.value,
                         buttonDisabled: event.target.value.trim() === ""
                       })
                     }}
