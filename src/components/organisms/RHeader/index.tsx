@@ -6,7 +6,7 @@ export default class RHeader extends React.Component {
   render() {
     return (
       <div className="o-r-header">
-        <AppBar position="static">
+        <AppBar position="fixed">
           <Toolbar>
             <Button color="inherit">Ürünler</Button>
             <Button color="inherit">Kategoriler</Button>
