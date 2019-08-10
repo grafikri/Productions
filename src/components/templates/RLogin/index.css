@@ -1,0 +1,9 @@
+.t-r-login {
+  margin-top: 50px;
+}
+
+.t-r-login .container {
+  max-width: 300px;
+  margin: auto;
+  border-radius: 4px;
+}
