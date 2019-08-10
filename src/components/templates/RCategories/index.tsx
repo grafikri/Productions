@@ -1,6 +1,7 @@
 import "./index.css"
 import React from "react"
 import CommonLayout from "../../organisms/RCommonLayout"
+import RCategoryInput from "../../molecules/RCategoryInput"
 import {
   Paper,
   Table,
@@ -26,6 +27,13 @@ export default class RCategories extends React.Component<Categories, any> {
       <div className="t-r-categories">
         <CommonLayout>
           <div className="container">
+            <div className="formInput">
+              <RCategoryInput
+                handleSubmit={name => {
+                  console.log("name:", name)
+                }}
+              />
+            </div>
             <div className="categories">
               <Paper elevation={1}>
                 <Table>

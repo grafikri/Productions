@@ -1,7 +1,11 @@
 .t-r-categories .container {
   padding: 15px;
+  max-width: 500px;
+}
+
+.t-r-categories .formInput {
+  margin-bottom: 10px;
 }
 
 .t-r-categories .categories {
-  max-width: 500px;
 }
