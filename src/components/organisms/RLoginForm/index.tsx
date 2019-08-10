@@ -67,7 +67,7 @@ export default class RLoginForm extends React.Component<
                       this.state.userName === ""
                   })
                 }}
-                label="Password"
+                label="Şifre"
                 type="password"
                 variant="outlined"
               />
