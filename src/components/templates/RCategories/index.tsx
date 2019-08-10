@@ -11,12 +11,18 @@ import {
   TableBody
 } from "@material-ui/core"
 
+/**
+ * Her bir kategorinin içeriği
+ */
 interface CategoriesInfo {
   id: string
   name: string
   code: string
 }
 
+/**
+ * Props değerleri
+ */
 interface Categories {
   list: CategoriesInfo[]
 }
