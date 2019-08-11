@@ -1,6 +1,6 @@
-import { ADD_NEW_CATEGORY } from "./actionsTypes"
+import { types } from "./actionsTypes"
 
 export const addNewCategory = (name: string) => ({
-  type: ADD_NEW_CATEGORY,
+  type: types.ADD_NEW_CATEGORY,
   name: name
 })
