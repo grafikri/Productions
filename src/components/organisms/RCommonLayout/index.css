@@ -1,0 +1,8 @@
+.o-r-common-layout {
+  padding-top: 70px;
+}
+
+.o-r-common-layout .container {
+  padding: 10px;
+  max-width: 500px;
+}

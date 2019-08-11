@@ -1,0 +1,13 @@
+.m-r-login-form {
+  /* background: #999; */
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.m-r-login-form div.section {
+  display: flex;
+  margin-bottom: 10px;
+}

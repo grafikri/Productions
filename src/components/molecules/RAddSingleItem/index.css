@@ -1,0 +1,13 @@
+.m-r-category .container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.m-r-category .container .left {
+  flex-grow: 1;
+  padding-right: 15px;
+}
+
+.m-r-category .container .right {
+}
