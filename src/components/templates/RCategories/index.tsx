@@ -23,22 +23,19 @@ interface CategoriesInfo {
 /**
  * Props değerleri
  */
-interface Categories {
+interface CategoriesProps {
   list: CategoriesInfo[]
+  handleSubmit(name: string): void
 }
 
-export default class RCategories extends React.Component<Categories, any> {
+export default class RCategories extends React.Component<CategoriesProps, any> {
   render() {
     return (
       <div className="t-r-categories">
         <CommonLayout>
           <div className="container">
             <div className="formInput">
-              <RCategoryInput
-                handleSubmit={name => {
-                  console.log("name:", name)
-                }}
-              />
+              <RCategoryInput handleSubmit={this.props.handleSubmit} />
             </div>
             <div className="categories">
               <Paper elevation={1}>
