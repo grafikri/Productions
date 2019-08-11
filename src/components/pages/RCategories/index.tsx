@@ -1,8 +1,13 @@
 import React from "react"
-
+import { connect } from "react-redux"
 import { default as RCategoriesTemplate } from "../../templates/RCategories"
+import { Category, ApplicationState } from "../../../store/appInterfaces"
 
-export default class RCategories extends React.Component {
+interface RCategoriesProps {
+  list: Category[]
+}
+
+class RCategories extends React.Component<RCategoriesProps> {
   render() {
     return (
       <div className="p-r-categories">
@@ -10,20 +15,15 @@ export default class RCategories extends React.Component {
           handleSubmit={name => {
             console.log("name: ", name)
           }}
-          list={[
-            { id: "0001", name: "Mazda", code: "M1" },
-            { id: "0002", name: "Opel", code: "O1" },
-            { id: "0003", name: "Opel", code: "O1" },
-            { id: "0004", name: "Opel", code: "O1" },
-            { id: "0005", name: "Opel", code: "O1" },
-            { id: "0006", name: "Opel", code: "O1" },
-            { id: "0007", name: "Opel", code: "O1" },
-            { id: "0008", name: "Opel", code: "O1" },
-            { id: "0009", name: "Opel", code: "O1" },
-            { id: "00010", name: "Opel", code: "O1" }
-          ]}
+          list={this.props.list}
         />
       </div>
     )
   }
 }
+
+const mapStateToProps = (state: ApplicationState): RCategoriesProps => ({
+  list: state.categories
+})
+
+export default connect(mapStateToProps)(RCategories)
