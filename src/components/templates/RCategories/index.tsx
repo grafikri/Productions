@@ -8,7 +8,8 @@ import {
   TableHead,
   TableRow,
   TableCell,
-  TableBody
+  TableBody,
+  Typography
 } from "@material-ui/core"
 
 /**
@@ -41,26 +42,32 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
               />
             </div>
             <div className="categories">
-              <Paper elevation={1}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Ad</TableCell>
-                      <TableCell align="right">Kod</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {this.props.list.map(item => (
-                      <TableRow key={item.id}>
-                        <TableCell component="th" scope="row">
-                          {item.name}
-                        </TableCell>
-                        <TableCell align="right">{item.code}</TableCell>
+              {this.props.list.length == 0 ? (
+                <Typography variant="subtitle1" gutterBottom>
+                  Şimdilik bir kategori bulunmuyor
+                </Typography>
+              ) : (
+                <Paper elevation={1}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Ad</TableCell>
+                        <TableCell align="right">Kod</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </Paper>
+                    </TableHead>
+                    <TableBody>
+                      {this.props.list.map(item => (
+                        <TableRow key={item.id}>
+                          <TableCell component="th" scope="row">
+                            {item.name}
+                          </TableCell>
+                          <TableCell align="right">{item.code}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </Paper>
+              )}
             </div>
           </div>
         </CommonLayout>
