@@ -7,7 +7,7 @@ export default class RCommonLayout extends React.Component {
     return (
       <div className="o-r-common-layout">
         <RHeader />
-        {this.props.children}
+        <div className="container">{this.props.children}</div>
       </div>
     )
   }
