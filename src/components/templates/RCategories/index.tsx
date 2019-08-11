@@ -2,6 +2,8 @@ import "./index.css"
 import React from "react"
 import CommonLayout from "../../organisms/RCommonLayout"
 import RAddSingleItem from "../../molecules/RAddSingleItem"
+import { Category } from "../../../store/appInterfaces"
+
 import {
   Paper,
   Table,
