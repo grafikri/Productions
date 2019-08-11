@@ -18,7 +18,6 @@ class RCategories extends React.Component<
       <div className="p-r-categories">
         <RCategoriesTemplate
           handleSubmit={name => {
-            console.log("name: ", name)
             this.props.add(name)
           }}
           list={this.props.list}
