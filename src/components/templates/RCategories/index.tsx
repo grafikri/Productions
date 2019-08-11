@@ -14,7 +14,7 @@ import {
 /**
  * Her bir kategorinin içeriği
  */
-interface CategoriesInfo {
+export interface CategoryInfo {
   id: string
   name: string
   code: string
@@ -24,7 +24,7 @@ interface CategoriesInfo {
  * Props değerleri
  */
 interface CategoriesProps {
-  list: CategoriesInfo[]
+  list: CategoryInfo[]
   handleSubmit(name: string): void
 }
 
