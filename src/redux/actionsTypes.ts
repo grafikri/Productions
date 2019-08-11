@@ -1,1 +1,6 @@
-export const ADD_NEW_CATEGORY: string = "ADD_NEW_CATEGORY"
+/**
+ * Action işlemleri ile ilgili type tanımlarının yapıldığı bölümdür
+ */
+export enum types {
+  ADD_NEW_CATEGORY
+}
