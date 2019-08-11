@@ -12,7 +12,7 @@ import {
 /**
  * State değerleri
  */
-interface RCategoryStates {
+interface RAddSingleItemStates {
   name: string
   buttonDisabled: boolean
 }
@@ -20,13 +20,14 @@ interface RCategoryStates {
 /**
  * Props değerler. Kategori adı girildikten sonra burada değer döndürülür
  */
-interface RCategoryProps {
+interface RAddSingleItemProps {
   handleSubmit(name: string): void
+  placeHolder: string
 }
 
-export default class RCategory extends React.Component<
-  RCategoryProps,
-  RCategoryStates
+export default class RAddSingleItem extends React.Component<
+  RAddSingleItemProps,
+  RAddSingleItemStates
 > {
   state = {
     name: "",
@@ -48,7 +49,7 @@ export default class RCategory extends React.Component<
               <div className="left">
                 <FormControl fullWidth>
                   <InputBase
-                    placeholder="Kategori adı girin"
+                    placeholder={this.props.placeHolder}
                     value={this.state.name}
                     inputProps={{ "aria-label": "naked" }}
                     onChange={event => {
