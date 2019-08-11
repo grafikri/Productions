@@ -13,19 +13,10 @@ import {
 } from "@material-ui/core"
 
 /**
- * Her bir kategorinin içeriği
- */
-export interface CategoryInfo {
-  id: string
-  name: string
-  code: string
-}
-
-/**
  * Props değerleri
  */
 interface CategoriesProps {
-  list: CategoryInfo[]
+  list: Category[]
   handleSubmit(name: string): void
 }
 
