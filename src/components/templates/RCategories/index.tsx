@@ -1,7 +1,7 @@
 import "./index.css"
 import React from "react"
 import CommonLayout from "../../organisms/RCommonLayout"
-import RCategoryInput from "../../molecules/RCategoryInput"
+import RAddSingleItem from "../../molecules/RAddSingleItem"
 import {
   Paper,
   Table,
@@ -35,7 +35,10 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
         <CommonLayout>
           <div className="container">
             <div className="formInput">
-              <RCategoryInput handleSubmit={this.props.handleSubmit} />
+              <RAddSingleItem
+                handleSubmit={this.props.handleSubmit}
+                placeHolder="Bir kategori adı girin"
+              />
             </div>
             <div className="categories">
               <Paper elevation={1}>
