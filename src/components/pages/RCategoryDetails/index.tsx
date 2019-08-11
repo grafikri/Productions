@@ -7,7 +7,7 @@ export default class RCategories extends React.Component {
     return (
       <div className="p-r-category-details">
         <RCategoryDetailsTemplate
-          categoryInfo={{ name: "Mazda", code: "O_1", id: "123" }}
+          category={{ name: "Mazda", code: "O_1", id: "123" }}
         />
       </div>
     )

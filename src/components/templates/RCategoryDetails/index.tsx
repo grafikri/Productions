@@ -2,13 +2,13 @@ import React from "react"
 import { Typography, Divider, Card, CardContent } from "@material-ui/core"
 import CommonLayout from "../../organisms/RCommonLayout"
 
-import { CategoryInfo } from "../RCategories"
+import { Category } from "../../../store/appInterfaces"
 
 /**
  * Props değerleri
  */
 interface RCategoryDetailsProps {
-  categoryInfo: CategoryInfo
+  category: Category
 }
 
 export default class RCategoryDetails extends React.Component<
@@ -20,7 +20,7 @@ export default class RCategoryDetails extends React.Component<
       <div className="p-r-category-details">
         <CommonLayout>
           <Typography variant="h6" gutterBottom>
-            {this.props.categoryInfo.name} / {this.props.categoryInfo.code}
+            {this.props.category.name} / {this.props.category.code}
           </Typography>
           <Divider />
           Ürünler

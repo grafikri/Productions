@@ -2,6 +2,8 @@ import "./index.css"
 import React from "react"
 import CommonLayout from "../../organisms/RCommonLayout"
 import RAddSingleItem from "../../molecules/RAddSingleItem"
+import { Category } from "../../../store/appInterfaces"
+
 import {
   Paper,
   Table,
@@ -13,19 +15,10 @@ import {
 } from "@material-ui/core"
 
 /**
- * Her bir kategorinin içeriği
- */
-export interface CategoryInfo {
-  id: string
-  name: string
-  code: string
-}
-
-/**
  * Props değerleri
  */
 interface CategoriesProps {
-  list: CategoryInfo[]
+  list: Category[]
   handleSubmit(name: string): void
 }
 
