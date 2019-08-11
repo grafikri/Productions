@@ -10,9 +10,6 @@ import { addNewCategory } from "../../../redux/actions"
 class RCategories extends React.Component<
   ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
 > {
-  componentDidMount() {
-    console.log("props: ", this.props)
-  }
   render() {
     return (
       <div className="p-r-categories">
