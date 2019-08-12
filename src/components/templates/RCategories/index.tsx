@@ -27,7 +27,7 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
   render() {
     return (
       <div className="t-r-categories">
-        <CommonLayout>
+        <CommonLayout loading={this.props.loading}>
           <div className="container">
             <div className="formInput">
               <RAddSingleItem
