@@ -11,21 +11,14 @@ import {
   TableBody,
   Typography
 } from "@material-ui/core"
-
-/**
- * Her bir ürünün içeriği
- */
-export interface ProductInfo {
-  id: string
-  name: string
-  code: string
-}
+import { Product } from "../../../store/appInterfaces"
+import RProductsList from "../../organisms/RProductList"
 
 /**
  * Props değerleri
  */
 interface ProductsProps {
-  list: ProductInfo[]
+  list: Product[]
   handleSubmit(name: string): void
 }
 
