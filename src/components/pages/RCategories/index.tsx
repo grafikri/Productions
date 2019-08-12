@@ -1,19 +1,24 @@
 import React from "react"
 import { connect } from "react-redux"
 import { Dispatch } from "redux"
-
 import { default as RCategoriesTemplate } from "../../templates/RCategories"
-import { Category, ApplicationState } from "../../../store/appInterfaces"
+import { ApplicationState } from "../../../store/appInterfaces"
 
 import { addNewCategory } from "../../../redux/actions"
+import { fetchCategories } from "../../../thunk"
 
 class RCategories extends React.Component<
   ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
 > {
+  componentDidMount() {
+    this.props.getCategories()
+  }
   render() {
     return (
       <div className="p-r-categories">
         <RCategoriesTemplate
+          errorMessage={this.props.errorMessage}
+          loading={this.props.loading}
           handleSubmit={name => {
             this.props.add(name)
           }}
@@ -25,12 +30,17 @@ class RCategories extends React.Component<
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
-  list: state.categories
+  list: state.categories,
+  loading: state.application.layoutLoading,
+  errorMessage: state.application.layoutErrorMessage
 })
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   add: (name: string): void => {
     dispatch(addNewCategory(name))
+  },
+  getCategories: () => {
+    dispatch(fetchCategories())
   }
 })
 

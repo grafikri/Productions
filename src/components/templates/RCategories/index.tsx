@@ -18,6 +18,8 @@ import {
  * Props değerleri
  */
 interface CategoriesProps {
+  errorMessage?: string
+  loading?: boolean
   list: Category[]
   handleSubmit(name: string): void
 }
@@ -26,7 +28,10 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
   render() {
     return (
       <div className="t-r-categories">
-        <CommonLayout>
+        <CommonLayout
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
+        >
           <div className="container">
             <div className="formInput">
               <RAddSingleItem
