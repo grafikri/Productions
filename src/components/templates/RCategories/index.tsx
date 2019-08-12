@@ -18,6 +18,7 @@ import {
  * Props değerleri
  */
 interface CategoriesProps {
+  loading?: boolean
   list: Category[]
   handleSubmit(name: string): void
 }
