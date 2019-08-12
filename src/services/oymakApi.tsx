@@ -58,7 +58,7 @@ export default class OymakApi {
             }
           ]
         })
-      }, 2000)
+      }, 1000)
     })
   }
 }
