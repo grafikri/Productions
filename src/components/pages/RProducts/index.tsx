@@ -1,18 +1,39 @@
 import React from "react"
 
+import { Dispatch } from "redux"
 import { default as RProductsTemplate } from "../../templates/RProducts"
+import { connect } from "react-redux"
+import { ApplicationState } from "../../../store/appInterfaces"
+import { addNewProduct } from "../../../redux/actions"
 
-export default class RProducts extends React.Component {
+class RProducts extends React.Component<
+  ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
+> {
   render() {
     return (
       <div>
         <RProductsTemplate
-          list={[{ name: "BMW1", code: "B_1", id: "1234", price: "10" }]}
-          handleSubmit={data => {
-            console.log("products: ", data)
+          products={this.props.products}
+          handleSubmit={name => {
+            this.props.add(name)
           }}
         />
       </div>
     )
   }
 }
+
+const mapStateToProps = (state: ApplicationState) => ({
+  products: state.products
+})
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  add: (name: string) => {
+    dispatch(addNewProduct(name))
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RProducts)
