@@ -9,7 +9,7 @@ import categories from "../redux/reducers/categories"
  */
 export interface ApplicationState {
   auth: Auth
-  // category: Category
+  category: Category
   categories: Category[]
 }
 
