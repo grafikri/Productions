@@ -12,8 +12,7 @@ interface RProductDetailsProps {
 }
 
 export default class RProductDetails extends React.Component<
-  RProductDetailsProps,
-  any
+  RProductDetailsProps
 > {
   render() {
     return (
@@ -22,7 +21,6 @@ export default class RProductDetails extends React.Component<
           <Typography variant="h6" gutterBottom>
             {this.props.product.name}
           </Typography>
-          Ürünün detay bilgileri
         </CommonLayout>
       </div>
     )

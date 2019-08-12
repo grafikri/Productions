@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <Route path="/categories" component={RCategories} />
         <Route path="/category/:id" component={RCategoryDetails} />
         <Route path="/products" component={RProducts} />
-        <Route path="/product-details" component={RProductDetails} />
+        <Route path="/product/:id" component={RProductDetails} />
       </Router>
     </div>
   )

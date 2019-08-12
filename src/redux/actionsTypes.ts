@@ -3,5 +3,6 @@
  */
 export enum types {
   ADD_NEW_CATEGORY,
-  SET_CATEGORY
+  SET_CATEGORY,
+  SET_PRODUCT
 }
