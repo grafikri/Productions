@@ -17,6 +17,8 @@ class RCategories extends React.Component<
     return (
       <div className="p-r-categories">
         <RCategoriesTemplate
+          errorMessage={this.props.errorMessage}
+          loading={this.props.loading}
           handleSubmit={name => {
             this.props.add(name)
           }}
@@ -28,7 +30,9 @@ class RCategories extends React.Component<
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
-  list: state.categories
+  list: state.categories,
+  loading: state.application.layoutLoading,
+  errorMessage: state.application.layoutErrorMessage
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
