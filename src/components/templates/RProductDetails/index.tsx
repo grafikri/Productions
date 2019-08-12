@@ -12,8 +12,7 @@ interface RProductDetailsProps {
 }
 
 export default class RProductDetails extends React.Component<
-  RProductDetailsProps,
-  any
+  RProductDetailsProps
 > {
   render() {
     return (
