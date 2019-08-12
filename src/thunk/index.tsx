@@ -1,20 +1,32 @@
 import OymakApi from "../services/oymakApi"
 import { Dispatch } from "redux"
-import { addNewCategory } from "../redux/actions"
+import {
+  addNewCategory,
+  updateLayoutLoading,
+  updateLayoutErrorMessage,
+  clearCategories
+} from "../redux/actions"
 
 /**
  * Api'den kategoriler çekilip redux'a gönderiliyor
  */
 export const fetchCategories = () => {
   return function(dispatch: Dispatch) {
+    dispatch(updateLayoutLoading(true))
+
     return OymakApi.getCategoryList()
       .then(data => {
+        dispatch(clearCategories())
         data.list.map(item => {
+          dispatch(updateLayoutErrorMessage(""))
           dispatch(addNewCategory(item.Name))
         })
       })
       .catch(error => {
-        console.log("error: ", error)
+        dispatch(updateLayoutErrorMessage(error))
+      })
+      .finally(() => {
+        dispatch(updateLayoutLoading(false))
       })
   }
 }
