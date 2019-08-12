@@ -11,6 +11,7 @@ export interface ApplicationState {
   product: Product
   categories: Category[]
   products: Product[]
+  application: Application
 }
 
 /**
@@ -38,4 +39,20 @@ export interface Category {
 export interface Auth {
   id: string
   name: string
+}
+
+/**
+ * Application bilgileri
+ */
+export interface Application {
+  /**
+   * Sunucu bağlantısı aktif ise bu alan true olur
+   * ve layout'lar loading modune geçer
+   *
+   */
+  layoutLoading: boolean
+  /**
+   * Sunucu'dan hata döner ise layout içinde bu mesaj gösterilir
+   */
+  layoutErrorMessage: string
 }
