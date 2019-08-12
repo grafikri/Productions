@@ -1,5 +1,3 @@
-import categories from "../redux/reducers/categories"
-
 /**
  * Burada uygulama içinde kullanılan data'ların interface'leri bulunmaktadır
  */
@@ -12,6 +10,7 @@ export interface ApplicationState {
   category: Category
   product: Product
   categories: Category[]
+  products: Product[]
 }
 
 /**
