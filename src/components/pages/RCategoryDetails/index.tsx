@@ -7,7 +7,10 @@ class RCategories extends React.Component<ReturnType<typeof mapStateToProps>> {
   render() {
     return (
       <div className="p-r-category-details">
-        <RCategoryDetailsTemplate category={this.props.category} />
+        <RCategoryDetailsTemplate
+          category={this.props.category}
+          products={[{ id: "124", name: "Opel", price: "10", code: "123" }]}
+        />
       </div>
     )
   }
