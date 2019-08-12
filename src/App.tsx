@@ -14,6 +14,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
+        <Route exact path="/" component={RLogin} />
         <Route path="/login" component={RLogin} />
         <Route path="/categories" component={RCategories} />
         <Route path="/category/:id" component={RCategoryDetails} />
