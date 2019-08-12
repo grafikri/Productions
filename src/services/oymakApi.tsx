@@ -1,15 +1,16 @@
-interface Category {
-  name: string
-  id: string
-}
-
+/**
+ * Oymak Grup Api'si ile ilgili tüm bağlantılar buradan sağlanmaktadır
+ */
 export default class OymakApi {
+  /**
+   * Uygulama kök url
+   */
   static base_url: string = "http://interviewapp.oymakyazilim.com/"
-  static token: string = ""
 
-  static getCategories(): Category[] {
-    return [{ name: "Opel", id: "1" }]
-  }
+  /**
+   * Kullanıcı giriş yaptığında kullanılan token
+   */
+  static token: string = ""
 
   static login() {}
 }
