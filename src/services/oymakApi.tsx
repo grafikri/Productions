@@ -8,7 +8,7 @@ export default class OymakApi {
   static base_url: string = "http://interviewapp.oymakyazilim.com/"
 
   /**
-   * Kullanıcı giriş yaptığında kullanılan token
+   * Kullanıcı giriş yaptığında elde edilen token
    */
   static token: string = ""
 
