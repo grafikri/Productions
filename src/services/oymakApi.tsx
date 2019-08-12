@@ -42,6 +42,7 @@ export default class OymakApi {
   static getCategoryList(): Promise<CategoryList> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
+        //reject("Beklenmedik bir hata")
         resolve({
           list: [
             {
