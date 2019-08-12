@@ -18,7 +18,7 @@ import RProductsList from "../../organisms/RProductList"
  * Props değerleri
  */
 interface ProductsProps {
-  list: Product[]
+  products: Product[]
   handleSubmit(name: string): void
 }
 
@@ -35,12 +35,12 @@ export default class RProducts extends React.Component<ProductsProps, any> {
               />
             </div>
             <div className="products">
-              {this.props.list.length == 0 ? (
+              {this.props.products.length == 0 ? (
                 <Typography variant="subtitle1" gutterBottom>
                   Şimdilik bir ürün bulunmuyor
                 </Typography>
               ) : (
-                <RProductsList list={this.props.list} />
+                <RProductsList list={this.props.products} />
               )}
             </div>
           </div>
