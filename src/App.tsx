@@ -16,7 +16,7 @@ const App: React.FC = () => {
       <Router>
         <Route path="/login" component={RLogin} />
         <Route path="/categories" component={RCategories} />
-        <Route path="/category-details" component={RCategoryDetails} />
+        <Route path="/category/:id" component={RCategoryDetails} />
         <Route path="/products" component={RProducts} />
         <Route path="/product-details" component={RProductDetails} />
       </Router>
