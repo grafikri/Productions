@@ -52,8 +52,7 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                     </TableHead>
                     <TableBody>
                       {this.props.list.map(item => (
-                        <TableRow key={item.id}>
-                          <TableCell component="th" scope="row">
+                        <TableRow hover key={item.id}>
                             {item.name}
                           </TableCell>
                         </TableRow>
