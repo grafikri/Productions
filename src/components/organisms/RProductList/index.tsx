@@ -23,7 +23,6 @@ export default class RProductList extends React.Component<RProductListProps> {
             <TableHead>
               <TableRow>
                 <TableCell>Ad</TableCell>
-                <TableCell align="right">Kod</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -32,7 +31,6 @@ export default class RProductList extends React.Component<RProductListProps> {
                   <TableCell component="th" scope="row">
                     {item.name}
                   </TableCell>
-                  <TableCell align="right">{item.code}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
