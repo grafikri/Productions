@@ -26,7 +26,7 @@ class RCategories extends React.Component<
           loading={this.props.loading}
           errorMessage={this.props.errorMessage}
           category={this.props.category}
-          products={[{ id: "124", name: "Opel", price: "10", code: "123" }]}
+          products={this.props.category.products}
         />
       </div>
     )
