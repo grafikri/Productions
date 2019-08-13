@@ -48,7 +48,7 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                   <Table>
                     <TableHead>
                       <TableRow>
-                        <TableCell>Ad</TableCell>
+                        <TableCell>Kategori Adı</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>

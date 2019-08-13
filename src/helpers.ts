@@ -21,3 +21,13 @@ export const randomRangeNumber = (
 ): number => {
   return randomNumber(max - min) + min
 }
+
+/**
+ * Yeni kategori oluşturuken kategori adına göre code oluşturur
+ * Örneğin: Mazda kategori adı şu şekilde oluşturulabilir -> M_43256
+ *
+ * @param name Kategori adı
+ */
+export const generateCategoryCode = (name: string): string => {
+  return name[0].toUpperCase() + "_" + randomRangeNumber(10000, 99999)
+}

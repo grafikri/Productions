@@ -11,15 +11,15 @@ class RHeader extends React.Component<any, any> {
           <Toolbar>
             <Button
               color="inherit"
-              onClick={() => this.props.history.push("/products")}
-            >
-              Ürünler
-            </Button>
-            <Button
-              color="inherit"
               onClick={() => this.props.history.push("/categories")}
             >
               Kategoriler
+            </Button>
+            <Button
+              color="inherit"
+              onClick={() => this.props.history.push("/products")}
+            >
+              Ürünler
             </Button>
             <div className="space" />
             <Button color="inherit">Çıkış</Button>
