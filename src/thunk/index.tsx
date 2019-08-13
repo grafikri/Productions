@@ -1,16 +1,17 @@
 import OymakApi from "../services/oymakApi"
 import { Dispatch } from "redux"
 import {
-  addNewCategory,
   updateLayoutLoading,
   updateLayoutErrorMessage,
   clearCategories,
   addNewProduct,
   clearProducts,
   updateCategoryCard,
-  addBulkCategory
+  addBulkCategory,
+  addNewCategory
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
+import { generateCategoryCode } from "../helpers"
 
 /**
  * Api'den kategoriler çekilip redux'a gönderiliyor
@@ -47,16 +48,23 @@ export const fetchCategories = () => {
  */
 export const addCategory = (name: string) => {
   return (dispatch: Dispatch) => {
-    console.log("thunk: ", name)
+    const code = generateCategoryCode(name)
 
-    // return OymakApi.addCategory(name, code)
-    //   .then(data => {
-    //     dispatch(addNewCategory(data.Message, name, code))
-    //   })
-    //   .catch(error => {
-    //     // Sunucu hata mesajı bu alanda yorumlanacak
-    //   })
-    //   .finally(() => {})
+    return OymakApi.addCategory(name, code)
+      .then(data => {
+        dispatch(
+          addNewCategory({
+            id: data.Data,
+            name: name,
+            code: code,
+            products: []
+          })
+        )
+      })
+      .catch(error => {
+        // Sunucu hata mesajı bu alanda yorumlanacak
+      })
+      .finally(() => {})
   }
 }
 
