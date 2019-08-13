@@ -56,6 +56,9 @@ export const fetchProducts = () => {
   }
 }
 
+/**
+ * Api'den kategori çekilip redux'a gönderiliyor
+ */
 export const fetchCategoryCard = (id: string) => {
   return (dispatch: Dispatch) => {
     dispatch(updateLayoutLoading(true))
