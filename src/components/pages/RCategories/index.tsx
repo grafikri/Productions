@@ -22,7 +22,6 @@ class RCategories extends React.Component<
             this.props.add(name)
           }}
           handleClick={id => {
-            console.log("id: ", id)
           }}
           list={this.props.list}
         />
