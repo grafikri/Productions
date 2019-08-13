@@ -7,7 +7,8 @@ import {
   clearCategories,
   addNewProduct,
   clearProducts,
-  updateCategoryCard
+  updateCategoryCard,
+  addBulkCategory
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 
@@ -20,11 +21,16 @@ export const fetchCategories = () => {
 
     return OymakApi.getCategoryList()
       .then(data => {
+        const categories: Category[] = data.map(item => ({
+          id: item.Id,
+          name: item.Name,
+          code: "",
+          products: []
+        }))
+
+        dispatch(updateLayoutErrorMessage(""))
         dispatch(clearCategories())
-        data.map(item => {
-          dispatch(updateLayoutErrorMessage(""))
-          dispatch(addNewCategory(item.Name, item.Id))
-        })
+        dispatch(addBulkCategory(categories))
       })
       .catch(error => {
         dispatch(updateLayoutErrorMessage(error))
