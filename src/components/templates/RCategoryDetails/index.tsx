@@ -2,7 +2,11 @@ import React from "react"
 import { Typography, Divider, Card, CardContent } from "@material-ui/core"
 import CommonLayout from "../../organisms/RCommonLayout"
 
-import { Category, Product } from "../../../store/appInterfaces"
+import {
+  Category,
+  Product,
+  LayoutErrorProps
+} from "../../../store/appInterfaces"
 import RProductList from "../../organisms/RProductList"
 
 /**
