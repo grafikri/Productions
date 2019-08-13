@@ -1,4 +1,5 @@
 import { types } from "./actionsTypes"
+import { Category } from "../store/appInterfaces"
 
 export const addNewCategory = (name: string, id: string) => ({
   type: types.ADD_NEW_CATEGORY,
@@ -17,6 +18,11 @@ export const clearProducts = () => ({
 export const addNewProduct = (name: string) => ({
   type: types.ADD_NEW_PRODUCT,
   name: name
+})
+
+export const updateCategoryCard = (card: Category) => ({
+  type: types.SET_CATEGORY,
+  card: card
 })
 
 export const updateLayoutLoading = (situation: boolean) => ({
