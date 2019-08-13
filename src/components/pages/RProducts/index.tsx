@@ -31,9 +31,12 @@ const mapStateToProps = (state: ApplicationState) => ({
   errorMessage: state.application.layoutErrorMessage
 })
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   add: (name: string) => {
     dispatch(addNewProduct(name))
+  },
+  getProducts: () => {
+    dispatch(fetchProducts())
   }
 })
 
