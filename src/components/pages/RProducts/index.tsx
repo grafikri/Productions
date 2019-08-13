@@ -1,6 +1,4 @@
 import React from "react"
-
-import { Dispatch } from "redux"
 import { default as RProductsTemplate } from "../../templates/RProducts"
 import { connect } from "react-redux"
 import { ApplicationState } from "../../../store/appInterfaces"
