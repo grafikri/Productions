@@ -5,7 +5,7 @@ import { randomRangeNumber, randomNumber } from "../../helpers"
 
 const categories: Reducer<Category[]> = (state: Category[] = [], action) => {
   switch (action.type) {
-    case types.CLEAR_NEW_CATEGORY:
+    case types.CLEAR_CATEGORIES:
       return []
       break
     case types.ADD_NEW_CATEGORY:
