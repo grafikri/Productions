@@ -73,6 +73,25 @@ export default class OymakApi {
     })
   }
 
+  static addCategory(name: string, code: string): Promise<AddCategory> {
+    return new Promise((resolve, reject) => {
+      return this.instance
+        .post(
+          "api/Product/Category/Add",
+          qs.stringify({
+            Name: name,
+            Code: code
+          })
+        )
+        .then(data => {
+          resolve(data.data as AddCategory)
+        })
+        .catch((error: AxiosError) => {
+          reject(this.getErrorMessage(error))
+        })
+    })
+  }
+
   /**
    * Sunucudan bir şekilde yanıt alınamazsa burada hata detayı çıkartılıp gönderilir.
    * Bazen sunucu yanıt vermez, bazen yanıt verdiği halde 200 dışında bir hata döndürür.
@@ -157,6 +176,14 @@ interface ProductList {
   ProductCategoryId: string
   ProductCategoryCode: string
   ProductCategoryName: string
+}
+
+/**
+ * Yeni kategori ekledikten sonra sunucudan dönen değerdir
+ */
+interface AddCategory {
+  Data: string
+  Message: string
 }
 
 /**
