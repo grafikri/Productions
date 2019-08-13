@@ -29,7 +29,6 @@ export default class RProductList extends React.Component<RProductListProps> {
               {this.props.list.map(item => (
                 <TableRow key={item.id}>
                   <TableCell component="th" scope="row">
-                    {item.name}
                     <Typography>{item.name}</Typography>
                   </TableCell>
                 </TableRow>
