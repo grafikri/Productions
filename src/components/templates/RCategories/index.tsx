@@ -62,7 +62,7 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                             component="th"
                             scope="row"
                           >
-                            {item.name}
+                            <Typography>{item.name}</Typography>
                           </TableCell>
                         </TableRow>
                       ))}
