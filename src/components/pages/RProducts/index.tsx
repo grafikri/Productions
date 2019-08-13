@@ -4,9 +4,12 @@ import { connect } from "react-redux"
 import { ApplicationState } from "../../../store/appInterfaces"
 import { addNewProduct } from "../../../redux/actions"
 import { fetchProducts } from "../../../thunk"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RProducts extends React.Component<
-  ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
+  ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps> &
+    RouteComponentProps
 > {
   componentDidMount() {
     this.props.getProducts()
@@ -45,4 +48,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RProducts)
+)(withRouter(RProducts))
