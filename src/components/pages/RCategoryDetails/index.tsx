@@ -5,7 +5,20 @@ import { default as RCategoryDetailsTemplate } from "../../templates/RCategoryDe
 import { fetchCategoryCard } from "../../../thunk"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 
-class RCategories extends React.Component<ReturnType<typeof mapStateToProps>> {
+class RCategories extends React.Component<
+  ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps> &
+    RouteComponentProps
+> {
+  componentDidMount() {
+    /**
+     * Url üzerinden id değerini alıyoruz.
+     * Fakat typeScript param nesnesinin interface yapısını bilmediği için
+     * nesneyi any sınıfına dönüştürüp id değerini alıyoruz
+     */
+    const params = this.props.match.params as any
+    this.props.fetchCard(params.id)
+  }
   render() {
     return (
       <div className="p-r-category-details">
