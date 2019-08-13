@@ -16,6 +16,7 @@ import RProductList from "../../organisms/RProductList"
 interface RCategoryDetailsProps extends LayoutErrorProps {
   category: Category
   products: Product[]
+  handleProductClick(id: string): void
 }
 
 export default class RCategoryDetails extends React.Component<
@@ -31,18 +32,21 @@ export default class RCategoryDetails extends React.Component<
         >
           <Typography variant="h6" gutterBottom>
             {this.props.category.name} / {this.props.category.code}{" "}
-            {this.props.products.length == 0
-              ? "kategorisinde ürün bulunmuyor"
-              : "kategorisindeki ürünler"}
+            {this.props.products.length == 0 ? "" : "kategorisindeki ürünler"}
           </Typography>
           <Divider />
-          {this.props.products.length == 0 ? (
-            ""
-          ) : (
-            <div className="products">
-              <RProductList list={this.props.products} />
-            </div>
-          )}
+          <div className="products">
+            {this.props.products.length == 0 ? (
+              <Typography variant="h6" gutterBottom>
+                Bu kategoride ürün bulunmuyor.
+              </Typography>
+            ) : (
+              <RProductList
+                handleClick={this.props.handleProductClick}
+                list={this.props.products}
+              />
+            )}
+          </div>
         </CommonLayout>
       </div>
     )
