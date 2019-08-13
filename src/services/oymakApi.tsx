@@ -39,27 +39,11 @@ export default class OymakApi {
     })
   }
 
-  static getCategoryList(): Promise<CategoryList> {
+  static getCategoryList(): Promise<CategoryList[]> {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        //reject("Beklenmedik bir hata")
-        resolve({
-          list: [
-            {
-              Id: "ee33aa62-8986-45b0-b46d-17c019c50e27",
-              Name: "Mazda"
-            },
-            {
-              Id: "ef587afd-f937-4b73-b5cd-88d4f913249c",
-              Name: "Opel"
-            },
-            {
-              Id: "c1dcb2f1-6870-4fb1-aacf-c90aa92fc136",
-              Name: "Opel"
-            }
-          ]
-        })
-      }, 200)
+      return this.instance.get("api/Product/Category/Get/AutoCompleteList").then(data => {
+        resolve(data.data as CategoryList[])
+      })
     })
   }
 
