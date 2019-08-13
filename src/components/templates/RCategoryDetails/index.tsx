@@ -29,10 +29,19 @@ export default class RCategoryDetails extends React.Component<
           errorMessage={this.props.errorMessage}
         >
           <Typography variant="h6" gutterBottom>
-            {this.props.category.name} / {this.props.category.code}
+            {this.props.category.name} / {this.props.category.code}{" "}
+            {this.props.products.length == 0
+              ? "kategorisinde ürün bulunmuyor"
+              : "kategorisindeki ürünler"}
           </Typography>
           <Divider />
-          <RProductList list={this.props.products} />
+          {this.props.products.length == 0 ? (
+            ""
+          ) : (
+            <div className="products">
+              <RProductList list={this.props.products} />
+            </div>
+          )}
         </CommonLayout>
       </div>
     )
