@@ -7,7 +7,6 @@ const categories: Reducer<Category[]> = (state: Category[] = [], action) => {
   switch (action.type) {
     case types.CLEAR_CATEGORIES:
       return []
-      break
     case types.ADD_NEW_CATEGORY:
       const upperName = action.name as string
       const id = randomRangeNumber(1000, 9999).toString()
