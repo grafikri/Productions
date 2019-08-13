@@ -22,7 +22,7 @@ class RCategories extends React.Component<
           errorMessage={this.props.errorMessage}
           loading={this.props.loading}
           handleSubmit={name => {
-            this.props.add(name)
+            //this.props.add(name)
           }}
           handleClick={id => {
             this.props.history.push("/category/" + id)
@@ -41,9 +41,9 @@ const mapStateToProps = (state: ApplicationState) => ({
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
-  add: (name: string): void => {
-    dispatch(addNewCategory(name))
-  },
+  // add: (name: string): void => {
+  //   dispatch(addNewCategory(name, id))
+  // },
   getCategories: () => {
     dispatch(fetchCategories())
   }
