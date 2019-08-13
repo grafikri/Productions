@@ -4,7 +4,8 @@ import {
   addNewCategory,
   updateLayoutLoading,
   updateLayoutErrorMessage,
-  clearCategories
+  clearCategories,
+  addNewProduct
 } from "../redux/actions"
 
 /**
@@ -20,6 +21,26 @@ export const fetchCategories = () => {
         data.list.map(item => {
           dispatch(updateLayoutErrorMessage(""))
           dispatch(addNewCategory(item.Name))
+        })
+      })
+      .catch(error => {
+        dispatch(updateLayoutErrorMessage(error))
+      })
+      .finally(() => {
+        dispatch(updateLayoutLoading(false))
+      })
+  }
+}
+
+export const fetchProducts = () => {
+  return (dispatch: Dispatch) => {
+    dispatch(updateLayoutLoading(true))
+
+    return OymakApi.getProductList()
+      .then(data => {
+        dispatch(updateLayoutErrorMessage(""))
+        data.list.map(item => {
+          dispatch(addNewProduct(item.Name))
         })
       })
       .catch(error => {
