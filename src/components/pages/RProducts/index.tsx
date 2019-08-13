@@ -26,7 +26,9 @@ class RProducts extends React.Component<
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
-  products: state.products
+  products: state.products,
+  loading: state.application.layoutLoading,
+  errorMessage: state.application.layoutErrorMessage
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
