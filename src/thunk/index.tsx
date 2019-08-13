@@ -35,6 +35,9 @@ export const fetchCategories = () => {
   }
 }
 
+/**
+ * Api'den ürünler çekilip redux'a gönderiliyor
+ */
 export const fetchProducts = () => {
   return (dispatch: Dispatch) => {
     dispatch(updateLayoutLoading(true))
