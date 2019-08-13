@@ -60,35 +60,16 @@ export default class OymakApi {
     })
   }
 
-  static getProductList(): Promise<ProductList> {
+  static getProductList(): Promise<ProductList[]> {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        //reject("Beklenmedik bir hata")
-        resolve({
-          list: [
-            {
-              Id: "72b4be02-0e58-4a0f-8658-c231370d9c5c",
-              Code: "C_13345",
-              Name: "Corsa",
-              ExpiredDate: "2020-08-13T10:07:55.237",
-              Price: 2000.0,
-              ProductCategoryId: "ef587afd-f937-4b73-b5cd-88d4f913249c",
-              ProductCategoryCode: "O_12743",
-              ProductCategoryName: "Opel"
-            },
-            {
-              Id: "72b4be02-0e58-4a0f-8658-c231370d9c56",
-              Code: "O_13345",
-              Name: "Corsa",
-              ExpiredDate: "2020-08-13T10:07:55.237",
-              Price: 2000.0,
-              ProductCategoryId: "ef587afd-f937-4b73-b5cd-88d4f913249c",
-              ProductCategoryCode: "O_12743",
-              ProductCategoryName: "Opel"
-            }
-          ]
+      return this.instance
+        .get("api/Product/Get")
+        .then(data => {
+          resolve(data.data as ProductList[])
         })
-      }, 200)
+        .catch((error: AxiosError) => {
+          reject(this.getErrorMessage(error))
+        })
     })
   }
 
