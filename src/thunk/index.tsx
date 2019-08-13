@@ -21,7 +21,7 @@ export const fetchCategories = () => {
         dispatch(clearCategories())
         data.list.map(item => {
           dispatch(updateLayoutErrorMessage(""))
-          dispatch(addNewCategory(item.Name))
+          dispatch(addNewCategory(item.Name, item.Id))
         })
       })
       .catch(error => {
