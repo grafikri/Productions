@@ -27,7 +27,7 @@ export default class RProductList extends React.Component<RProductListProps> {
             </TableHead>
             <TableBody>
               {this.props.list.map(item => (
-                <TableRow key={item.id}>
+                <TableRow hover key={item.id} style={{ cursor: "pointer" }}>
                   <TableCell component="th" scope="row">
                     <Typography>{item.name}</Typography>
                   </TableCell>
