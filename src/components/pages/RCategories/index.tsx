@@ -5,6 +5,7 @@ import { ApplicationState } from "../../../store/appInterfaces"
 
 import { addNewCategory } from "../../../redux/actions"
 import { fetchCategories } from "../../../thunk"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RCategories extends React.Component<
   ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
@@ -48,4 +49,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RCategories)
+)(withRouter(RCategories))
