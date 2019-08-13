@@ -8,7 +8,7 @@ import RProductList from "../../organisms/RProductList"
 /**
  * Props değerleri
  */
-interface RCategoryDetailsProps {
+interface RCategoryDetailsProps extends LayoutErrorProps {
   category: Category
   products: Product[]
 }
@@ -20,7 +20,10 @@ export default class RCategoryDetails extends React.Component<
   render() {
     return (
       <div className="p-r-category-details">
-        <CommonLayout>
+        <CommonLayout
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
+        >
           <Typography variant="h6" gutterBottom>
             {this.props.category.name} / {this.props.category.code}
           </Typography>
