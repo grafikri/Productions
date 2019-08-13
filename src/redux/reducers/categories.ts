@@ -17,7 +17,8 @@ const categories: Reducer<Category[]> = (state: Category[] = [], action) => {
         {
           id: action.id,
           name: upperName,
-          code: code
+          code: code,
+          products: []
         },
         ...state
       ])
