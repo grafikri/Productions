@@ -8,7 +8,9 @@ import { fetchCategories } from "../../../thunk"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RCategories extends React.Component<
-  ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
+  ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps> &
+    RouteComponentProps
 > {
   componentDidMount() {
     this.props.getCategories()
