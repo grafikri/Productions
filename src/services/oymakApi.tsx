@@ -162,17 +162,13 @@ interface CategoryCardProduct {
   Price: number
 }
 
+
+
+
 /**
  * Kategoriler
  */
 interface CategoryList {
-  list: CategoryListItem[]
-}
-
-/**
- * Kategoriler listesindeki her item değeri
- */
-interface CategoryListItem {
   Id: string
   Name: string
 }
