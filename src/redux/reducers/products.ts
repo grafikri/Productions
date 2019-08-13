@@ -9,7 +9,10 @@ const products: Reducer<Product[]> = (
   ],
   action
 ) => {
+const products: Reducer<Product[]> = (state: Product[] = [], action) => {
   switch (action.type) {
+    case types.ADD_BULK_PRODUCTS:
+      return [...state, ...action.products]
     case types.CLEAR_PRODUCTS:
       return []
     case types.ADD_NEW_PRODUCT:
