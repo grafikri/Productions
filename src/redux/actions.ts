@@ -9,6 +9,10 @@ export const clearCategories = () => ({
   type: types.CLEAR_CATEGORIES
 })
 
+export const clearProducts = () => ({
+  type: types.CLEAR_PRODUCTS
+})
+
 export const addNewProduct = (name: string) => ({
   type: types.ADD_NEW_PRODUCT,
   name: name
