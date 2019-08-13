@@ -3,12 +3,6 @@ import { Product } from "../../store/appInterfaces"
 import { types } from "../actionsTypes"
 import { randomRangeNumber, randomNumber } from "../../helpers"
 
-const products: Reducer<Product[]> = (
-  state: Product[] = [
-    { id: "123", name: "Arçelik", code: "12345", price: "10" }
-  ],
-  action
-) => {
 const products: Reducer<Product[]> = (state: Product[] = [], action) => {
   switch (action.type) {
     case types.ADD_BULK_PRODUCTS:
