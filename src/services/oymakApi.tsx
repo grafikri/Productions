@@ -59,7 +59,7 @@ export default class OymakApi {
             }
           ]
         })
-      }, 1000)
+      }, 200)
     })
   }
 
@@ -91,7 +91,7 @@ export default class OymakApi {
             }
           ]
         })
-      }, 1000)
+      }, 200)
     })
   }
 }
