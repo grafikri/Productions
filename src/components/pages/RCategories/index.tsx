@@ -1,14 +1,16 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Dispatch } from "redux"
 import { default as RCategoriesTemplate } from "../../templates/RCategories"
 import { ApplicationState } from "../../../store/appInterfaces"
 
 import { addNewCategory } from "../../../redux/actions"
 import { fetchCategories } from "../../../thunk"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RCategories extends React.Component<
-  ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
+  ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps> &
+    RouteComponentProps
 > {
   componentDidMount() {
     this.props.getCategories()
@@ -21,6 +23,9 @@ class RCategories extends React.Component<
           loading={this.props.loading}
           handleSubmit={name => {
             this.props.add(name)
+          }}
+          handleClick={id => {
+            this.props.history.push("/category/" + id)
           }}
           list={this.props.list}
         />
@@ -47,4 +52,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RCategories)
+)(withRouter(RCategories))

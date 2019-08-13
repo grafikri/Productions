@@ -20,6 +20,7 @@ import {
 interface CategoriesProps extends LayoutErrorProps {
   list: Category[]
   handleSubmit(name: string): void
+  handleClick(id: string): void
 }
 
 export default class RCategories extends React.Component<CategoriesProps, any> {
@@ -48,16 +49,21 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                     <TableHead>
                       <TableRow>
                         <TableCell>Ad</TableCell>
-                        <TableCell align="right">Kod</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {this.props.list.map(item => (
-                        <TableRow key={item.id}>
-                          <TableCell component="th" scope="row">
+                        <TableRow hover key={item.id}>
+                          <TableCell
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              this.props.handleClick(item.id)
+                            }}
+                            component="th"
+                            scope="row"
+                          >
                             {item.name}
                           </TableCell>
-                          <TableCell align="right">{item.code}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
