@@ -24,6 +24,9 @@ class RProducts extends React.Component<
           handleSubmit={name => {
             this.props.add(name)
           }}
+          handleProductClick={id => {
+            this.props.history.push("/product/" + id)
+          }}
         />
       </div>
     )
