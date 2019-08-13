@@ -25,6 +25,7 @@ class RCategories extends React.Component<
             this.props.add(name)
           }}
           handleClick={id => {
+            this.props.history.push("/category/" + id)
           }}
           list={this.props.list}
         />
