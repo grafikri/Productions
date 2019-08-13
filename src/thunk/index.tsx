@@ -42,6 +42,25 @@ export const fetchCategories = () => {
 }
 
 /**
+ *
+ * Yeni kategori kayıt ediliyor
+ */
+export const addCategory = (name: string) => {
+  return (dispatch: Dispatch) => {
+    console.log("thunk: ", name)
+
+    // return OymakApi.addCategory(name, code)
+    //   .then(data => {
+    //     dispatch(addNewCategory(data.Message, name, code))
+    //   })
+    //   .catch(error => {
+    //     // Sunucu hata mesajı bu alanda yorumlanacak
+    //   })
+    //   .finally(() => {})
+  }
+}
+
+/**
  * Api'den ürünler çekilip redux'a gönderiliyor
  */
 export const fetchProducts = () => {
