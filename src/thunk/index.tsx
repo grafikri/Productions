@@ -8,7 +8,8 @@ import {
   clearProducts,
   updateCategoryCard,
   addBulkCategory,
-  addNewCategory
+  addNewCategory,
+  addBulkProduct
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
@@ -79,9 +80,14 @@ export const fetchProducts = () => {
       .then(data => {
         dispatch(clearProducts())
         dispatch(updateLayoutErrorMessage(""))
-        data.map(item => {
-          dispatch(addNewProduct(item.Name))
-        })
+
+        const products: Product[] = data.map(item => ({
+          id: item.Id,
+          name: item.Name,
+          code: item.Code,
+          price: item.Price.toString()
+        }))
+        dispatch(addBulkProduct(products))
       })
       .catch(error => {
         dispatch(updateLayoutErrorMessage(error))

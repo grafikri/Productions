@@ -1,9 +1,14 @@
 import { types } from "./actionsTypes"
-import { Category } from "../store/appInterfaces"
+import { Category, Product } from "../store/appInterfaces"
 
 export const addBulkCategory = (categories: Category[]) => ({
   type: types.ADD_BULK_CATEGORIES,
   categories: categories
+})
+
+export const addBulkProduct = (products: Product[]) => ({
+  type: types.ADD_BULK_PRODUCTS,
+  products: products
 })
 
 export const addNewCategory = (category: Category) => ({

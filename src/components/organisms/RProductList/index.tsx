@@ -12,6 +12,7 @@ import { Product } from "../../../store/appInterfaces"
 
 interface RProductListProps {
   list: Product[]
+  handleClick?(id: string): void
 }
 
 export default class RProductList extends React.Component<RProductListProps> {
@@ -23,16 +24,23 @@ export default class RProductList extends React.Component<RProductListProps> {
             <TableHead>
               <TableRow>
                 <TableCell>Ad</TableCell>
-                <TableCell align="right">Kod</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {this.props.list.map(item => (
-                <TableRow key={item.id}>
+                <TableRow
+                  onClick={() => {
+                    if (this.props.handleClick != undefined) {
+                      this.props.handleClick(item.id)
+                    }
+                  }}
+                  hover
+                  key={item.id}
+                  style={{ cursor: "pointer" }}
+                >
                   <TableCell component="th" scope="row">
-                    {item.name}
+                    <Typography>{item.name}</Typography>
                   </TableCell>
-                  <TableCell align="right">{item.code}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
