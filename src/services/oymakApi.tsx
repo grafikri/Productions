@@ -1,5 +1,6 @@
 import axios from "axios"
-import qs from 'qs'
+import { AxiosError } from "axios"
+import qs from "qs"
 /**
  * Oymak Grup Api'si ile ilgili tüm bağlantılar buradan sağlanmaktadır
  */
