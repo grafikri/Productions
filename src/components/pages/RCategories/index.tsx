@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Dispatch } from "redux"
 import { default as RCategoriesTemplate } from "../../templates/RCategories"
 import { ApplicationState } from "../../../store/appInterfaces"
 
