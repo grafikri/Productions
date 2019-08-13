@@ -30,9 +30,14 @@ export default class OymakApi {
 
   static getCategoryList(): Promise<CategoryList[]> {
     return new Promise((resolve, reject) => {
-      return this.instance.get("api/Product/Category/Get/AutoCompleteList").then(data => {
-        resolve(data.data as CategoryList[])
-      })
+      return this.instance
+        .get("api/Product/Category/Get/AutoCompleteList")
+        .then(data => {
+          resolve(data.data as CategoryList[])
+        })
+        .catch((error: AxiosError) => {
+          reject(this.getErrorMessage(error))
+        })
     })
   }
 
@@ -95,6 +100,32 @@ export default class OymakApi {
         })
       }, 200)
     })
+  }
+
+  /**
+   * Sunucudan bir şekilde yanıt alınamazsa burada hata detayı çıkartılıp gönderilir.
+   * Bazen sunucu yanıt vermez, bazen yanıt verdiği halde 200 dışında bir hata döndürür.
+   * Bu gibi durumların expection almadan anlaşılması için bu metodu kullanıyoruz
+   *
+   * @param error Request sonrası dönen hata nesnesidir
+   */
+  private static getErrorMessage(error: AxiosError): string {
+    if (error.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      //return error.response.data.Message as string
+      return (error.response.data as ErrorMessage).Message
+    } else if (error.request) {
+      // The request was made but no response was received
+      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+      // http.ClientRequest in node.js
+      //console.log("request: ",error.request)
+      return "Bağlantı sağlanamadı. Lütfen hizmet aldığınız birim ile görüşün."
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      return error.message
+      //console.log('Error', error.message)
+    }
   }
 }
 
