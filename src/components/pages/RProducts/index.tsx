@@ -13,6 +13,8 @@ class RProducts extends React.Component<
     return (
       <div>
         <RProductsTemplate
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
           products={this.props.products}
           handleSubmit={name => {
             this.props.add(name)
