@@ -27,6 +27,9 @@ class RCategories extends React.Component<
           errorMessage={this.props.errorMessage}
           category={this.props.category}
           products={this.props.category.products}
+          handleProductClick={id => {
+            this.props.history.push("/product/" + id)
+          }}
         />
       </div>
     )
