@@ -20,6 +20,7 @@ import RProductsList from "../../organisms/RProductList"
 interface ProductsProps extends LayoutErrorProps {
   products: Product[]
   handleSubmit(name: string): void
+  handleProductClick(id: string): void
 }
 
 export default class RProducts extends React.Component<ProductsProps, any> {
@@ -43,7 +44,10 @@ export default class RProducts extends React.Component<ProductsProps, any> {
                   Şimdilik bir ürün bulunmuyor
                 </Typography>
               ) : (
-                <RProductsList list={this.props.products} />
+                <RProductsList
+                  handleClick={this.props.handleProductClick}
+                  list={this.props.products}
+                />
               )}
             </div>
           </div>
