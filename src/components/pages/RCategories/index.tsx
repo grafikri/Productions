@@ -22,6 +22,9 @@ class RCategories extends React.Component<
           handleSubmit={name => {
             this.props.add(name)
           }}
+          handleClick={id => {
+            console.log("id: ", id)
+          }}
           list={this.props.list}
         />
       </div>
