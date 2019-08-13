@@ -21,7 +21,7 @@ export const fetchCategories = () => {
     return OymakApi.getCategoryList()
       .then(data => {
         dispatch(clearCategories())
-        data.list.map(item => {
+        data.map(item => {
           dispatch(updateLayoutErrorMessage(""))
           dispatch(addNewCategory(item.Name, item.Id))
         })
