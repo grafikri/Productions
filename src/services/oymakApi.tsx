@@ -166,3 +166,10 @@ interface ProductListItem {
   ProductCategoryCode: string
   ProductCategoryName: string
 }
+
+/**
+ * Sunucudan hata döndüğü zaman kullanılır
+ */
+interface ErrorMessage{
+  Message: string
+}
