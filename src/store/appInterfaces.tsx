@@ -56,3 +56,11 @@ export interface Application {
    */
   layoutErrorMessage: string
 }
+
+/**
+ * Layout için gerekli değerler
+ */
+export interface LayoutErrorProps {
+  loading?: boolean
+  errorMessage?: string
+}

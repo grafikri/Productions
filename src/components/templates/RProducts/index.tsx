@@ -11,13 +11,13 @@ import {
   TableBody,
   Typography
 } from "@material-ui/core"
-import { Product } from "../../../store/appInterfaces"
+import { Product, LayoutErrorProps } from "../../../store/appInterfaces"
 import RProductsList from "../../organisms/RProductList"
 
 /**
  * Props değerleri
  */
-interface ProductsProps {
+interface ProductsProps extends LayoutErrorProps {
   products: Product[]
   handleSubmit(name: string): void
 }
@@ -26,7 +26,10 @@ export default class RProducts extends React.Component<ProductsProps, any> {
   render() {
     return (
       <div className="t-r-products">
-        <CommonLayout>
+        <CommonLayout
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
+        >
           <div className="container">
             <div className="formInput">
               <RAddSingleItem

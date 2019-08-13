@@ -62,6 +62,38 @@ export default class OymakApi {
       }, 1000)
     })
   }
+
+  static getProductList(): Promise<ProductList> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        //reject("Beklenmedik bir hata")
+        resolve({
+          list: [
+            {
+              Id: "72b4be02-0e58-4a0f-8658-c231370d9c5c",
+              Code: "C_13345",
+              Name: "Corsa",
+              ExpiredDate: "2020-08-13T10:07:55.237",
+              Price: 2000.0,
+              ProductCategoryId: "ef587afd-f937-4b73-b5cd-88d4f913249c",
+              ProductCategoryCode: "O_12743",
+              ProductCategoryName: "Opel"
+            },
+            {
+              Id: "72b4be02-0e58-4a0f-8658-c231370d9c56",
+              Code: "O_13345",
+              Name: "Corsa",
+              ExpiredDate: "2020-08-13T10:07:55.237",
+              Price: 2000.0,
+              ProductCategoryId: "ef587afd-f937-4b73-b5cd-88d4f913249c",
+              ProductCategoryCode: "O_12743",
+              ProductCategoryName: "Opel"
+            }
+          ]
+        })
+      }, 1000)
+    })
+  }
 }
 
 /**
@@ -114,4 +146,25 @@ interface CategoryList {
 interface CategoryListItem {
   Id: string
   Name: string
+}
+
+/**
+ * Ürünler
+ */
+interface ProductList {
+  list: ProductListItem[]
+}
+
+/**
+ * Ürün listesindeki her item değeri
+ */
+interface ProductListItem {
+  Id: string
+  Code: string
+  Name: string
+  ExpiredDate: string
+  Price: number
+  ProductCategoryId: string
+  ProductCategoryCode: string
+  ProductCategoryName: string
 }

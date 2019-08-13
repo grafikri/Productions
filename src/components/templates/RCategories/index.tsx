@@ -2,7 +2,7 @@ import "./index.css"
 import React from "react"
 import CommonLayout from "../../organisms/RCommonLayout"
 import RAddSingleItem from "../../molecules/RAddSingleItem"
-import { Category } from "../../../store/appInterfaces"
+import { Category, LayoutErrorProps } from "../../../store/appInterfaces"
 
 import {
   Paper,
@@ -17,9 +17,7 @@ import {
 /**
  * Props değerleri
  */
-interface CategoriesProps {
-  errorMessage?: string
-  loading?: boolean
+interface CategoriesProps extends LayoutErrorProps {
   list: Category[]
   handleSubmit(name: string): void
 }
