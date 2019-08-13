@@ -1,3 +1,4 @@
+import "./index.css"
 import React from "react"
 import { Typography, Divider, Card, CardContent } from "@material-ui/core"
 import CommonLayout from "../../organisms/RCommonLayout"
