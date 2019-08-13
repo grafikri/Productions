@@ -6,11 +6,9 @@ export const addBulkCategory = (categories: Category[]) => ({
   categories: categories
 })
 
-export const addNewCategory = (id: string, name: string, code: string) => ({
+export const addNewCategory = (category: Category) => ({
   type: types.ADD_NEW_CATEGORY,
-  id: id,
-  name: name,
-  code: code
+  category: category
 })
 
 export const clearCategories = () => ({
