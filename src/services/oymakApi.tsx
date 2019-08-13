@@ -21,22 +21,11 @@ export default class OymakApi {
 
   static login(userName: string, password: string): Promise<Login> {
     return new Promise((resolve, reject) => {
-      return this.instance.post("login", {
+      return this.instance.post("token", qs.stringify({
         username: userName,
         password: password,
         grant_type: "password"
-      })
-
-      // setTimeout(() => {
-      //   resolve({
-      //     access_token: "string",
-      //     token_type: "string",
-      //     expires_in: 1234,
-      //     userName: "string",
-      //     ".issued": "string",
-      //     ".expires": "string"
-      //   })
-      // }, 1000)
+      }))
     })
   }
 
