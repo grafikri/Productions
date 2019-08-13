@@ -9,16 +9,16 @@ const categories: Reducer<Category[]> = (state: Category[] = [], action) => {
       return []
     case types.ADD_NEW_CATEGORY:
       const upperName = action.name as string
-      const id = randomRangeNumber(1000, 9999).toString()
       const code =
         (action.name[0] as string).toUpperCase() +
         "_" +
         randomRangeNumber(1000, 9999)
       return (state = [
         {
-          id: id,
+          id: action.id,
           name: upperName,
-          code: code
+          code: code,
+          products: []
         },
         ...state
       ])

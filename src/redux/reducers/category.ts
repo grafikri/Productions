@@ -5,7 +5,8 @@ import { types } from "../actionsTypes"
 const initialState = {
   id: "",
   name: "",
-  code: ""
+  code: "",
+  products: []
 }
 
 const category: Reducer<Category> = (
@@ -14,7 +15,7 @@ const category: Reducer<Category> = (
 ): Category => {
   switch (action.type) {
     case types.SET_CATEGORY:
-      return state
+      return { ...state, ...action.card }
     default:
       return state
   }

@@ -1,3 +1,5 @@
+import products from "../redux/reducers/products"
+
 /**
  * Burada uygulama içinde kullanılan data'ların interface'leri bulunmaktadır
  */
@@ -31,6 +33,7 @@ export interface Category {
   id: string
   name: string
   code: string
+  products: Product[]
 }
 
 /**

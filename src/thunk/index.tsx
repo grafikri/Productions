@@ -6,8 +6,10 @@ import {
   updateLayoutErrorMessage,
   clearCategories,
   addNewProduct,
-  clearProducts
+  clearProducts,
+  updateCategoryCard
 } from "../redux/actions"
+import { Category, Product } from "../store/appInterfaces"
 
 /**
  * Api'den kategoriler çekilip redux'a gönderiliyor
@@ -21,7 +23,7 @@ export const fetchCategories = () => {
         dispatch(clearCategories())
         data.list.map(item => {
           dispatch(updateLayoutErrorMessage(""))
-          dispatch(addNewCategory(item.Name))
+          dispatch(addNewCategory(item.Name, item.Id))
         })
       })
       .catch(error => {
@@ -44,6 +46,38 @@ export const fetchProducts = () => {
         data.list.map(item => {
           dispatch(addNewProduct(item.Name))
         })
+      })
+      .catch(error => {
+        dispatch(updateLayoutErrorMessage(error))
+      })
+      .finally(() => {
+        dispatch(updateLayoutLoading(false))
+      })
+  }
+}
+
+export const fetchCategoryCard = (id: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch(updateLayoutLoading(true))
+
+    return OymakApi.getCategoryCard(id)
+      .then(data => {
+        dispatch(updateLayoutErrorMessage(""))
+
+        const products: Product[] = data.Products.map(item => ({
+          id: item.Id,
+          name: item.Name,
+          code: item.Code,
+          price: item.Price.toString()
+        }))
+
+        const card: Category = {
+          id: data.Id,
+          name: data.Name,
+          code: data.Code,
+          products: products
+        }
+        dispatch(updateCategoryCard(card))
       })
       .catch(error => {
         dispatch(updateLayoutErrorMessage(error))
