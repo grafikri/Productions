@@ -20,10 +20,15 @@ class RCategories extends React.Component<ReturnType<typeof mapStateToProps>> {
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
-  category: state.category
+  category: state.category,
   loading: state.application.layoutLoading,
   errorMessage: state.application.layoutErrorMessage
 })
+
+const mapDispatchToProps = (dispatch: any) => ({
+  fetchCard: (id: string) => {
+    dispatch(fetchCategoryCard(id))
+  }
 })
 
 export default connect(
