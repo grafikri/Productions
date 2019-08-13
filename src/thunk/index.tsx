@@ -43,7 +43,7 @@ export const fetchProducts = () => {
       .then(data => {
         dispatch(clearProducts())
         dispatch(updateLayoutErrorMessage(""))
-        data.list.map(item => {
+        data.map(item => {
           dispatch(addNewProduct(item.Name))
         })
       })
