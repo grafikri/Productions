@@ -48,7 +48,6 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                     <TableHead>
                       <TableRow>
                         <TableCell>Ad</TableCell>
-                        <TableCell align="right">Kod</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -57,7 +56,6 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                           <TableCell component="th" scope="row">
                             {item.name}
                           </TableCell>
-                          <TableCell align="right">{item.code}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
