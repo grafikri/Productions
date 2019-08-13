@@ -63,6 +63,35 @@ export default class OymakApi {
     })
   }
 
+  static getCategoryCard(id: string): Promise<CategoryCard> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        //reject("Beklenmedik bir hata")
+        resolve({
+          Id: "ef587afd-f937-4b73-b5cd-88d4f913249c",
+          Code: "O_12743",
+          Name: "Opel",
+          Products: [
+            {
+              Id: "72b4be02-0e58-4a0f-8658-c231370d9c5c",
+              Code: "C_13345",
+              Name: "Corsa",
+              ExpiredDate: "2020-08-13T10:07:55.237",
+              Price: 2000.0
+            },
+            {
+              Id: "72b4be02-0e58-4a0f-8658-c231370d9c55",
+              Code: "C_13345",
+              Name: "Corsa",
+              ExpiredDate: "2020-08-13T10:07:55.237",
+              Price: 2000.0
+            }
+          ]
+        })
+      }, 200)
+    })
+  }
+
   static getProductList(): Promise<ProductList> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
