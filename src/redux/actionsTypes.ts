@@ -11,6 +11,10 @@ export enum types {
    */
   CLEAR_PRODUCTS,
   /**
+   * Birden fazla kategoriy bir kerede eklemek için kullanılır
+   */
+  ADD_BULK_CATEGORIES,
+  /**
    * Yeni kategori eklerken kullanılır
    */
   ADD_NEW_CATEGORY,

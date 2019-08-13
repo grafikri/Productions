@@ -1,10 +1,16 @@
 import { types } from "./actionsTypes"
 import { Category } from "../store/appInterfaces"
 
-export const addNewCategory = (name: string, id: string) => ({
+export const addBulkCategory = (categories: Category[]) => ({
+  type: types.ADD_BULK_CATEGORIES,
+  categories: categories
+})
+
+export const addNewCategory = (id: string, name: string, code: string) => ({
   type: types.ADD_NEW_CATEGORY,
+  id: id,
   name: name,
-  id: id
+  code: code
 })
 
 export const clearCategories = () => ({
