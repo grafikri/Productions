@@ -5,7 +5,8 @@ import {
   updateLayoutLoading,
   updateLayoutErrorMessage,
   clearCategories,
-  addNewProduct
+  addNewProduct,
+  clearProducts
 } from "../redux/actions"
 
 /**
@@ -38,6 +39,7 @@ export const fetchProducts = () => {
 
     return OymakApi.getProductList()
       .then(data => {
+        dispatch(clearProducts())
         dispatch(updateLayoutErrorMessage(""))
         data.list.map(item => {
           dispatch(addNewProduct(item.Name))

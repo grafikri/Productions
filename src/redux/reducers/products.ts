@@ -10,6 +10,8 @@ const products: Reducer<Product[]> = (
   action
 ) => {
   switch (action.type) {
+    case types.CLEAR_PRODUCTS:
+      return []
     case types.ADD_NEW_PRODUCT:
       const upperName = action.name as string
       const id = randomRangeNumber(1000, 9999).toString()

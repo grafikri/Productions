@@ -5,7 +5,11 @@ export enum types {
   /**
    * Tüm kategorileri kaldırır
    */
-  CLEAR_NEW_CATEGORY,
+  CLEAR_CATEGORIES,
+  /**
+   * Tüm ürünleri kaldırır
+   */
+  CLEAR_PRODUCTS,
   /**
    * Yeni kategori eklerken kullanılır
    */
