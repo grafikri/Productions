@@ -168,13 +168,6 @@ interface CategoryList {
  * Ürünler
  */
 interface ProductList {
-  list: ProductListItem[]
-}
-
-/**
- * Ürün listesindeki her item değeri
- */
-interface ProductListItem {
   Id: string
   Code: string
   Name: string
