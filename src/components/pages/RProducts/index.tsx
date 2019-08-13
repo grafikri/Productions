@@ -5,10 +5,14 @@ import { default as RProductsTemplate } from "../../templates/RProducts"
 import { connect } from "react-redux"
 import { ApplicationState } from "../../../store/appInterfaces"
 import { addNewProduct } from "../../../redux/actions"
+import { fetchProducts } from "../../../thunk"
 
 class RProducts extends React.Component<
   ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
 > {
+  componentDidMount() {
+    this.props.getProducts()
+  }
   render() {
     return (
       <div>
