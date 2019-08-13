@@ -2,9 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { default as RCategoriesTemplate } from "../../templates/RCategories"
 import { ApplicationState } from "../../../store/appInterfaces"
-
-import { addNewCategory } from "../../../redux/actions"
-import { fetchCategories } from "../../../thunk"
+import { fetchCategories, addCategory } from "../../../thunk"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RCategories extends React.Component<
@@ -22,7 +20,7 @@ class RCategories extends React.Component<
           errorMessage={this.props.errorMessage}
           loading={this.props.loading}
           handleSubmit={name => {
-            //this.props.add(name)
+            this.props.addCategory(name)
           }}
           handleClick={id => {
             this.props.history.push("/category/" + id)
@@ -41,9 +39,9 @@ const mapStateToProps = (state: ApplicationState) => ({
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
-  // add: (name: string): void => {
-  //   dispatch(addNewCategory(name, id))
-  // },
+  addCategory: (name: string): void => {
+    dispatch(addCategory(name))
+  },
   getCategories: () => {
     dispatch(fetchCategories())
   }
