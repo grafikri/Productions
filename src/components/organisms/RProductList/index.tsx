@@ -30,6 +30,7 @@ export default class RProductList extends React.Component<RProductListProps> {
                 <TableRow key={item.id}>
                   <TableCell component="th" scope="row">
                     {item.name}
+                    <Typography>{item.name}</Typography>
                   </TableCell>
                 </TableRow>
               ))}
