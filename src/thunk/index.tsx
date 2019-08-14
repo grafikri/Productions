@@ -114,7 +114,9 @@ export const fetchProductCard = (id: string) => {
           id: data.Id,
           name: data.Name,
           code: data.Code,
-          price: data.Price.toString()
+          price: data.Price.toString(),
+          categoryName: data.ProductCategoryName,
+          categoryCode: data.ProductCategoryCode
         }
 
         dispatch(updateProduct(product))
