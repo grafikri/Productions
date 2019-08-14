@@ -18,6 +18,9 @@ class RProductForm extends React.Component<ReturnType<typeof mapStateToProps>> {
           handleSubmit={form => {
             console.log("form: ", form)
           }}
+          handleClose={() => {
+            console.log("pop kapatıldı")
+          }}
         />
       </div>
     )

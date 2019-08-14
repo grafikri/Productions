@@ -38,6 +38,11 @@ interface RProductFormProps extends LayoutErrorProps {
    * @param form Formun içeriği
    */
   handleSubmit(form: Form): void
+
+  /**
+   * Alert kapatıldığıda tetiklenir
+   */
+  handleClose(): void
 }
 
 export default class RProductForm extends React.Component<RProductFormProps> {
@@ -52,6 +57,7 @@ export default class RProductForm extends React.Component<RProductFormProps> {
     this.setState({
       open: false
     })
+    this.props.handleClose()
   }
   render() {
     return (
