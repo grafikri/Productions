@@ -30,7 +30,7 @@ interface Categoriy {
  * Props değerleri
  */
 interface RAddSingleItemProps {
-  handleSubmit(name: string): void
+  handleSubmit(form: Form): void
   categories: Categoriy[]
 }
 
