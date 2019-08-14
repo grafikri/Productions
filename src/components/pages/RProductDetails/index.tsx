@@ -3,11 +3,15 @@ import React from "react"
 import { default as RProductDetailsTemplate } from "../../templates/RProductDetails"
 import { ApplicationState } from "../../../store/appInterfaces"
 import { connect } from "react-redux"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 import { fetchProductCard } from "../../../thunk"
 
 class RProductDetails extends React.Component<
-  ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
+  ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps> &
+    RouteComponentProps
 > {
+  componentDidMount() {}
   render() {
     return (
       <div className="p-r-product-details">
@@ -30,4 +34,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RProductDetails)
+)(withRouter(RProductDetails))
