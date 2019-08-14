@@ -35,6 +35,17 @@ interface RAddSingleItemProps {
   categories: Categoriy[]
 }
 
+/**
+ * Submit edilecek formdur
+ */
+interface Form {
+  name: string
+  date: string
+  time: string
+  price: string
+  caregoryCode: string
+}
+
 export default class RAddSingleItem extends React.Component<
   RAddSingleItemProps,
   RAddSingleItemStates
