@@ -8,10 +8,7 @@ import RAddNewProductForm from "../../molecules/RAddNewProductForm"
  */
 interface RProductFormProps extends LayoutErrorProps {}
 
-export default class RProductForm extends React.Component<
-  RProductFormProps,
-  any
-> {
+export default class RProductForm extends React.Component<RProductFormProps> {
   render() {
     return (
       <div className="t-r-product-form">
