@@ -1,9 +1,18 @@
 import React from "react"
 import { connect } from "react-redux"
-//import RProductForm from "./components/templates/RProductForm"
+import { default as RProductFormTemplate } from "../../templates/RProductForm"
 class RProductForm extends React.Component {
   render() {
-    return <div className="p-r-product-form">Form page</div>
+    return (
+      <div className="p-r-product-form">
+        <RProductFormTemplate
+          result={true}
+          dialogTitle="Kayıt başarılı"
+          dialogDesc="Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün sayfasına yönlendirileceksiniz."
+          dialogOpen={false}
+        />
+      </div>
+    )
   }
 }
 
