@@ -39,13 +39,6 @@ export default class RAddSingleItem extends React.Component<
   RAddSingleItemProps,
   RAddSingleItemStates
 > {
-  static defaultProps = {
-    categories: [
-      { value: "O_1234", label: "Opel" },
-      { value: "M_1234", label: "Mazda" }
-    ]
-  }
-
   state = {
     name: "",
     date: "",
