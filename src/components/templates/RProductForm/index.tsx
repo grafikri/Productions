@@ -33,6 +33,17 @@ interface RProductFormProps extends LayoutErrorProps {
    * false olduğu taktirde bu sayfada kalmaya devam eder
    */
   formSaveResult?: boolean
+
+  /**
+   * Ürün sunucuya kayıt olurken true olur
+   */
+  formSaving: boolean
+
+  /**
+   * Form'u üst component'e submit etmek için kullanlıır
+   * @param form Formun içeriği
+   */
+  handleSubmit(form: Form): void
 }
 
 export default class RProductForm extends React.Component<RProductFormProps> {
