@@ -36,7 +36,18 @@ interface RProductFormProps extends LayoutErrorProps {
 }
 
 export default class RProductForm extends React.Component<RProductFormProps> {
-  handleClose() {}
+  constructor(props: RProductFormProps) {
+    super(props)
+    this.handleClose = this.handleClose.bind(this)
+  }
+  state = {
+    open: this.props.dialogOpen
+  }
+  handleClose() {
+    this.setState({
+      open: false
+    })
+  }
   render() {
     return (
       <div className="t-r-product-form">
@@ -53,7 +64,7 @@ export default class RProductForm extends React.Component<RProductFormProps> {
           />
 
           <Dialog
-            open={this.props.dialogOpen}
+            open={this.state.open}
             onClose={this.handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
