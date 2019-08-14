@@ -15,9 +15,24 @@ import {
  * Props değerleri
  */
 interface RProductFormProps extends LayoutErrorProps {
+  /**
+   * Kayıt sonucunun olumlu ya da olumsuz olmasına göre title değeri değişir
+   */
   dialogTitle: string
+  /**
+   * Kayıt sonucunun olumlu ya da olumsuz olmasına göre desc değeri değişir
+   */
   dialogDesc: string
+  /**
+   * Dialog'u açıp kapatır
+   */
   dialogOpen: boolean
+  /**
+   * Ürünün kaydı olumlu ise true gelir
+   * true olduğu taktirde ürün detayına yönlendirme yaparız
+   * false olduğu taktirde bu sayfada kalmaya devam eder
+   */
+  result?: boolean
 }
 
 export default class RProductForm extends React.Component<RProductFormProps> {
