@@ -23,7 +23,7 @@ export default class RProductList extends React.Component<RProductListProps> {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Ad</TableCell>
+                <TableCell>Ürün adı</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

@@ -24,6 +24,8 @@ export interface Product {
   name: string
   code: string
   price: string
+  categoryName: string
+  categoryCode: string
 }
 
 /**

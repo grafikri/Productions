@@ -34,6 +34,11 @@ export const updateCategoryCard = (card: Category) => ({
   card: card
 })
 
+export const updateProduct = (product: Product) => ({
+  type: types.SET_PRODUCT,
+  product: product
+})
+
 export const updateLayoutLoading = (situation: boolean) => ({
   type: types.UPDATE_LAYOUT_LOADING,
   situation: situation

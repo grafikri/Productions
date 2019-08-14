@@ -1,13 +1,19 @@
 import React from "react"
-import { Typography, Divider, Card, CardContent } from "@material-ui/core"
+import {
+  Typography,
+  Divider,
+  List,
+  ListItem,
+  ListItemText
+} from "@material-ui/core"
 import CommonLayout from "../../organisms/RCommonLayout"
 
-import { Product } from "../../../store/appInterfaces"
+import { Product, LayoutErrorProps } from "../../../store/appInterfaces"
 
 /**
  * Props değerleri
  */
-interface RProductDetailsProps {
+interface RProductDetailsProps extends LayoutErrorProps {
   product: Product
 }
 
@@ -17,10 +23,44 @@ export default class RProductDetails extends React.Component<
   render() {
     return (
       <div className="p-r-product-details">
-        <CommonLayout>
-          <Typography variant="h6" gutterBottom>
-            {this.props.product.name}
+        <CommonLayout
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
+        >
+          <Typography variant="h5" gutterBottom>
+            Ürün detayları
           </Typography>
+          <Divider />
+          <List>
+            <ListItem>
+              <ListItemText
+                primary={this.props.product.name}
+                secondary="Ürün adı"
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                primary={this.props.product.code}
+                secondary="Code"
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                primary={this.props.product.price}
+                secondary="Fiyat"
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                primary={
+                  this.props.product.categoryName +
+                  " / " +
+                  this.props.product.categoryCode
+                }
+                secondary="Kategori / Kod"
+              />
+            </ListItem>
+          </List>
         </CommonLayout>
       </div>
     )

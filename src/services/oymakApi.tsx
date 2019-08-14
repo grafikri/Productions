@@ -60,12 +60,25 @@ export default class OymakApi {
     })
   }
 
-  static getProductList(): Promise<ProductList[]> {
+  static getProductCard(id: string): Promise<Product> {
+    return new Promise((resolve, reject) => {
+      return this.instance
+        .get("api/product/get/card?id=" + id)
+        .then(data => {
+          resolve(data.data as Product)
+        })
+        .catch((error: AxiosError) => {
+          reject(this.getErrorMessage(error))
+        })
+    })
+  }
+
+  static getProductList(): Promise<Product[]> {
     return new Promise((resolve, reject) => {
       return this.instance
         .get("api/Product/Get")
         .then(data => {
-          resolve(data.data as ProductList[])
+          resolve(data.data as Product[])
         })
         .catch((error: AxiosError) => {
           reject(this.getErrorMessage(error))
@@ -167,7 +180,7 @@ interface CategoryList {
 /**
  * Ürünler
  */
-interface ProductList {
+interface Product {
   Id: string
   Code: string
   Name: string
