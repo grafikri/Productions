@@ -78,9 +78,18 @@ export interface Application {
  * gibi durumlar için kullanılır
  */
 export enum ConnectionSituations {
+  /**
+   * Sunucu ile bağlantının devam ettiğini gösterir
+   */
   RUNNING,
+  /**
+   * Sunucu ile bağlantının olumlu sonuçlandığını gösterir
+   */
   DONE,
-  FAIL
+  /**
+   * Sunucu ile bağlantının olumsuz sonuçlandığını gösterir
+   */
+  FAIL,
   /**
    * Sunucu ile bağlantının henüz başlamadığını gösterir
    */
