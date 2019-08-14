@@ -58,7 +58,9 @@ const mapStateToProps = (state: ApplicationState) => ({
         return "-"
     }
   },
-  dialogOpen: state.application.connectionStatus != ConnectionSituations.RUNNING
+  dialogOpen:
+    state.application.connectionStatus == ConnectionSituations.DONE ||
+    state.application.connectionStatus == ConnectionSituations.FAIL
 })
 
 export default connect(mapStateToProps)(RProductForm)
