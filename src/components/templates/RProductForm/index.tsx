@@ -53,7 +53,7 @@ export default class RProductForm extends React.Component<RProductFormProps> {
       <div className="t-r-product-form">
         <CommonLayout loading={false} errorMessage={""}>
           <RAddNewProductForm
-            formSaving={false}
+            formSaving={this.props.formSaving}
             categories={[
               { value: "O_1234", label: "Opel" },
               { value: "M_1234", label: "Mazda" }
