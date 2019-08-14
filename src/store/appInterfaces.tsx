@@ -25,7 +25,7 @@ export interface Product {
   code: string
   price: string
   categoryName: string
-  categoryode: string
+  categoryCode: string
 }
 
 /**
