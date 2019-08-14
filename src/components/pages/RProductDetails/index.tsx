@@ -13,6 +13,7 @@ class RProductDetails extends React.Component<
 > {
   componentDidMount() {
     const id = (this.props.match.params as any).id as string
+    this.props.getProductDetails(id)
   }
   render() {
     return (
