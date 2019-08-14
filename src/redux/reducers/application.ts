@@ -8,7 +8,7 @@ import { Reducer } from "redux"
 const initialState = {
   layoutLoading: false,
   layoutErrorMessage: "",
-  connectionStatus: ConnectionSituations.DONE,
+  connectionStatus: ConnectionSituations.STABLE,
   connectionErrorMessage: ""
 }
 
