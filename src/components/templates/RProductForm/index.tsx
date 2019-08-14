@@ -2,7 +2,7 @@
 import React from "react"
 import CommonLayout from "../../organisms/RCommonLayout"
 import { LayoutErrorProps } from "../../../store/appInterfaces"
-import RAddNewProductForm from "../../molecules/RAddNewProductForm"
+import RAddNewProductForm, { Form } from "../../molecules/RAddNewProductForm"
 import {
   Dialog,
   DialogTitle,
@@ -70,7 +70,7 @@ export default class RProductForm extends React.Component<RProductFormProps> {
               { value: "M_1234", label: "Mazda" }
             ]}
             handleSubmit={form => {
-              console.log("form: ", form)
+              this.props.handleSubmit(form)
             }}
           />
 
