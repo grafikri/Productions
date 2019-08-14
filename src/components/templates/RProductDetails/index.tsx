@@ -50,6 +50,16 @@ export default class RProductDetails extends React.Component<
                 secondary="Fiyat"
               />
             </ListItem>
+            <ListItem>
+              <ListItemText
+                primary={
+                  this.props.product.categoryName +
+                  " / " +
+                  this.props.product.categoryCode
+                }
+                secondary="Kategori / Kod"
+              />
+            </ListItem>
           </List>
         </CommonLayout>
       </div>
