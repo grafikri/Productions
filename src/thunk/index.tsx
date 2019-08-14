@@ -9,7 +9,8 @@ import {
   updateCategoryCard,
   addBulkCategory,
   addNewCategory,
-  addBulkProduct
+  addBulkProduct,
+  updateProduct
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
@@ -88,6 +89,35 @@ export const fetchProducts = () => {
           price: item.Price.toString()
         }))
         dispatch(addBulkProduct(products))
+      })
+      .catch(error => {
+        dispatch(updateLayoutErrorMessage(error))
+      })
+      .finally(() => {
+        dispatch(updateLayoutLoading(false))
+      })
+  }
+}
+
+/**
+ * Api'den ürün çekilip redux'a gönderiliyor
+ */
+export const fetchProductCard = (id: string) => {
+  return (dispatch: Dispatch) => {
+    dispatch(updateLayoutLoading(true))
+
+    return OymakApi.getProductCard(id)
+      .then(data => {
+        dispatch(updateLayoutErrorMessage(""))
+
+        const product: Product = {
+          id: data.Id,
+          name: data.Name,
+          code: data.Code,
+          price: data.Price.toString()
+        }
+
+        dispatch(updateProduct(product))
       })
       .catch(error => {
         dispatch(updateLayoutErrorMessage(error))
