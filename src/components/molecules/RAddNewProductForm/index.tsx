@@ -5,7 +5,7 @@ import {
   FormControl,
   MenuItem,
   Button,
-  Paper
+  CircularProgress
 } from "@material-ui/core"
 
 /**
@@ -17,7 +17,7 @@ interface RAddNewProductFormStates {
   time: string
   price: string
   caregoryCode: string
-  formDisabled: boolean
+  formSaving: boolean
   buttonDisabled: boolean
 }
 
@@ -32,6 +32,7 @@ interface Categoriy {
 interface RAddNewProductFormProps {
   handleSubmit(form: Form): void
   categories: Categoriy[]
+  formSaving: boolean
 }
 
 /**
@@ -55,7 +56,7 @@ export default class RAddSingleItem extends React.Component<
     time: "",
     price: "",
     caregoryCode: "",
-    formDisabled: false,
+    formSaving: this.props.formSaving,
     buttonDisabled: true
   }
 
@@ -68,13 +69,14 @@ export default class RAddSingleItem extends React.Component<
           onSubmit={e => {
             e.preventDefault()
             this.props.handleSubmit(form)
-            //this.setState({ name: "", buttonDisabled: true })
+            this.setState({ formSaving: true })
           }}
         >
           <div className="container">
             <div className="left">
               <FormControl fullWidth>
                 <TextField
+                  disabled={this.state.formSaving}
                   variant="outlined"
                   label="Ürün adı"
                   placeholder="Ürün adı"
@@ -90,6 +92,7 @@ export default class RAddSingleItem extends React.Component<
                   }}
                 />
                 <TextField
+                  disabled={this.state.formSaving}
                   variant="outlined"
                   label="Fiyat"
                   placeholder="Fiyat"
@@ -106,6 +109,7 @@ export default class RAddSingleItem extends React.Component<
                   }}
                 />
                 <TextField
+                  disabled={this.state.formSaving}
                   variant="outlined"
                   label="Son geçerlilik tarihi"
                   placeholder="Son geçerlilik tarihi"
@@ -122,6 +126,7 @@ export default class RAddSingleItem extends React.Component<
                   }}
                 />
                 <TextField
+                  disabled={this.state.formSaving}
                   variant="outlined"
                   label="Son geçerlilik saati"
                   placeholder="Son geçerlilik saati"
@@ -138,6 +143,7 @@ export default class RAddSingleItem extends React.Component<
                   }}
                 />
                 <TextField
+                  disabled={this.state.formSaving}
                   select
                   label="Ürün kategorisi seçin"
                   placeholder="Ürün kategorisi seçin"
@@ -162,23 +168,27 @@ export default class RAddSingleItem extends React.Component<
               </FormControl>
             </div>
             <div className="right">
-              <Button
-                disabled={
-                  this.state.name == "" ||
-                  this.state.date == "" ||
-                  this.state.time == "" ||
-                  this.state.price == "" ||
-                  this.state.caregoryCode == ""
-                    ? true
-                    : false
-                }
-                variant="contained"
-                color="primary"
-                size="large"
-                type="submit"
-              >
-                Ekle
-              </Button>
+              {this.state.formSaving ? (
+                <CircularProgress size={24} />
+              ) : (
+                <Button
+                  disabled={
+                    this.state.name == "" ||
+                    this.state.date == "" ||
+                    this.state.time == "" ||
+                    this.state.price == "" ||
+                    this.state.caregoryCode == ""
+                      ? true
+                      : false
+                  }
+                  variant="contained"
+                  color="primary"
+                  size="large"
+                  type="submit"
+                >
+                  Ekle
+                </Button>
+              )}
             </div>
           </div>
         </form>
