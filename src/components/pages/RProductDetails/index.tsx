@@ -18,14 +18,20 @@ class RProductDetails extends React.Component<
   render() {
     return (
       <div className="p-r-product-details">
-        <RProductDetailsTemplate product={this.props.product} />
+        <RProductDetailsTemplate
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
+          product={this.props.product}
+        />
       </div>
     )
   }
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
-  product: state.product
+  product: state.product,
+  loading: state.application.layoutLoading,
+  errorMessage: state.application.layoutErrorMessage
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
