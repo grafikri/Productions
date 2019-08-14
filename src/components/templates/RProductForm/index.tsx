@@ -32,7 +32,7 @@ interface RProductFormProps extends LayoutErrorProps {
    * true olduğu taktirde ürün detayına yönlendirme yaparız
    * false olduğu taktirde bu sayfada kalmaya devam eder
    */
-  result?: boolean
+  formSaveResult?: boolean
 }
 
 export default class RProductForm extends React.Component<RProductFormProps> {
