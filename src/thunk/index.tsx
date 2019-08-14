@@ -86,7 +86,9 @@ export const fetchProducts = () => {
           id: item.Id,
           name: item.Name,
           code: item.Code,
-          price: item.Price.toString()
+          price: item.Price.toString(),
+          categoryName: item.ProductCategoryName,
+          categoryCode: item.ProductCategoryCode
         }))
         dispatch(addBulkProduct(products))
       })
@@ -145,7 +147,9 @@ export const fetchCategoryCard = (id: string) => {
           id: item.Id,
           name: item.Name,
           code: item.Code,
-          price: item.Price.toString()
+          price: item.Price.toString(),
+          categoryName: "",
+          categoryCode: ""
         }))
 
         const card: Category = {

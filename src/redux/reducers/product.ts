@@ -6,7 +6,9 @@ const initialState = {
   id: "",
   name: "",
   code: "",
-  price: ""
+  price: "",
+  categoryName: "",
+  categoryCode: ""
 }
 
 const product: Reducer<Product> = (

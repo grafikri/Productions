@@ -21,7 +21,9 @@ const products: Reducer<Product[]> = (state: Product[] = [], action) => {
           id: id,
           name: upperName,
           code: code,
-          price: action.price
+          price: action.price,
+          categoryName: action.categoryName,
+          categoryCode: action.categoryCode
         },
         ...state
       ])
