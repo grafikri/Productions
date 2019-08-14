@@ -11,7 +11,9 @@ class RProductDetails extends React.Component<
     ReturnType<typeof mapDispatchToProps> &
     RouteComponentProps
 > {
-  componentDidMount() {}
+  componentDidMount() {
+    const id = (this.props.match.params as any).id as string
+  }
   render() {
     return (
       <div className="p-r-product-details">
