@@ -21,18 +21,31 @@ interface RAddSingleItemStates {
   buttonDisabled: boolean
 }
 
+interface Categoriy {
+  value: string
+  label: string
+}
+
 /**
  * Props değerleri
  */
 interface RAddSingleItemProps {
   handleSubmit(name: string): void
   placeHolder: string
+  categories: Categoriy[]
 }
 
 export default class RAddSingleItem extends React.Component<
   RAddSingleItemProps,
   RAddSingleItemStates
 > {
+  static defaultProps = {
+    categories: [
+      { value: "O_1234", label: "Opel" },
+      { value: "M_1234", label: "Mazda" }
+    ]
+  }
+
   state = {
     name: "",
     date: "",
@@ -44,7 +57,6 @@ export default class RAddSingleItem extends React.Component<
   }
 
   render() {
-    const dense = {}
     return (
       <div className="m-r-add-new-product-form">
         <Paper>
@@ -137,7 +149,7 @@ export default class RAddSingleItem extends React.Component<
                     margin="normal"
                     variant="outlined"
                   >
-                    {[{ value: "O_1234", label: "Opel" }].map(option => (
+                    {this.props.categories.map(option => (
                       <MenuItem key={option.value} value={option.value}>
                         {option.label}
                       </MenuItem>
