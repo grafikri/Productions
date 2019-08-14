@@ -2,12 +2,12 @@ import React from "react"
 import { Typography, Divider, Card, CardContent } from "@material-ui/core"
 import CommonLayout from "../../organisms/RCommonLayout"
 
-import { Product } from "../../../store/appInterfaces"
+import { Product, LayoutErrorProps } from "../../../store/appInterfaces"
 
 /**
  * Props değerleri
  */
-interface RProductDetailsProps {
+interface RProductDetailsProps extends LayoutErrorProps {
   product: Product
 }
 
@@ -17,7 +17,10 @@ export default class RProductDetails extends React.Component<
   render() {
     return (
       <div className="p-r-product-details">
-        <CommonLayout>
+        <CommonLayout
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
+        >
           <Typography variant="h6" gutterBottom>
             {this.props.product.name}
           </Typography>
