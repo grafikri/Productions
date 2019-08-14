@@ -31,7 +31,6 @@ interface Categoriy {
  */
 interface RAddSingleItemProps {
   handleSubmit(name: string): void
-  placeHolder: string
   categories: Categoriy[]
 }
 
