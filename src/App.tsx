@@ -9,7 +9,7 @@ import RCategories from "./components/pages/RCategories"
 import RCategoryDetails from "./components/pages/RCategoryDetails"
 import RProducts from "./components/pages/RProducts"
 import RProductDetails from "./components/pages/RProductDetails"
-import RAddNewProductForm from "./components/molecules/RAddNewProductForm"
+import RProductForm from "./components/pages/RProductForm"
 
 const App: React.FC = () => {
   return (
@@ -21,7 +21,7 @@ const App: React.FC = () => {
         <Route path="/category/:id" component={RCategoryDetails} />
         <Route path="/products" component={RProducts} />
         <Route path="/product/:id" component={RProductDetails} />
-        <Route path="/add/product" component={RAddNewProductForm} />
+        <Route path="/add/product" component={RProductForm} />
       </Router>
     </div>
   )
