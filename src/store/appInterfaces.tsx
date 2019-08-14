@@ -60,6 +60,27 @@ export interface Application {
    * Sunucu'dan hata döner ise layout içinde bu mesaj gösterilir
    */
   layoutErrorMessage: string
+
+  /**
+   * Api ile bağlantı durumunu yönetir
+   */
+  connectionStatus: ConnectionSituations
+
+  /**
+   * Api ile bağlantı olumsuz dönerse bu değer kullanılır
+   */
+  connectionErrorMessage: string
+}
+
+/**
+ * Uygulama içinden Api'lere bağlandıktan sonra istek yanıt tipler
+ * Bu değişkenler bir ürün kayıt ederken ya da, bir kategori kayıt ederken
+ * gibi durumlar için kullanılır
+ */
+export enum ConnectionSituations {
+  RUNNING,
+  DONE,
+  FAIL
 }
 
 /**
