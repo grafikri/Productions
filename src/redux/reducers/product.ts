@@ -15,7 +15,7 @@ const product: Reducer<Product> = (
 ): Product => {
   switch (action.type) {
     case types.SET_PRODUCT:
-      return state
+      return { ...state, ...action.product }
     default:
       return state
   }
