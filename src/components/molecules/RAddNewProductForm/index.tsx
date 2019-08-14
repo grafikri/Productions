@@ -11,7 +11,7 @@ import {
 /**
  * State değerleri
  */
-interface RAddSingleItemStates {
+interface RAddNewProductFormStates {
   name: string
   date: string
   time: string
@@ -29,7 +29,7 @@ interface Categoriy {
 /**
  * Props değerleri
  */
-interface RAddSingleItemProps {
+interface RAddNewProductFormProps {
   handleSubmit(form: Form): void
   categories: Categoriy[]
 }
@@ -46,8 +46,8 @@ interface Form {
 }
 
 export default class RAddSingleItem extends React.Component<
-  RAddSingleItemProps,
-  RAddSingleItemStates
+  RAddNewProductFormProps,
+  RAddNewProductFormStates
 > {
   state = {
     name: "",
