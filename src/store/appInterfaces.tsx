@@ -81,6 +81,10 @@ export enum ConnectionSituations {
   RUNNING,
   DONE,
   FAIL
+  /**
+   * Sunucu ile bağlantının henüz başlamadığını gösterir
+   */
+  STABLE
 }
 
 /**
