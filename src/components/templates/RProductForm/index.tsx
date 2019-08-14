@@ -27,12 +27,6 @@ interface RProductFormProps extends LayoutErrorProps {
    * Dialog'u açıp kapatır
    */
   dialogOpen: boolean
-  /**
-   * Ürünün kaydı olumlu ise true gelir
-   * true olduğu taktirde ürün detayına yönlendirme yaparız
-   * false olduğu taktirde bu sayfada kalmaya devam eder
-   */
-  formSaveResult?: boolean
 
   /**
    * Ürün sunucuya kayıt olurken true olur

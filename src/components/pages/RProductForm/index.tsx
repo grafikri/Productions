@@ -5,13 +5,13 @@ import {
   ApplicationState,
   ConnectionSituations
 } from "../../../store/appInterfaces"
+
 class RProductForm extends React.Component<ReturnType<typeof mapStateToProps>> {
   render() {
     return (
       <div className="p-r-product-form">
         <RProductFormTemplate
           formSaving={this.props.formSaving}
-          formSaveResult={this.props.formSaveResult}
           dialogTitle={this.props.dialogTitle()}
           dialogDesc={this.props.dialogDesc()}
           dialogOpen={this.props.dialogOpen}
