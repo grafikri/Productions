@@ -38,7 +38,7 @@ interface RAddNewProductFormProps {
 /**
  * Submit edilecek formdur
  */
-interface Form {
+export interface Form {
   name: string
   date: string
   time: string
