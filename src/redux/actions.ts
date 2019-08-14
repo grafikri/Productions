@@ -35,7 +35,7 @@ export const updateCategoryCard = (card: Category) => ({
 })
 
 export const updateProduct = (product: Product) => ({
-  type: types.SET_CATEGORY,
+  type: types.SET_PRODUCT,
   product: product
 })
 
