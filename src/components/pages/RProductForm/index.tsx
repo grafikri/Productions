@@ -6,10 +6,14 @@ class RProductForm extends React.Component {
     return (
       <div className="p-r-product-form">
         <RProductFormTemplate
-          result={true}
+          formSaving={false}
+          formSaveResult={true}
           dialogTitle="Kayıt başarılı"
           dialogDesc="Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün sayfasına yönlendirileceksiniz."
           dialogOpen={false}
+          handleSubmit={form => {
+            console.log("form: ", form)
+          }}
         />
       </div>
     )
