@@ -1,7 +1,5 @@
 import React from "react"
 import { connect } from "react-redux"
-import { Dispatch } from "redux"
-
 import { default as RLoginTemplate } from "../../templates/RLogin"
 import { ApplicationState } from "../../../store/appInterfaces"
 import { doLogin } from "../../../thunk"
