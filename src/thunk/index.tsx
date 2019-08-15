@@ -17,11 +17,16 @@ import {
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
+import { RouteComponentProps } from "react-router"
 
 /**
  * Kullanıcı adı şifre login kontrolü
  */
-export const doLogin = (userName: string, password: string) => {
+export const doLogin = (
+  userName: string,
+  password: string,
+  router: RouteComponentProps
+) => {
   return function(dispatch: Dispatch) {
     dispatch(updateLoginPage({ formDisabled: true, loginSuccess: false }))
 
@@ -29,6 +34,8 @@ export const doLogin = (userName: string, password: string) => {
       .then(data => {
         dispatch(updateLoginPage({ formDisabled: false, loginSuccess: true }))
         dispatch(updateAuth({ token: data.access_token, name: data.userName }))
+        OymakApi.setToken(data.access_token)
+        router.history.push("/categories")
       })
       .catch(error => {
         dispatch(
