@@ -41,6 +41,10 @@ export interface RProductFormProps {
    * Ürün sunucuya başarılı kayıt olmuş ise true olur yoksa false
    */
   productSaved?: boolean
+  /**
+   * Sunucuya kayıt olan ürün id'si
+   */
+  productId?: string
 }
 
 /**
