@@ -32,6 +32,7 @@ export const doLogin = (userName: string, password: string) => {
         dispatch(
           updateLoginPage({
             formDisabled: false,
+            dialogOpen: true,
             dialogTitle: "Giriş başarısız",
             dialogDesc: error
           })
