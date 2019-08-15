@@ -156,21 +156,27 @@ export default class OymakApi {
    *
    * @param error Request sonrası dönen hata nesnesidir
    */
-  private static getErrorMessage(error: AxiosError): string {
+  private static getErrorMessage(error: AxiosError): [string, number?] {
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
       //return error.response.data.Message as string
-      return (error.response.data as ErrorMessage).Message
+
+      return [
+        (error.response.data as ErrorMessage).Message,
+        error.response.status
+      ]
     } else if (error.request) {
       // The request was made but no response was received
       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
       // http.ClientRequest in node.js
       //console.log("request: ",error.request)
-      return "Bağlantı sağlanamadı. Lütfen hizmet aldığınız birim ile görüşün."
+      return [
+        "Bağlantı sağlanamadı. Lütfen hizmet aldığınız birim ile görüşün."
+      ]
     } else {
       // Something happened in setting up the request that triggered an Error
-      return error.message
+      return [error.message]
       //console.log('Error', error.message)
     }
   }
