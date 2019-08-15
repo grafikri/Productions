@@ -1,5 +1,10 @@
 import { types } from "./actionsTypes"
-import { Category, Product, RProductFormProps } from "../store/appInterfaces"
+import {
+  Category,
+  Product,
+  RProductFormProps,
+  RLoginProps
+} from "../store/appInterfaces"
 
 export const addBulkCategory = (categories: Category[]) => ({
   type: types.ADD_BULK_CATEGORIES,
@@ -52,4 +57,9 @@ export const updateLayoutErrorMessage = (message: string) => ({
 export const updatePropductFormPage = (productForm: RProductFormProps) => ({
   type: types.UPDATE_PAGE_PRODUCT_FORM,
   productForm: productForm
+})
+
+export const updateLoginPage = (loginForm: RLoginProps) => ({
+  type: types.UPDATE_PAGE_LOGIN,
+  loginForm: loginForm
 })
