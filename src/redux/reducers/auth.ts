@@ -1,8 +1,9 @@
 import { Auth } from "../../store/appInterfaces"
 import { Reducer } from "redux"
 const initialState = {
-  id: "1111",
-  name: "Serhan"
+  id: "",
+  name: "",
+  token: ""
 }
 
 const auth: Reducer<Auth> = (state: Auth = initialState, action) => state
