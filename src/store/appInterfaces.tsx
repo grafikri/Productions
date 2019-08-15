@@ -15,6 +15,7 @@ export interface ApplicationState {
   products: Product[]
   application: Application
   pageProductForm: RProductFormProps
+  pageLoginForm: RLoginProps
 }
 
 /**
@@ -50,7 +51,7 @@ export interface RProductFormProps {
 /**
  * Login sayfasında kullanılacak props değerleri
  */
-export interface RLogin {
+export interface RLoginProps {
   formDisabled?: boolean
   dialogOpen?: boolean
   dialogTitle?: string
