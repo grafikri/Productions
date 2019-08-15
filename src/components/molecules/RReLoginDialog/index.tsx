@@ -9,8 +9,9 @@ import {
   Button
 } from "@material-ui/core"
 import { ApplicationState } from "../../../store/appInterfaces"
-import { updateApplication } from "../../../redux/actions"
+import { updateApplication, updateAuth } from "../../../redux/actions"
 import { connect } from "react-redux"
+import { doLogOut } from "../../../thunk"
 
 class RReLoginDialog extends React.Component<
   ReturnType<typeof mapStateToProps> &
@@ -36,8 +37,7 @@ class RReLoginDialog extends React.Component<
           <DialogActions>
             <Button
               onClick={() => {
-                this.props.closeDialog()
-                this.props.history.push("/login")
+                this.props.logOut({ ...this.props })
               }}
               color="primary"
             >
@@ -55,8 +55,8 @@ const mapStateToProps = (state: ApplicationState) => ({
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
-  closeDialog: () => {
-    dispatch(updateApplication({ forceReLogin: false }))
+  logOut: (router: RouteComponentProps) => {
+    dispatch(doLogOut(router))
   }
 })
 
