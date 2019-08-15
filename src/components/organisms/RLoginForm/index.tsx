@@ -41,6 +41,7 @@ export default class RLoginForm extends React.Component<
           <div className="section">
             <FormControl fullWidth>
               <TextField
+                value={this.state.userName}
                 disabled={this.props.formDisabled}
                 onChange={event => {
                   this.setState({
@@ -58,6 +59,7 @@ export default class RLoginForm extends React.Component<
           <div className="section">
             <FormControl fullWidth>
               <TextField
+                value={this.state.password}
                 disabled={this.props.formDisabled}
                 onChange={event => {
                   this.setState({
