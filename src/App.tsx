@@ -16,7 +16,7 @@ import RReLoginDialog from "./components/molecules/RReLoginDialog"
 export default class App extends React.Component {
   componentWillMount() {
     /**
-     * UyguaApi'yi başlatıyoruz
+     * Uygulama API'sini başlatıyoruz
      */
     new OymakApi()
 
