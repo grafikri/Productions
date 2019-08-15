@@ -19,6 +19,24 @@ import { generateCategoryCode } from "../helpers"
 import { RouteComponentProps } from "react-router"
 
 /**
+ * Uygulama ilk açıldığında yapılacaklar
+ */
+export const appFirstOpen = () => {
+  return (dispatch: Dispatch) => {
+    /**
+     * Local storage üzerinde bir token var ise API'ye işliyoruz
+     */
+    const token =
+      localStorage.getItem("token") == null
+        ? ""
+        : localStorage.getItem("token")!
+    console.log("app basladi: ", token)
+    OymakApi.setToken(token)
+    dispatch(updateAuth({ token: token }))
+  }
+}
+
+/**
  * Kullanıcı adı şifre login kontrolü
  */
 export const doLogin = (
