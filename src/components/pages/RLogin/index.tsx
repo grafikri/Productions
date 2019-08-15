@@ -4,10 +4,7 @@ import { Dispatch } from "redux"
 
 import { default as RLoginTemplate } from "../../templates/RLogin"
 
-class RLogin extends React.Component<
-  ReturnType<typeof mapDispatchToProps>,
-  any
-> {
+class RLogin extends React.Component<ReturnType<typeof mapDispatchToProps>> {
   componentDidMount() {}
   render() {
     return (
