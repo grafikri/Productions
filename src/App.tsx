@@ -11,6 +11,7 @@ import RProducts from "./components/pages/RProducts"
 import RProductDetails from "./components/pages/RProductDetails"
 import RProductForm from "./components/pages/RProductForm"
 import OymakApi from "./services/oymakApi"
+import RReLoginDialog from "./components/molecules/RReLoginDialog"
 
 export default class App extends React.Component {
   componentWillMount() {
@@ -32,6 +33,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <Router>
+          <RReLoginDialog />
           <Route exact path="/" component={RLogin} />
           <Route path="/login" component={RLogin} />
           <Route path="/categories" component={RCategories} />
