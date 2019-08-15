@@ -9,9 +9,13 @@ import {
   Button
 } from "@material-ui/core"
 import { ApplicationState } from "../../../store/appInterfaces"
+import { updateApplication } from "../../../redux/actions"
+import { connect } from "react-redux"
 
 class RReLoginDialog extends React.Component<
-  ReturnType<typeof mapStateToProps> & RouteComponentProps
+  ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps> &
+    RouteComponentProps
 > {
   render() {
     return (
@@ -44,4 +48,13 @@ const mapStateToProps = (state: ApplicationState) => ({
   open: state.application.forceReLogin
 })
 
-export default withRouter(RReLoginDialog)
+const mapDispatchToProps = (dispatch: any) => ({
+  closeDialog: () => {
+    dispatch(updateApplication({ forceReLogin: false }))
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(RReLoginDialog))
