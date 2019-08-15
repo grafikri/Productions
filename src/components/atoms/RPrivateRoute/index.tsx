@@ -25,7 +25,8 @@ class PrivateRoute extends React.Component<
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
-  isLogin: state.auth.token == "" ? false : true
+  isLogin:
+    state.auth.token == undefined || state.auth.token == "" ? false : true,
 })
 
 export default connect(mapStateToProps)(PrivateRoute)
