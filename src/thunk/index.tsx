@@ -36,6 +36,7 @@ export const doLogin = (
         dispatch(updateAuth({ token: data.access_token, name: data.userName }))
         OymakApi.setToken(data.access_token)
         router.history.push("/categories")
+        localStorage.setItem("token", data.access_token)
       })
       .catch(error => {
         dispatch(
