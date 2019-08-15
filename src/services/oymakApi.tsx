@@ -20,6 +20,13 @@ export default class OymakApi {
         "Bearer jN_08svX81vkffPgFHkL0mNtvgQBo0-KrPupeZulQIZ1ParV0fWwgIw_FBt4v4Me8TlxJrNq1NNJvjXe1EwS8xwj7aibICQB7rEdCVB2q5zCCxqQswvDZqYZRxdikWdcKkt59aSGfmxNuZiOFybDW8sX1rWoTQd8qk_3NrWLyFmhUew0hKVEoPbVkPHqUKcU-j_InCToajWTm0wQy4P1Igvm9f6bIX0_4vqwgB3TSbKWsiKjo4FvAdoMZVFNk8dX2PL-PvtSXz6yc9eZFZFIQoUASarnRYfOzUQ1hYtL3m-Jfe5iz6eaT0SuaAOU-Aq5t_gtvj-9d8NBKbI1P5a9qVAZnX6R3e12FCe4DwkSRpwjmIs7VtpULujwoy9se64bMZUcMrZO5AR7bGE-SFel0WBuRy2OeFtQ8a7NsyYQYE7LqVwGw6tOvYO7dk3_PxerjXAUiLn88fFn9fneMKE18_ZsWvMW3-sM7Xey1kG7Q7StcudtRaDe_Frkdbvz03Chm8yg4i3DsqaQX6siLundPg"
     }
   })
+  /**
+   * Kullanıcı giriş yaptığında elde edilen token
+   */
+  static setToken(token: string) {
+    return (this.instance.defaults.headers.common["Authorization"] =
+      "Bearer " + token)
+  }
 
   static login(userName: string, password: string): Promise<Login> {
     return new Promise((resolve, reject) => {
