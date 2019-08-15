@@ -259,6 +259,5 @@ export const fetchCategoryCard = (id: string) => {
 const checkErrorType = (dispatch: Dispatch, error: RequestErrorResponse) => {
   if (error.statusCode == 401) {
     dispatch(updateApplication({ forceReLogin: true }))
-    console.log("yönlendirme gerekli")
   }
 }
