@@ -23,8 +23,9 @@ interface RProductFormProps extends LayoutErrorProps {
    * Kayıt sonucunun olumlu ya da olumsuz olmasına göre desc değeri değişir
    */
   dialogDesc: string
+
   /**
-   * Dialog'u açıp kapatır
+   * Dialog'u açar kapatır
    */
   dialogOpen: boolean
 
@@ -40,25 +41,22 @@ interface RProductFormProps extends LayoutErrorProps {
   handleSubmit(form: Form): void
 
   /**
-   * Alert kapatıldığıda tetiklenir
+   * Dialog kapatılmak istenildiğinde tetiklenir
    */
   handleClose(): void
 }
 
+/**
+ * Props değerleri
+ */
+interface RProductFormStates extends LayoutErrorProps {
+  /**
+   * Dialog'u açar kapatır
+   */
+  dialogOpen: boolean
+}
+
 export default class RProductForm extends React.Component<RProductFormProps> {
-  constructor(props: RProductFormProps) {
-    super(props)
-    this.handleClose = this.handleClose.bind(this)
-  }
-  state = {
-    open: this.props.dialogOpen
-  }
-  handleClose() {
-    this.setState({
-      open: false
-    })
-    this.props.handleClose()
-  }
   render() {
     return (
       <div className="t-r-product-form">
@@ -75,8 +73,10 @@ export default class RProductForm extends React.Component<RProductFormProps> {
           />
 
           <Dialog
-            open={this.state.open}
-            onClose={this.handleClose}
+            open={this.props.dialogOpen}
+            onClose={() => {
+              this.props.handleClose()
+            }}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
           >
@@ -85,7 +85,13 @@ export default class RProductForm extends React.Component<RProductFormProps> {
               <DialogContentText>{this.props.dialogDesc}</DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose} color="primary" autoFocus>
+              <Button
+                onClick={() => {
+                  this.props.handleClose()
+                }}
+                color="primary"
+                autoFocus
+              >
                 Tamam
               </Button>
             </DialogActions>
