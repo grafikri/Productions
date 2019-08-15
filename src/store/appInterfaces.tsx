@@ -56,6 +56,10 @@ export interface RLoginProps {
   dialogOpen?: boolean
   dialogTitle?: string
   dialogDesc?: string
+  /**
+   * Giriş işlemi başarılı ise true yoksa false olur
+   */
+  loginSuccess?: boolean
 }
 
 /**
