@@ -30,7 +30,7 @@ class RLogin extends React.Component<
               : false
           }
           handleSubmit={(userName, password) => {
-            this.props.doLogin(userName, password)
+            this.props.doLogin(userName, password, { ...this.props })
           }}
           handleClose={() => {
             this.props.closeModal()
@@ -46,8 +46,12 @@ const mapStateToProps = (state: ApplicationState) => ({
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
-  doLogin: (userName: string, password: string) => {
-    dispatch(doLogin(userName, password))
+  doLogin: (
+    userName: string,
+    password: string,
+    router: RouteComponentProps
+  ) => {
+    dispatch(doLogin(userName, password, router))
   },
   closeModal: () => {
     dispatch(updateLoginPage({ dialogOpen: false }))
