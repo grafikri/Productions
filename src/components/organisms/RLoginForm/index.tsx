@@ -79,7 +79,7 @@ export default class RLoginForm extends React.Component<
             ) : (
               <Button
                 disabled={this.state.buttonDisabled}
-                variant="outlined"
+                variant="contained"
                 color="primary"
                 onClick={() => {
                   this.props.handleSubmit(
