@@ -1,36 +1,52 @@
-import axios from "axios"
+import axios, { AxiosInstance } from "axios"
 import { AxiosError } from "axios"
 import qs from "qs"
+
 /**
  * Oymak Grup Api'si ile ilgili tüm bağlantılar buradan sağlanmaktadır
  */
-
 export default class OymakApi {
+  /**
+   * Axios nesnesini içinde barındırır
+   * Sınıf kurulduğunda bu nesneye axios nesnesinin örneğini atayıp
+   * static methodlar üzerinden erişiyoruz
+   */
+  static instance: AxiosInstance
+
+  constructor() {
+    OymakApi.instance = axios.create({
+      baseURL: "http://interviewapp.oymakyazilim.com/",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    })
+  }
+
   /**
    * Kullanıcı giriş yaptığında elde edilen token
    */
-  static token: string = ""
-
-  static instance = axios.create({
-    baseURL: "http://interviewapp.oymakyazilim.com/",
-
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization:
-        "Bearer jN_08svX81vkffPgFHkL0mNtvgQBo0-KrPupeZulQIZ1ParV0fWwgIw_FBt4v4Me8TlxJrNq1NNJvjXe1EwS8xwj7aibICQB7rEdCVB2q5zCCxqQswvDZqYZRxdikWdcKkt59aSGfmxNuZiOFybDW8sX1rWoTQd8qk_3NrWLyFmhUew0hKVEoPbVkPHqUKcU-j_InCToajWTm0wQy4P1Igvm9f6bIX0_4vqwgB3TSbKWsiKjo4FvAdoMZVFNk8dX2PL-PvtSXz6yc9eZFZFIQoUASarnRYfOzUQ1hYtL3m-Jfe5iz6eaT0SuaAOU-Aq5t_gtvj-9d8NBKbI1P5a9qVAZnX6R3e12FCe4DwkSRpwjmIs7VtpULujwoy9se64bMZUcMrZO5AR7bGE-SFel0WBuRy2OeFtQ8a7NsyYQYE7LqVwGw6tOvYO7dk3_PxerjXAUiLn88fFn9fneMKE18_ZsWvMW3-sM7Xey1kG7Q7StcudtRaDe_Frkdbvz03Chm8yg4i3DsqaQX6siLundPg"
-    }
-  })
+  static setToken(token: string) {
+    return (this.instance.defaults.headers.common["Authorization"] =
+      "Bearer " + token)
+  }
 
   static login(userName: string, password: string): Promise<Login> {
     return new Promise((resolve, reject) => {
-      return this.instance.post(
-        "token",
-        qs.stringify({
-          username: userName,
-          password: password,
-          grant_type: "password"
+      return this.instance
+        .post(
+          "token",
+          qs.stringify({
+            username: userName,
+            password: password,
+            grant_type: "password"
+          })
+        )
+        .then(data => {
+          resolve(data.data as Login)
         })
-      )
+        .catch((error: AxiosError) => {
+          reject(this.getErrorMessage(error))
+        })
     })
   }
 
@@ -140,21 +156,27 @@ export default class OymakApi {
    *
    * @param error Request sonrası dönen hata nesnesidir
    */
-  private static getErrorMessage(error: AxiosError): string {
+  private static getErrorMessage(error: AxiosError): RequestErrorResponse {
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
       //return error.response.data.Message as string
-      return (error.response.data as ErrorMessage).Message
+      return {
+        message: (error.response.data as ErrorMessage).Message,
+        statusCode: error.response.status
+      }
     } else if (error.request) {
       // The request was made but no response was received
       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
       // http.ClientRequest in node.js
       //console.log("request: ",error.request)
-      return "Bağlantı sağlanamadı. Lütfen hizmet aldığınız birim ile görüşün."
+      return {
+        message:
+          "Bağlantı sağlanamadı. Lütfen hizmet aldığınız birim ile görüşün."
+      }
     } else {
       // Something happened in setting up the request that triggered an Error
-      return error.message
+      return { message: error.message }
       //console.log('Error', error.message)
     }
   }
@@ -240,4 +262,19 @@ interface AddedNewItem {
  */
 interface ErrorMessage {
   Message: string
+}
+
+/**
+ * Axios üzerinden error handling yönetimi yapılırken kullanılır
+ * Her request sonucu error çıkması sonucu bu interface kullanılır
+ */
+export interface RequestErrorResponse {
+  /**
+   * Response'un çözümlenmesi sonucu karar verilen hata mesajıdır
+   */
+  message: string
+  /**
+   * Sunucunun döndürdüğü hata mesajıdır
+   */
+  statusCode?: number
 }

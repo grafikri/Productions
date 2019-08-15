@@ -1,8 +1,6 @@
-import OymakApi from "../services/oymakApi"
+import OymakApi, { RequestErrorResponse } from "../services/oymakApi"
 import { Dispatch } from "redux"
 import {
-  updateLayoutLoading,
-  updateLayoutErrorMessage,
   clearCategories,
   addNewProduct,
   clearProducts,
@@ -11,17 +9,85 @@ import {
   addNewCategory,
   addBulkProduct,
   updateProduct,
-  updatePropductFormPage
+  updatePropductFormPage,
+  updateLoginPage,
+  updateAuth,
+  updateApplication
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
+import { RouteComponentProps } from "react-router"
+
+/**
+ * Uygulama ilk açıldığında yapılacaklar
+ */
+export const appFirstOpen = () => {
+  return (dispatch: Dispatch) => {
+    /**
+     * Local storage üzerinde bir token var ise API'ye işliyoruz
+     */
+    const token =
+      localStorage.getItem("token") == null
+        ? ""
+        : localStorage.getItem("token")!
+    OymakApi.setToken(token)
+    dispatch(updateAuth({ token: token }))
+  }
+}
+
+/**
+ * Kullanıcı adı şifre login kontrolü
+ */
+export const doLogin = (
+  userName: string,
+  password: string,
+  router: RouteComponentProps
+) => {
+  return function(dispatch: Dispatch) {
+    dispatch(updateLoginPage({ formDisabled: true, loginSuccess: false }))
+
+    return OymakApi.login(userName, password)
+      .then(data => {
+        dispatch(updateLoginPage({ formDisabled: false, loginSuccess: true }))
+        dispatch(updateAuth({ token: data.access_token, name: data.userName }))
+        OymakApi.setToken(data.access_token)
+        router.history.push("/categories")
+        localStorage.setItem("token", data.access_token)
+      })
+      .catch(error => {
+        dispatch(
+          updateLoginPage({
+            formDisabled: false,
+            dialogOpen: true,
+            dialogTitle: "Giriş başarısız",
+            dialogDesc: "Girdiğiniz kullanıcı adı şifre eşleşmiyor.",
+            loginSuccess: false
+          })
+        )
+      })
+      .finally(() => {})
+  }
+}
+
+/**
+ * Kullanıcı çıkış yapacağı zaman kullanılır
+ */
+export const doLogOut = (router: RouteComponentProps) => {
+  return function(dispatch: Dispatch) {
+    dispatch(updateApplication({ forceReLogin: false }))
+    dispatch(updateAuth({ token: "", name: "" }))
+    OymakApi.setToken("")
+    localStorage.clear()
+    router.history.push("/login")
+  }
+}
 
 /**
  * Api'den kategoriler çekilip redux'a gönderiliyor
  */
 export const fetchCategories = () => {
   return function(dispatch: Dispatch) {
-    dispatch(updateLayoutLoading(true))
+    dispatch(updateApplication({ layoutLoading: true }))
 
     return OymakApi.getCategoryList()
       .then(data => {
@@ -32,15 +98,16 @@ export const fetchCategories = () => {
           products: []
         }))
 
-        dispatch(updateLayoutErrorMessage(""))
+        dispatch(updateApplication({ layoutErrorMessage: "" }))
         dispatch(clearCategories())
         dispatch(addBulkCategory(categories))
       })
-      .catch(error => {
-        dispatch(updateLayoutErrorMessage(error))
+      .catch((error: RequestErrorResponse) => {
+        dispatch(updateApplication({ layoutErrorMessage: error.message }))
+        checkErrorType(dispatch, error)
       })
       .finally(() => {
-        dispatch(updateLayoutLoading(false))
+        dispatch(updateApplication({ layoutLoading: false }))
       })
   }
 }
@@ -65,6 +132,7 @@ export const addCategory = (name: string) => {
         )
       })
       .catch(error => {
+        checkErrorType(dispatch, error)
         // Sunucu hata mesajı bu alanda yorumlanacak
       })
       .finally(() => {})
@@ -118,6 +186,7 @@ export const addProduct = (
             productSaved: false
           })
         )
+        checkErrorType(dispatch, error)
       })
       .finally(() => {})
   }
@@ -128,13 +197,12 @@ export const addProduct = (
  */
 export const fetchProducts = () => {
   return (dispatch: Dispatch) => {
-    dispatch(updateLayoutLoading(true))
+    dispatch(updateApplication({ layoutLoading: true }))
 
     return OymakApi.getProductList()
       .then(data => {
         dispatch(clearProducts())
-        dispatch(updateLayoutErrorMessage(""))
-
+        dispatch(updateApplication({ layoutErrorMessage: "" }))
         const products: Product[] = data.map(item => ({
           id: item.Id,
           name: item.Name,
@@ -145,11 +213,12 @@ export const fetchProducts = () => {
         }))
         dispatch(addBulkProduct(products))
       })
-      .catch(error => {
-        dispatch(updateLayoutErrorMessage(error))
+      .catch((error: RequestErrorResponse) => {
+        dispatch(updateApplication({ layoutErrorMessage: error.message }))
+        checkErrorType(dispatch, error)
       })
       .finally(() => {
-        dispatch(updateLayoutLoading(false))
+        dispatch(updateApplication({ layoutLoading: false }))
       })
   }
 }
@@ -159,11 +228,10 @@ export const fetchProducts = () => {
  */
 export const fetchProductCard = (id: string) => {
   return (dispatch: Dispatch) => {
-    dispatch(updateLayoutLoading(true))
-
+    dispatch(updateApplication({ layoutLoading: true }))
     return OymakApi.getProductCard(id)
       .then(data => {
-        dispatch(updateLayoutErrorMessage(""))
+        dispatch(updateApplication({ layoutErrorMessage: "" }))
 
         const product: Product = {
           id: data.Id,
@@ -176,11 +244,12 @@ export const fetchProductCard = (id: string) => {
 
         dispatch(updateProduct(product))
       })
-      .catch(error => {
-        dispatch(updateLayoutErrorMessage(error))
+      .catch((error: RequestErrorResponse) => {
+        dispatch(updateApplication({ layoutErrorMessage: error.message }))
+        checkErrorType(dispatch, error)
       })
       .finally(() => {
-        dispatch(updateLayoutLoading(false))
+        dispatch(updateApplication({ layoutLoading: false }))
       })
   }
 }
@@ -190,11 +259,10 @@ export const fetchProductCard = (id: string) => {
  */
 export const fetchCategoryCard = (id: string) => {
   return (dispatch: Dispatch) => {
-    dispatch(updateLayoutLoading(true))
-
+    dispatch(updateApplication({ layoutLoading: true }))
     return OymakApi.getCategoryCard(id)
       .then(data => {
-        dispatch(updateLayoutErrorMessage(""))
+        dispatch(updateApplication({ layoutErrorMessage: "" }))
 
         const products: Product[] = data.Products.map(item => ({
           id: item.Id,
@@ -213,11 +281,18 @@ export const fetchCategoryCard = (id: string) => {
         }
         dispatch(updateCategoryCard(card))
       })
-      .catch(error => {
-        dispatch(updateLayoutErrorMessage(error))
+      .catch((error: RequestErrorResponse) => {
+        dispatch(updateApplication({ layoutErrorMessage: error.message }))
+        checkErrorType(dispatch, error)
       })
       .finally(() => {
-        dispatch(updateLayoutLoading(false))
+        dispatch(updateApplication({ layoutLoading: false }))
       })
+  }
+}
+
+const checkErrorType = (dispatch: Dispatch, error: RequestErrorResponse) => {
+  if (error.statusCode == 401) {
+    dispatch(updateApplication({ forceReLogin: true }))
   }
 }

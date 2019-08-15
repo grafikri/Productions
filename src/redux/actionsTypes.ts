@@ -35,15 +35,19 @@ export enum types {
    */
   SET_PRODUCT,
   /**
-   * Layout'un yüklenme durumunu güncellemek için kullanılır
-   */
-  UPDATE_LAYOUT_LOADING,
-  /**
-   * Layout yüklenirken bir hata meydana gelirse hata mesajını belirtmek için kullanılır
-   */
-  UPDATE_LAYOUT_ERROR_MESSAGE,
-  /**
    * Ürün ekleme sayfasını yönetmek için kullanılır
    */
-  UPDATE_PAGE_PRODUCT_FORM
+  UPDATE_PAGE_PRODUCT_FORM,
+  /**
+   * Login sayfasını yönetmek için kullanılır
+   */
+  UPDATE_PAGE_LOGIN,
+  /**
+   * Giriş yapmış kullanıcının bilgilerini yönetmek için kullanılır
+   */
+  UPDATE_AUTH,
+  /**
+   * Global uygulama değişkenlerini yönetmek için kullanılır
+   */
+  UPDATE_APPLICATION
 }

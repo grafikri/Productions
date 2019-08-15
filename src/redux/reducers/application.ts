@@ -5,20 +5,13 @@ import { Reducer } from "redux"
  * Uygulama içi global değişkenler buradan kontrol edilir.
  */
 
-const initialState = {
-  layoutLoading: false,
-  layoutErrorMessage: ""
-}
-
 const application: Reducer<Application> = (
-  state: Application = initialState,
+  state: Application = {},
   action: any
 ): Application => {
   switch (action.type) {
-    case types.UPDATE_LAYOUT_LOADING:
-      return { ...state, layoutLoading: action.situation }
-    case types.UPDATE_LAYOUT_ERROR_MESSAGE:
-      return { ...state, layoutErrorMessage: action.message }
+    case types.UPDATE_APPLICATION:
+      return { ...state, ...action.application }
     default:
       return state
   }
