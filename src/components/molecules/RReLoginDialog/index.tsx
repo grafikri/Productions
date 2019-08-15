@@ -17,7 +17,7 @@ class RReLoginDialog extends React.Component<
     return (
       <div className="m-r-re-login-dialog">
         <Dialog
-          open={true}
+          open={this.props.open ? this.props.open : false}
           // onClose={handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
