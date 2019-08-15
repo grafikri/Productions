@@ -67,7 +67,10 @@ export default class RProductForm extends React.Component<RProductFormProps> {
   render() {
     return (
       <div className="t-r-product-form">
-        <CommonLayout loading={false} errorMessage={""}>
+        <CommonLayout
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
+        >
           {this.props.categories.length == 0 ? (
             <Typography>
               Ürün ekleyebilmek için önce kategori eklemelisiniz. Şu anda hiç
