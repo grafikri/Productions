@@ -4,12 +4,20 @@ import { connect } from "react-redux"
 import { default as RProductFormTemplate } from "../../templates/RProductForm"
 import { ApplicationState } from "../../../store/appInterfaces"
 import { Form } from "../../molecules/RAddNewProductForm"
-import { addProduct } from "../../../thunk"
+import { addProduct, fetchCategories } from "../../../thunk"
 import { updatePropductFormPage } from "../../../redux/actions"
 
 class RProductForm extends React.Component<
   ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
 > {
+  componentDidMount() {
+    /**
+     * Eğer uygulama üzerinde kategori yok ise sunucudan kategoleri isteyerek deva  ediyoruz
+     */
+    if (this.props.productCategories.length == 0) {
+      //this.props.getCategories()
+    }
+  }
   render() {
     return (
       <div className="p-r-product-form">
@@ -65,6 +73,9 @@ const mapDispatchToProps = (dispatch: any) => ({
         dialogOpen: false
       })
     )
+  },
+  getCategories: () => {
+    dispatch(fetchCategories())
   }
 })
 
