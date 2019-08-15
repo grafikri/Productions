@@ -14,6 +14,7 @@ export interface ApplicationState {
   categories: Category[]
   products: Product[]
   application: Application
+  pageProductForm: RProductFormProps
 }
 
 /**
@@ -26,6 +27,16 @@ export interface Product {
   price: string
   categoryName: string
   categoryCode: string
+}
+
+/**
+ * Ürün ekleme sayfası için değerler
+ */
+export interface RProductFormProps {
+  dialogOpen?: boolean
+  formSaving?: boolean
+  dialogTitle?: string
+  dialogDesc?: string
 }
 
 /**
