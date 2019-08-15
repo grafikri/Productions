@@ -4,6 +4,7 @@ import RLoginForm from "../../organisms/RLoginForm"
 
 interface RLoginProps {
   handleSubmit(userName: string, password: string): void
+  formDisabled: boolean
 }
 
 export default class RLogin extends React.Component<RLoginProps, {}> {
@@ -12,7 +13,7 @@ export default class RLogin extends React.Component<RLoginProps, {}> {
       <div className="t-r-login">
         <div className="container">
           <RLoginForm
-            formDisabled={false}
+            formDisabled={this.props.formDisabled}
             handleSubmit={this.props.handleSubmit}
           />
         </div>
