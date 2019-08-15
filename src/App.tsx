@@ -1,9 +1,9 @@
-import React from "react"
+import React, { Component } from "react"
 import logo from "./logo.svg"
 import "./App.css"
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom"
-
+import { BrowserRouter as Router, Route } from "react-router-dom"
+import { connect } from "react-redux"
 import RLogin from "./components/pages/RLogin"
 import RCategories from "./components/pages/RCategories"
 import RCategoryDetails from "./components/pages/RCategoryDetails"
@@ -12,22 +12,21 @@ import RProductDetails from "./components/pages/RProductDetails"
 import RProductForm from "./components/pages/RProductForm"
 import OymakApi from "./services/oymakApi"
 import RReLoginDialog from "./components/molecules/RReLoginDialog"
+import PrivateRoute from "./components/atoms/RPrivateRoute"
+import { ApplicationState } from "./store/appInterfaces"
+import { appFirstOpen } from "./thunk"
 
-export default class App extends React.Component {
+class App extends React.Component<
+  ReturnType<typeof mapDispatchToProps> & ReturnType<typeof mapDispatchToProps>
+> {
   componentWillMount() {
     /**
      * Uygulama API'sini başlatıyoruz
      */
     new OymakApi()
-
-    /**
-     * Local storage üzerinde bir token var ise API'ye işliyoruz
-     */
-    OymakApi.setToken(
-      localStorage.getItem("token") == null
-        ? ""
-        : localStorage.getItem("token")!
-    )
+  }
+  componentDidMount() {
+    this.props.appFirstOpen()
   }
   render() {
     return (
@@ -56,3 +55,16 @@ export default class App extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state: ApplicationState) => ({ do: state })
+
+const mapDispatchToProps = (dispatch: any) => ({
+  appFirstOpen: () => {
+    dispatch(appFirstOpen())
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
