@@ -57,7 +57,7 @@ export default class RProductDetails extends React.Component<
                   " / " +
                   this.props.product.categoryCode
                 }
-                secondary="Kategori / Kod"
+                secondary="Kategori Adı/ Kategori Kodu"
               />
             </ListItem>
           </List>
