@@ -16,7 +16,7 @@ interface RAddNewProductFormStates {
   date: string
   time: string
   price: string
-  caregoryCode: string
+  categoryId: string
   buttonDisabled: boolean
 }
 
@@ -42,7 +42,7 @@ export interface Form {
   date: string
   time: string
   price: string
-  caregoryCode: string
+  categoryId: string
 }
 
 export default class RAddNewProductForm extends React.Component<
@@ -50,11 +50,11 @@ export default class RAddNewProductForm extends React.Component<
   RAddNewProductFormStates
 > {
   state = {
-    name: "",
-    date: "",
-    time: "",
-    price: "",
-    caregoryCode: "",
+    name: "Clio",
+    date: "12.12.2020",
+    time: "14:14",
+    price: "1000",
+    categoryId: "",
     buttonDisabled: true
   }
 
@@ -144,13 +144,13 @@ export default class RAddNewProductForm extends React.Component<
                   select
                   label="Ürün kategorisi seçin"
                   placeholder="Ürün kategorisi seçin"
-                  value={this.state.caregoryCode}
+                  value={this.state.categoryId}
                   InputLabelProps={{
                     shrink: true
                   }}
                   onChange={event => {
                     this.setState({
-                      caregoryCode: event.target.value
+                      categoryId: event.target.value
                     })
                   }}
                   margin="normal"
@@ -174,7 +174,7 @@ export default class RAddNewProductForm extends React.Component<
                     this.state.date == "" ||
                     this.state.time == "" ||
                     this.state.price == "" ||
-                    this.state.caregoryCode == ""
+                    this.state.categoryId == ""
                       ? true
                       : false
                   }
