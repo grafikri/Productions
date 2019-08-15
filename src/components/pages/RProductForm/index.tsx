@@ -15,13 +15,15 @@ class RProductForm extends React.Component<
      * Eğer uygulama üzerinde kategori yok ise sunucudan kategoleri isteyerek deva  ediyoruz
      */
     if (this.props.productCategories.length == 0) {
-      //this.props.getCategories()
+      this.props.getCategories()
     }
   }
   render() {
     return (
       <div className="p-r-product-form">
         <RProductFormTemplate
+          loading={this.props.loading}
+          errorMessage={this.props.errorMessage}
           categories={this.props.productCategories.map(item => ({
             value: item.id,
             label: item.name
@@ -60,7 +62,9 @@ class RProductForm extends React.Component<
 
 const mapStateToProps = (state: ApplicationState) => ({
   productFormProps: state.pageProductForm,
-  productCategories: state.categories
+  productCategories: state.categories,
+  loading: state.application.layoutLoading,
+  errorMessage: state.application.layoutErrorMessage
 })
 
 const mapDispatchToProps = (dispatch: any) => ({
