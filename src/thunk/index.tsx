@@ -12,7 +12,8 @@ import {
   addBulkProduct,
   updateProduct,
   updatePropductFormPage,
-  updateLoginPage
+  updateLoginPage,
+  updateAuth
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
@@ -27,6 +28,7 @@ export const doLogin = (userName: string, password: string) => {
     return OymakApi.login(userName, password)
       .then(data => {
         dispatch(updateLoginPage({ formDisabled: false, loginSuccess: true }))
+        dispatch(updateAuth({ token: data.access_token, name: data.userName }))
       })
       .catch(error => {
         dispatch(
