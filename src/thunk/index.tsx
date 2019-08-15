@@ -22,11 +22,11 @@ import { generateCategoryCode } from "../helpers"
  */
 export const doLogin = (userName: string, password: string) => {
   return function(dispatch: Dispatch) {
-    dispatch(updateLoginPage({ formDisabled: true }))
+    dispatch(updateLoginPage({ formDisabled: true, loginSuccess: false }))
 
     return OymakApi.login(userName, password)
       .then(data => {
-        dispatch(updateLoginPage({ formDisabled: false }))
+        dispatch(updateLoginPage({ formDisabled: false, loginSuccess: true }))
       })
       .catch(error => {
         dispatch(
@@ -34,7 +34,8 @@ export const doLogin = (userName: string, password: string) => {
             formDisabled: false,
             dialogOpen: true,
             dialogTitle: "Giriş başarısız",
-            dialogDesc: "Girdiğiniz kullanıcı adı şifre eşleşmiyor."
+            dialogDesc: "Girdiğiniz kullanıcı adı şifre eşleşmiyor.",
+            loginSuccess: false
           })
         )
       })
