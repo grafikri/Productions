@@ -45,5 +45,9 @@ export enum types {
   /**
    * Ürün ekleme sayfasını yönetmek için kullanılır
    */
-  UPDATE_PAGE_PRODUCT_FORM
+  UPDATE_PAGE_PRODUCT_FORM,
+  /**
+   * Login sayfasını yönetmek için kullanılır
+   */
+  UPDATE_PAGE_LOGIN
 }
