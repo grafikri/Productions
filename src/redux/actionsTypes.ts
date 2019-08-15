@@ -49,5 +49,9 @@ export enum types {
   /**
    * Login sayfasını yönetmek için kullanılır
    */
-  UPDATE_PAGE_LOGIN
+  UPDATE_PAGE_LOGIN,
+  /**
+   * Giriş yapmış kullanıcının bilgilerini yönetmek için kullanılır
+   */
+  UPDATE_AUTH
 }
