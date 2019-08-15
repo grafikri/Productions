@@ -156,27 +156,27 @@ export default class OymakApi {
    *
    * @param error Request sonrası dönen hata nesnesidir
    */
-  private static getErrorMessage(error: AxiosError): [string, number?] {
+  private static getErrorMessage(error: AxiosError): RequestErrorResponse {
     if (error.response) {
       // The request was made and the server responded with a status code
       // that falls out of the range of 2xx
       //return error.response.data.Message as string
-
-      return [
-        (error.response.data as ErrorMessage).Message,
-        error.response.status
-      ]
+      return {
+        message: (error.response.data as ErrorMessage).Message,
+        statusCode: error.response.status
+      }
     } else if (error.request) {
       // The request was made but no response was received
       // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
       // http.ClientRequest in node.js
       //console.log("request: ",error.request)
-      return [
-        "Bağlantı sağlanamadı. Lütfen hizmet aldığınız birim ile görüşün."
-      ]
+      return {
+        message:
+          "Bağlantı sağlanamadı. Lütfen hizmet aldığınız birim ile görüşün."
+      }
     } else {
       // Something happened in setting up the request that triggered an Error
-      return [error.message]
+      return { message: error.message }
       //console.log('Error', error.message)
     }
   }
@@ -262,4 +262,19 @@ interface AddedNewItem {
  */
 interface ErrorMessage {
   Message: string
+}
+
+/**
+ * Axios üzerinden error handling yönetimi yapılırken kullanılır
+ * Her request sonucu error çıkması sonucu bu interface kullanılır
+ */
+export interface RequestErrorResponse {
+  /**
+   * Response'un çözümlenmesi sonucu karar verilen hata mesajıdır
+   */
+  message: string
+  /**
+   * Sunucunun döndürdüğü hata mesajıdır
+   */
+  statusCode?: number
 }
