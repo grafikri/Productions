@@ -69,7 +69,9 @@ const mapStateToProps = (state: ApplicationState) => ({
 
 const mapDispatchToProps = (dispatch: any) => ({
   addNewProduct: (form: Form) => {
-    dispatch(addProduct(form.name, form.date, form.price, form.categoryId))
+    dispatch(
+      addProduct(form.name, form.date, form.time, form.price, form.categoryId)
+    )
   },
   closeModal: () => {
     dispatch(
