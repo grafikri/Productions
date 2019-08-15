@@ -10,21 +10,28 @@ import RCategoryDetails from "./components/pages/RCategoryDetails"
 import RProducts from "./components/pages/RProducts"
 import RProductDetails from "./components/pages/RProductDetails"
 import RProductForm from "./components/pages/RProductForm"
+import OymakApi from "./services/oymakApi"
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <Router>
-        <Route exact path="/" component={RLogin} />
-        <Route path="/login" component={RLogin} />
-        <Route path="/categories" component={RCategories} />
-        <Route path="/category/:id" component={RCategoryDetails} />
-        <Route path="/products" component={RProducts} />
-        <Route path="/product/:id" component={RProductDetails} />
-        <Route path="/add/product" component={RProductForm} />
-      </Router>
-    </div>
-  )
+export default class App extends React.Component {
+  componentWillMount() {
+    /**
+     * UyguaApi'yi başlatıyoruz
+     */
+    new OymakApi()
+  }
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          <Route exact path="/" component={RLogin} />
+          <Route path="/login" component={RLogin} />
+          <Route path="/categories" component={RCategories} />
+          <Route path="/category/:id" component={RCategoryDetails} />
+          <Route path="/products" component={RProducts} />
+          <Route path="/product/:id" component={RProductDetails} />
+          <Route path="/add/product" component={RProductForm} />
+        </Router>
+      </div>
+    )
+  }
 }
-
-export default App
