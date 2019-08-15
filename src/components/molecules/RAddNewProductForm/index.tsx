@@ -17,7 +17,6 @@ interface RAddNewProductFormStates {
   time: string
   price: string
   caregoryCode: string
-  formSaving: boolean
   buttonDisabled: boolean
 }
 
@@ -56,7 +55,6 @@ export default class RAddNewProductForm extends React.Component<
     time: "",
     price: "",
     caregoryCode: "",
-    formSaving: this.props.formSaving,
     buttonDisabled: true
   }
 
@@ -69,14 +67,13 @@ export default class RAddNewProductForm extends React.Component<
           onSubmit={e => {
             e.preventDefault()
             this.props.handleSubmit(form)
-            this.setState({ formSaving: true })
           }}
         >
           <div className="container">
             <div className="left">
               <FormControl fullWidth>
                 <TextField
-                  disabled={this.state.formSaving}
+                  disabled={this.props.formSaving}
                   variant="outlined"
                   label="Ürün adı"
                   placeholder="Ürün adı"
@@ -92,7 +89,7 @@ export default class RAddNewProductForm extends React.Component<
                   }}
                 />
                 <TextField
-                  disabled={this.state.formSaving}
+                  disabled={this.props.formSaving}
                   variant="outlined"
                   label="Fiyat"
                   placeholder="Fiyat"
@@ -109,7 +106,7 @@ export default class RAddNewProductForm extends React.Component<
                   }}
                 />
                 <TextField
-                  disabled={this.state.formSaving}
+                  disabled={this.props.formSaving}
                   variant="outlined"
                   label="Son geçerlilik tarihi"
                   placeholder="Son geçerlilik tarihi"
@@ -126,7 +123,7 @@ export default class RAddNewProductForm extends React.Component<
                   }}
                 />
                 <TextField
-                  disabled={this.state.formSaving}
+                  disabled={this.props.formSaving}
                   variant="outlined"
                   label="Son geçerlilik saati"
                   placeholder="Son geçerlilik saati"
@@ -143,7 +140,7 @@ export default class RAddNewProductForm extends React.Component<
                   }}
                 />
                 <TextField
-                  disabled={this.state.formSaving}
+                  disabled={this.props.formSaving}
                   select
                   label="Ürün kategorisi seçin"
                   placeholder="Ürün kategorisi seçin"
@@ -168,7 +165,7 @@ export default class RAddNewProductForm extends React.Component<
               </FormControl>
             </div>
             <div className="right">
-              {this.state.formSaving ? (
+              {this.props.formSaving ? (
                 <CircularProgress size={24} />
               ) : (
                 <Button
