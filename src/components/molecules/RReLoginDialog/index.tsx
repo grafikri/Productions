@@ -8,8 +8,11 @@ import {
   DialogActions,
   Button
 } from "@material-ui/core"
+import { ApplicationState } from "../../../store/appInterfaces"
 
-class RReLoginDialog extends React.Component<RouteComponentProps> {
+class RReLoginDialog extends React.Component<
+  ReturnType<typeof mapStateToProps> & RouteComponentProps
+> {
   render() {
     return (
       <div className="m-r-re-login-dialog">
@@ -36,5 +39,9 @@ class RReLoginDialog extends React.Component<RouteComponentProps> {
     )
   }
 }
+
+const mapStateToProps = (state: ApplicationState) => ({
+  open: state.application.forceReLogin
+})
 
 export default withRouter(RReLoginDialog)
