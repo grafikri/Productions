@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  Typography,
   DialogContentText,
   DialogActions,
   Button
@@ -67,13 +68,20 @@ export default class RProductForm extends React.Component<RProductFormProps> {
     return (
       <div className="t-r-product-form">
         <CommonLayout loading={false} errorMessage={""}>
-          <RAddNewProductForm
-            formSaving={this.props.formSaving}
-            categories={this.props.categories}
-            handleSubmit={form => {
-              this.props.handleSubmit(form)
-            }}
-          />
+          {this.props.categories.length == 0 ? (
+            <Typography>
+              Ürün ekleyebilmek için önce kategori eklemelisiniz. Şu anda hiç
+              kategori bulunmuyor.
+            </Typography>
+          ) : (
+            <RAddNewProductForm
+              formSaving={this.props.formSaving}
+              categories={this.props.categories}
+              handleSubmit={form => {
+                this.props.handleSubmit(form)
+              }}
+            />
+          )}
 
           <Dialog
             open={this.props.dialogOpen}
