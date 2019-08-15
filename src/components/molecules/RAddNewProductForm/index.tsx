@@ -50,10 +50,10 @@ export default class RAddNewProductForm extends React.Component<
   RAddNewProductFormStates
 > {
   state = {
-    name: "Clio",
-    date: "12.12.2020",
-    time: "14:14",
-    price: "1000",
+    name: "",
+    date: "",
+    time: "",
+    price: "",
     categoryId: "",
     buttonDisabled: true
   }
