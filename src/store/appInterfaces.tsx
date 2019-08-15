@@ -48,6 +48,16 @@ export interface RProductFormProps {
 }
 
 /**
+ * Login sayfasında kullanılacak props değerleri
+ */
+export interface RLogin {
+  formDisabled?: boolean
+  dialogOpen?: boolean
+  dialogTitle?: string
+  dialogDesc?: string
+}
+
+/**
  * Bir kategorinin içeriği
  */
 export interface Category {
