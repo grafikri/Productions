@@ -33,7 +33,13 @@ interface RProductFormProps extends LayoutErrorProps {
    * Ürün sunucuya kayıt olurken true olur
    */
   formSaving: boolean
-
+  /**
+   * Ürünün eklenebileceği kategoriler
+   */
+  categories: {
+    value: string
+    label: string
+  }[]
   /**
    * Form'u üst component'e submit etmek için kullanlıır
    * @param form Formun içeriği
@@ -63,10 +69,7 @@ export default class RProductForm extends React.Component<RProductFormProps> {
         <CommonLayout loading={false} errorMessage={""}>
           <RAddNewProductForm
             formSaving={this.props.formSaving}
-            categories={[
-              { value: "O_1234", label: "Opel" },
-              { value: "M_1234", label: "Mazda" }
-            ]}
+            categories={this.props.categories}
             handleSubmit={form => {
               this.props.handleSubmit(form)
             }}
