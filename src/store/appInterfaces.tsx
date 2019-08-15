@@ -95,6 +95,11 @@ export interface Application {
    * Sunucu'dan hata döner ise layout içinde bu mesaj gösterilir
    */
   layoutErrorMessage: string
+  /**
+   * Kullanıcının token süresi dolduğunda yeniden login olması gerekebilir. Böyle bir durumda
+   * bu değişkeni güncelliyoruz
+   */
+  forceReLogin?: boolean
 }
 
 /**
