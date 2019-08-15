@@ -24,8 +24,10 @@ class App extends React.Component<
      * Uygulama API'sini başlatıyoruz
      */
     new OymakApi()
-  }
-  componentDidMount() {
+
+    /**
+     * Uygulama ilk açıldığında yapılacakları başlatıyoruz
+     */
     this.props.appFirstOpen()
   }
   render() {
