@@ -12,6 +12,10 @@ class RLogin extends React.Component<
 > {
   componentDidMount() {}
   render() {
+    if (this.props.login.loginSuccess) {
+      // yönlendirme
+    }
+
     return (
       <div>
         <RLoginTemplate
