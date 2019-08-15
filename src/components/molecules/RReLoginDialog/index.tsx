@@ -34,7 +34,13 @@ class RReLoginDialog extends React.Component<
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={() => {}} color="primary">
+            <Button
+              onClick={() => {
+                this.props.closeDialog()
+                this.props.history.push("/login")
+              }}
+              color="primary"
+            >
               Tamam
             </Button>
           </DialogActions>
