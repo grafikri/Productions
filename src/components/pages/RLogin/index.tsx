@@ -28,7 +28,6 @@ class RLogin extends React.Component<
               : false
           }
           handleSubmit={(userName, password) => {
-            console.log("data: ", userName, password)
           }}
           handleClose={() => {}}
         />
