@@ -1,5 +1,6 @@
 import "./index.css"
 import React from "react"
+import { doLogOut } from "../../../thunk"
 import {
   AppBar,
   Toolbar,
@@ -10,9 +11,10 @@ import {
   DialogContentText,
   DialogActions
 } from "@material-ui/core"
-import { withRouter } from "react-router-dom"
+import { withRouter, RouteComponentProps } from "react-router-dom"
+import { connect } from "react-redux"
 
-class RHeader extends React.Component<any, any> {
+class RHeader extends React.Component<ReturnType<typeof mapDispatchToProps>> {
   state = {
     dialogOpen: false
   }
@@ -92,4 +94,10 @@ class RHeader extends React.Component<any, any> {
   }
 }
 
-export default withRouter(RHeader)
+const mapDispatchToProps = (dispatch: any) => ({
+  logOut: (router: RouteComponentProps) => {
+    dispatch(doLogOut(router))
+  }
+})
+
+export default connect(mapDispatchToProps)(withRouter(RHeader))
