@@ -96,10 +96,15 @@ class RHeader extends React.Component<
   }
 }
 
+const mapStateToProps = (state: ApplicationState) => state
+
 const mapDispatchToProps = (dispatch: any) => ({
   logOut: (router: RouteComponentProps) => {
     dispatch(doLogOut(router))
   }
 })
 
-export default connect(mapDispatchToProps)(withRouter(RHeader))
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(RHeader))
