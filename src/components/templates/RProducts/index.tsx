@@ -1,7 +1,6 @@
 import "./index.css"
 import React from "react"
 import CommonLayout from "../../organisms/RCommonLayout"
-import RAddSingleItem from "../../molecules/RAddSingleItem"
 import {
   Paper,
   Table,
@@ -14,6 +13,7 @@ import {
 } from "@material-ui/core"
 import { Product, LayoutErrorProps } from "../../../store/appInterfaces"
 import RProductsList from "../../organisms/RProductList"
+import { withRouter, RouteComponentProps } from "react-router"
 
 /**
  * Props değerleri
@@ -24,7 +24,7 @@ interface ProductsProps extends LayoutErrorProps {
   handleProductClick(id: string): void
 }
 
-export default class RProducts extends React.Component<ProductsProps, any> {
+class RProducts extends React.Component<ProductsProps & RouteComponentProps> {
   render() {
     return (
       <div className="t-r-products">
@@ -34,7 +34,13 @@ export default class RProducts extends React.Component<ProductsProps, any> {
         >
           <div className="container">
             <div className="formInput">
-              <Button color="primary" variant="contained" onClick={() => {}}>
+              <Button
+                color="primary"
+                variant="contained"
+                onClick={() => {
+                  this.props.history.push("/add/product")
+                }}
+              >
                 Yeni ürün ekle
               </Button>
             </div>
@@ -56,3 +62,5 @@ export default class RProducts extends React.Component<ProductsProps, any> {
     )
   }
 }
+
+export default withRouter(RProducts)
