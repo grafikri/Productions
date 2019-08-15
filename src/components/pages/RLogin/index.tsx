@@ -4,9 +4,12 @@ import { default as RLoginTemplate } from "../../templates/RLogin"
 import { ApplicationState } from "../../../store/appInterfaces"
 import { doLogin } from "../../../thunk"
 import { updateLoginPage } from "../../../redux/actions"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RLogin extends React.Component<
-  ReturnType<typeof mapDispatchToProps> & ReturnType<typeof mapStateToProps>
+  ReturnType<typeof mapDispatchToProps> &
+    ReturnType<typeof mapStateToProps> &
+    RouteComponentProps
 > {
   componentDidMount() {}
   render() {
@@ -59,4 +62,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RLogin)
+)(withRouter(RLogin))
