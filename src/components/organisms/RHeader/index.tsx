@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import { connect } from "react-redux"
+import { ApplicationState } from "../../../store/appInterfaces"
 
 class RHeader extends React.Component<
   ReturnType<typeof mapDispatchToProps> & RouteComponentProps
@@ -81,9 +82,10 @@ class RHeader extends React.Component<
             </Button>
             <Button
               onClick={() => {
-                this.setState({
-                  dialogOpen: false
-                })
+                // this.setState({
+                //   dialogOpen: false
+                // })
+                this.props.logOut({ ...this.props })
               }}
               color="primary"
             >
