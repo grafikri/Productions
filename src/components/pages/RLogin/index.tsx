@@ -11,12 +11,7 @@ class RLogin extends React.Component<
     ReturnType<typeof mapStateToProps> &
     RouteComponentProps
 > {
-  componentDidMount() {}
   render() {
-    if (this.props.login.loginSuccess) {
-      // yönlendirme
-    }
-
     return (
       <div>
         <RLoginTemplate
