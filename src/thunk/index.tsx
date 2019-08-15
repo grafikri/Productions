@@ -10,7 +10,8 @@ import {
   addBulkCategory,
   addNewCategory,
   addBulkProduct,
-  updateProduct
+  updateProduct,
+  updatePropductFormPage
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
@@ -67,6 +68,54 @@ export const addCategory = (name: string) => {
         // Sunucu hata mesajı bu alanda yorumlanacak
       })
       .finally(() => {})
+  }
+}
+
+export const addProduct = (
+  name: string,
+  date: string,
+  price: string,
+  categoryId: string
+) => {
+  return (dispatch: Dispatch) => {
+    const code = generateCategoryCode(name)
+
+    dispatch(
+      updatePropductFormPage({
+        formSaving: true,
+        dialogOpen: false,
+        dialogTitle: "",
+        dialogDesc: ""
+      })
+    )
+    console.log("basladi")
+    setTimeout(() => {
+      console.log("bitti")
+      dispatch(
+        updatePropductFormPage({
+          formSaving: false,
+          dialogOpen: true,
+          dialogTitle: "Kayıt başarılı",
+          dialogDesc:
+            "Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün detay sayfasına yönlendirileceksiniz"
+        })
+      )
+    }, 1000)
+    // return OymakApi.addCategory(name, code)
+    //   .then(data => {
+    //     dispatch(
+    //       addNewCategory({
+    //         id: data.Data,
+    //         name: name,
+    //         code: code,
+    //         products: []
+    //       })
+    //     )
+    //   })
+    //   .catch(error => {
+    //     // Sunucu hata mesajı bu alanda yorumlanacak
+    //   })
+    //   .finally(() => {})
   }
 }
 
