@@ -23,14 +23,21 @@ export default class OymakApi {
 
   static login(userName: string, password: string): Promise<Login> {
     return new Promise((resolve, reject) => {
-      return this.instance.post(
-        "token",
-        qs.stringify({
-          username: userName,
-          password: password,
-          grant_type: "password"
+      return this.instance
+        .post(
+          "token",
+          qs.stringify({
+            username: userName,
+            password: password,
+            grant_type: "password"
+          })
+        )
+        .then(data => {
+          resolve(data.data as Login)
         })
-      )
+        .catch((error: AxiosError) => {
+          reject(this.getErrorMessage(error))
+        })
     })
   }
 
