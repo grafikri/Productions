@@ -41,5 +41,9 @@ export enum types {
   /**
    * Layout yüklenirken bir hata meydana gelirse hata mesajını belirtmek için kullanılır
    */
-  UPDATE_LAYOUT_ERROR_MESSAGE
+  UPDATE_LAYOUT_ERROR_MESSAGE,
+  /**
+   * Ürün ekleme sayfasını yönetmek için kullanılır
+   */
+  UPDATE_PAGE_PRODUCT_FORM
 }
