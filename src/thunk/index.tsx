@@ -103,7 +103,8 @@ export const addProduct = (
             dialogTitle: "Kayıt başarılı",
             dialogDesc:
               "Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün detay sayfasına yönlendirileceksiniz",
-            productSaved: true
+            productSaved: true,
+            productId: data.Data
           })
         )
       })
