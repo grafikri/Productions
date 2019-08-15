@@ -15,7 +15,7 @@ export interface ApplicationState {
   products: Product[]
   application: Application
   pageProductForm: RProductFormProps
-  pageLoginForm: RLoginProps
+  pageLogin: RLoginProps
 }
 
 /**

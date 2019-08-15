@@ -38,7 +38,7 @@ class RLogin extends React.Component<
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
-  login: state.pageLoginForm
+  login: state.pageLogin
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({})
