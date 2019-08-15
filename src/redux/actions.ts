@@ -3,7 +3,8 @@ import {
   Category,
   Product,
   RProductFormProps,
-  RLoginProps
+  RLoginProps,
+  Auth
 } from "../store/appInterfaces"
 
 export const addBulkCategory = (categories: Category[]) => ({
@@ -62,4 +63,9 @@ export const updatePropductFormPage = (productForm: RProductFormProps) => ({
 export const updateLoginPage = (loginForm: RLoginProps) => ({
   type: types.UPDATE_PAGE_LOGIN,
   loginForm: loginForm
+})
+
+export const updateAuth = (auth: Auth) => ({
+  type: types.UPDATE_AUTH,
+  auth: auth
 })
