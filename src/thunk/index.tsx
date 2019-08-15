@@ -30,7 +30,6 @@ export const appFirstOpen = () => {
       localStorage.getItem("token") == null
         ? ""
         : localStorage.getItem("token")!
-    console.log("app basladi: ", token)
     OymakApi.setToken(token)
     dispatch(updateAuth({ token: token }))
   }
