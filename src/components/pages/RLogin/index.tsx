@@ -5,6 +5,7 @@ import { Dispatch } from "redux"
 import { default as RLoginTemplate } from "../../templates/RLogin"
 import { ApplicationState } from "../../../store/appInterfaces"
 import { doLogin } from "../../../thunk"
+import { updateLoginPage } from "../../../redux/actions"
 
 class RLogin extends React.Component<
   ReturnType<typeof mapDispatchToProps> & ReturnType<typeof mapStateToProps>
@@ -31,7 +32,9 @@ class RLogin extends React.Component<
           handleSubmit={(userName, password) => {
             this.props.doLogin(userName, password)
           }}
-          handleClose={() => {}}
+          handleClose={() => {
+            this.props.closeModal()
+          }}
         />
       </div>
     )
@@ -45,6 +48,9 @@ const mapStateToProps = (state: ApplicationState) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   doLogin: (userName: string, password: string) => {
     dispatch(doLogin(userName, password))
+  },
+  closeModal: () => {
+    dispatch(updateLoginPage({ dialogOpen: false }))
   }
 })
 
