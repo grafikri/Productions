@@ -1,8 +1,6 @@
-import OymakApi from "../services/oymakApi"
+import OymakApi, { RequestErrorResponse } from "../services/oymakApi"
 import { Dispatch } from "redux"
 import {
-  updateLayoutLoading,
-  updateLayoutErrorMessage,
   clearCategories,
   addNewProduct,
   clearProducts,
@@ -13,7 +11,8 @@ import {
   updateProduct,
   updatePropductFormPage,
   updateLoginPage,
-  updateAuth
+  updateAuth,
+  updateApplication
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
@@ -58,7 +57,7 @@ export const doLogin = (
  */
 export const fetchCategories = () => {
   return function(dispatch: Dispatch) {
-    dispatch(updateLayoutLoading(true))
+    dispatch(updateApplication({ layoutLoading: true }))
 
     return OymakApi.getCategoryList()
       .then(data => {
@@ -69,15 +68,16 @@ export const fetchCategories = () => {
           products: []
         }))
 
-        dispatch(updateLayoutErrorMessage(""))
+        dispatch(updateApplication({ layoutErrorMessage: "" }))
         dispatch(clearCategories())
         dispatch(addBulkCategory(categories))
       })
-      .catch(error => {
-        dispatch(updateLayoutErrorMessage(error))
+      .catch((error: RequestErrorResponse) => {
+        dispatch(updateApplication({ layoutErrorMessage: error.message }))
+        checkErrorType(dispatch, error)
       })
       .finally(() => {
-        dispatch(updateLayoutLoading(false))
+        dispatch(updateApplication({ layoutLoading: false }))
       })
   }
 }
@@ -165,13 +165,12 @@ export const addProduct = (
  */
 export const fetchProducts = () => {
   return (dispatch: Dispatch) => {
-    dispatch(updateLayoutLoading(true))
+    dispatch(updateApplication({ layoutLoading: true }))
 
     return OymakApi.getProductList()
       .then(data => {
         dispatch(clearProducts())
-        dispatch(updateLayoutErrorMessage(""))
-
+        dispatch(updateApplication({ layoutErrorMessage: "" }))
         const products: Product[] = data.map(item => ({
           id: item.Id,
           name: item.Name,
@@ -182,11 +181,11 @@ export const fetchProducts = () => {
         }))
         dispatch(addBulkProduct(products))
       })
-      .catch(error => {
-        dispatch(updateLayoutErrorMessage(error))
+      .catch((error: RequestErrorResponse) => {
+        dispatch(updateApplication({ layoutErrorMessage: error.message }))
       })
       .finally(() => {
-        dispatch(updateLayoutLoading(false))
+        dispatch(updateApplication({ layoutLoading: false }))
       })
   }
 }
@@ -196,11 +195,10 @@ export const fetchProducts = () => {
  */
 export const fetchProductCard = (id: string) => {
   return (dispatch: Dispatch) => {
-    dispatch(updateLayoutLoading(true))
-
+    dispatch(updateApplication({ layoutLoading: true }))
     return OymakApi.getProductCard(id)
       .then(data => {
-        dispatch(updateLayoutErrorMessage(""))
+        dispatch(updateApplication({ layoutErrorMessage: "" }))
 
         const product: Product = {
           id: data.Id,
@@ -213,11 +211,11 @@ export const fetchProductCard = (id: string) => {
 
         dispatch(updateProduct(product))
       })
-      .catch(error => {
-        dispatch(updateLayoutErrorMessage(error))
+      .catch((error: RequestErrorResponse) => {
+        dispatch(updateApplication({ layoutErrorMessage: error.message }))
       })
       .finally(() => {
-        dispatch(updateLayoutLoading(false))
+        dispatch(updateApplication({ layoutLoading: false }))
       })
   }
 }
@@ -227,11 +225,10 @@ export const fetchProductCard = (id: string) => {
  */
 export const fetchCategoryCard = (id: string) => {
   return (dispatch: Dispatch) => {
-    dispatch(updateLayoutLoading(true))
-
+    dispatch(updateApplication({ layoutLoading: true }))
     return OymakApi.getCategoryCard(id)
       .then(data => {
-        dispatch(updateLayoutErrorMessage(""))
+        dispatch(updateApplication({ layoutErrorMessage: "" }))
 
         const products: Product[] = data.Products.map(item => ({
           id: item.Id,
@@ -250,11 +247,11 @@ export const fetchCategoryCard = (id: string) => {
         }
         dispatch(updateCategoryCard(card))
       })
-      .catch(error => {
-        dispatch(updateLayoutErrorMessage(error))
+      .catch((error: RequestErrorResponse) => {
+        dispatch(updateApplication({ layoutErrorMessage: error.message }))
       })
       .finally(() => {
-        dispatch(updateLayoutLoading(false))
+        dispatch(updateApplication({ layoutLoading: false }))
       })
   }
 }
