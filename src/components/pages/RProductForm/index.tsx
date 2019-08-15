@@ -6,9 +6,12 @@ import { ApplicationState } from "../../../store/appInterfaces"
 import { Form } from "../../molecules/RAddNewProductForm"
 import { addProduct, fetchCategories } from "../../../thunk"
 import { updatePropductFormPage } from "../../../redux/actions"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RProductForm extends React.Component<
-  ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
+  ReturnType<typeof mapStateToProps> &
+    ReturnType<typeof mapDispatchToProps> &
+    RouteComponentProps
 > {
   componentDidMount() {
     /**
@@ -88,4 +91,4 @@ const mapDispatchToProps = (dispatch: any) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RProductForm)
+)(withRouter(RProductForm))
