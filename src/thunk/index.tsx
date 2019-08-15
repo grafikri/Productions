@@ -114,6 +114,7 @@ export const addCategory = (name: string) => {
         )
       })
       .catch(error => {
+        checkErrorType(dispatch, error)
         // Sunucu hata mesajı bu alanda yorumlanacak
       })
       .finally(() => {})
@@ -167,6 +168,7 @@ export const addProduct = (
             productSaved: false
           })
         )
+        checkErrorType(dispatch, error)
       })
       .finally(() => {})
   }
@@ -195,6 +197,7 @@ export const fetchProducts = () => {
       })
       .catch((error: RequestErrorResponse) => {
         dispatch(updateApplication({ layoutErrorMessage: error.message }))
+        checkErrorType(dispatch, error)
       })
       .finally(() => {
         dispatch(updateApplication({ layoutLoading: false }))
@@ -225,6 +228,7 @@ export const fetchProductCard = (id: string) => {
       })
       .catch((error: RequestErrorResponse) => {
         dispatch(updateApplication({ layoutErrorMessage: error.message }))
+        checkErrorType(dispatch, error)
       })
       .finally(() => {
         dispatch(updateApplication({ layoutLoading: false }))
@@ -261,6 +265,7 @@ export const fetchCategoryCard = (id: string) => {
       })
       .catch((error: RequestErrorResponse) => {
         dispatch(updateApplication({ layoutErrorMessage: error.message }))
+        checkErrorType(dispatch, error)
       })
       .finally(() => {
         dispatch(updateApplication({ layoutLoading: false }))
