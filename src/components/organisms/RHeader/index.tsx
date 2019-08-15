@@ -1,9 +1,22 @@
 import "./index.css"
 import React from "react"
-import { AppBar, Toolbar, Button } from "@material-ui/core"
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions
+} from "@material-ui/core"
 import { withRouter } from "react-router-dom"
 
 class RHeader extends React.Component<any, any> {
+  state = {
+    dialogOpen: false
+  }
+
   render() {
     return (
       <div className="o-r-header">
@@ -22,9 +35,58 @@ class RHeader extends React.Component<any, any> {
               Ürünler
             </Button>
             <div className="space" />
-            <Button color="inherit">Çıkış</Button>
+            <Button
+              color="inherit"
+              onClick={() => {
+                this.setState({
+                  dialogOpen: true
+                })
+              }}
+            >
+              Çıkış
+            </Button>
           </Toolbar>
         </AppBar>
+
+        <Dialog
+          open={this.state.dialogOpen}
+          onClose={() => {
+            this.setState({
+              dialogOpen: false
+            })
+          }}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogContent>
+            <DialogTitle>
+              {"Çıkış yapmak istediğinize emin misiniz?"}
+            </DialogTitle>
+          </DialogContent>
+          <DialogActions>
+            <Button
+              autoFocus
+              onClick={() => {
+                this.setState({
+                  dialogOpen: false
+                })
+              }}
+              color="primary"
+            >
+              Vazgeç
+            </Button>
+            <Button
+              onClick={() => {
+                this.setState({
+                  dialogOpen: false
+                })
+              }}
+              color="primary"
+            >
+              Evet
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     )
   }
