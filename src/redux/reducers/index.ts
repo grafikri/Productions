@@ -6,6 +6,7 @@ import category from "./category"
 import product from "./product"
 import products from "./products"
 import application from "./application"
+import pageProductForm from "./pageProductForm"
 
 import { ApplicationState } from "../../store/appInterfaces"
 
@@ -15,5 +16,6 @@ export default combineReducers<ApplicationState>({
   category,
   products,
   product,
-  application
+  application,
+  pageProductForm
 })
