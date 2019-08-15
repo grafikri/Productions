@@ -1,4 +1,4 @@
-import { Application, ConnectionSituations } from "../../store/appInterfaces"
+import { Application } from "../../store/appInterfaces"
 import { types } from "../actionsTypes"
 import { Reducer } from "redux"
 /**
@@ -7,9 +7,7 @@ import { Reducer } from "redux"
 
 const initialState = {
   layoutLoading: false,
-  layoutErrorMessage: "",
-  connectionStatus: ConnectionSituations.STABLE,
-  connectionErrorMessage: ""
+  layoutErrorMessage: ""
 }
 
 const application: Reducer<Application> = (
