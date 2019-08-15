@@ -56,6 +56,11 @@ class RProductForm extends React.Component<
           }}
           handleClose={() => {
             this.props.closeModal()
+            if (this.props.productFormProps.productSaved) {
+              this.props.history.push(
+                "/product/" + this.props.productFormProps.productId
+              )
+            }
           }}
         />
       </div>
