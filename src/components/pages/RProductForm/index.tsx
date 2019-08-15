@@ -1,25 +1,31 @@
 import React from "react"
 import { connect } from "react-redux"
+
 import { default as RProductFormTemplate } from "../../templates/RProductForm"
 import {
   ApplicationState,
-  ConnectionSituations
+  RProductFormProps
 } from "../../../store/appInterfaces"
+import { Form } from "../../molecules/RAddNewProductForm"
+import { addProduct } from "../../../thunk"
+import { updatePropductFormPage } from "../../../redux/actions"
 
-class RProductForm extends React.Component<ReturnType<typeof mapStateToProps>> {
+class RProductForm extends React.Component<
+  RProductFormProps & ReturnType<typeof mapDispatchToProps>
+> {
   render() {
     return (
       <div className="p-r-product-form">
         <RProductFormTemplate
-          formSaving={this.props.formSaving}
-          dialogTitle={this.props.dialogTitle()}
-          dialogDesc={this.props.dialogDesc()}
-          dialogOpen={this.props.dialogOpen}
+          dialogOpen={this.props.dialogOpen ? this.props.dialogOpen : false}
+          formSaving={this.props.formSaving ? this.props.formSaving : false}
+          dialogTitle={this.props.dialogTitle ? this.props.dialogTitle : ""}
+          dialogDesc={this.props.dialogDesc ? this.props.dialogDesc : ""}
           handleSubmit={form => {
-            console.log("form: ", form)
+            this.props.addNewProduct(form)
           }}
           handleClose={() => {
-            console.log("pop kapatıldı")
+            this.props.closeModal()
           }}
         />
       </div>
@@ -27,40 +33,22 @@ class RProductForm extends React.Component<ReturnType<typeof mapStateToProps>> {
   }
 }
 
-const mapStateToProps = (state: ApplicationState) => ({
-  formSaveResult:
-    state.application.connectionStatus == ConnectionSituations.DONE,
-  formSaving:
-    state.application.connectionStatus == ConnectionSituations.RUNNING
-      ? true
-      : false,
-  dialogTitle: (): string => {
-    switch (state.application.connectionStatus) {
-      case ConnectionSituations.DONE:
-        return "Kayıt başarılı"
-      case ConnectionSituations.FAIL:
-        return "Başarısız"
-      case ConnectionSituations.RUNNING:
-        return ""
-      default:
-        return "-"
-    }
+const mapStateToProps = (state: ApplicationState) => state.pageProductForm
+
+const mapDispatchToProps = (dispatch: any) => ({
+  addNewProduct: (form: Form) => {
+    dispatch(addProduct(form.name, form.date, form.price, form.caregoryCode))
   },
-  dialogDesc: (): string => {
-    switch (state.application.connectionStatus) {
-      case ConnectionSituations.DONE:
-        return "Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün sayfasına yönlendirileceksiniz."
-      case ConnectionSituations.FAIL:
-        return state.application.connectionErrorMessage
-      case ConnectionSituations.RUNNING:
-        return ""
-      default:
-        return "-"
-    }
-  },
-  dialogOpen:
-    state.application.connectionStatus == ConnectionSituations.DONE ||
-    state.application.connectionStatus == ConnectionSituations.FAIL
+  closeModal: () => {
+    dispatch(
+      updatePropductFormPage({
+        dialogOpen: false
+      })
+    )
+  }
 })
 
-export default connect(mapStateToProps)(RProductForm)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RProductForm)
