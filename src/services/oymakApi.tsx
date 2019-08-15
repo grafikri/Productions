@@ -1,25 +1,27 @@
-import axios from "axios"
+import axios, { AxiosInstance } from "axios"
 import { AxiosError } from "axios"
 import qs from "qs"
+
 /**
  * Oymak Grup Api'si ile ilgili tüm bağlantılar buradan sağlanmaktadır
  */
-
 export default class OymakApi {
   /**
-   * Kullanıcı giriş yaptığında elde edilen token
+   * Axios nesnesini içinde barındırır
+   * Sınıf kurulduğunda bu nesneye axios nesnesinin örneğini atayıp
+   * static methodlar üzerinden erişiyoruz
    */
-  static token: string = ""
+  static instance: AxiosInstance
 
-  static instance = axios.create({
-    baseURL: "http://interviewapp.oymakyazilim.com/",
+  constructor() {
+    OymakApi.instance = axios.create({
+      baseURL: "http://interviewapp.oymakyazilim.com/",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    })
+  }
 
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization:
-        "Bearer jN_08svX81vkffPgFHkL0mNtvgQBo0-KrPupeZulQIZ1ParV0fWwgIw_FBt4v4Me8TlxJrNq1NNJvjXe1EwS8xwj7aibICQB7rEdCVB2q5zCCxqQswvDZqYZRxdikWdcKkt59aSGfmxNuZiOFybDW8sX1rWoTQd8qk_3NrWLyFmhUew0hKVEoPbVkPHqUKcU-j_InCToajWTm0wQy4P1Igvm9f6bIX0_4vqwgB3TSbKWsiKjo4FvAdoMZVFNk8dX2PL-PvtSXz6yc9eZFZFIQoUASarnRYfOzUQ1hYtL3m-Jfe5iz6eaT0SuaAOU-Aq5t_gtvj-9d8NBKbI1P5a9qVAZnX6R3e12FCe4DwkSRpwjmIs7VtpULujwoy9se64bMZUcMrZO5AR7bGE-SFel0WBuRy2OeFtQ8a7NsyYQYE7LqVwGw6tOvYO7dk3_PxerjXAUiLn88fFn9fneMKE18_ZsWvMW3-sM7Xey1kG7Q7StcudtRaDe_Frkdbvz03Chm8yg4i3DsqaQX6siLundPg"
-    }
-  })
   /**
    * Kullanıcı giriş yaptığında elde edilen token
    */
