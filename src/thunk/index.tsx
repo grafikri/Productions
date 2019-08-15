@@ -26,7 +26,6 @@ export const doLogin = (userName: string, password: string) => {
 
     return OymakApi.login(userName, password)
       .then(data => {
-        console.log("Login başarılı:", data)
         dispatch(updateLoginPage({ formDisabled: false }))
       })
       .catch(error => {
@@ -37,7 +36,6 @@ export const doLogin = (userName: string, password: string) => {
             dialogDesc: error
           })
         )
-        console.log("Login başarısız:", error)
       })
       .finally(() => {})
   }
