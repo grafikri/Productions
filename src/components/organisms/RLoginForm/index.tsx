@@ -37,7 +37,14 @@ export default class RLoginForm extends React.Component<
   render() {
     return (
       <div className="m-r-login-form">
-        <form noValidate autoComplete="off">
+        <form
+          onSubmit={e => {
+            e.preventDefault()
+            this.props.handleSubmit(this.state.userName, this.state.password)
+          }}
+          noValidate
+          autoComplete="off"
+        >
           <div className="section">
             <FormControl fullWidth>
               <TextField
@@ -83,12 +90,7 @@ export default class RLoginForm extends React.Component<
                 disabled={this.state.buttonDisabled}
                 variant="contained"
                 color="primary"
-                onClick={() => {
-                  this.props.handleSubmit(
-                    this.state.userName,
-                    this.state.password
-                  )
-                }}
+                type="submit"
               >
                 Giriş
               </Button>
