@@ -46,7 +46,7 @@ export interface Form {
   caregoryCode: string
 }
 
-export default class RAddSingleItem extends React.Component<
+export default class RAddNewProductForm extends React.Component<
   RAddNewProductFormProps,
   RAddNewProductFormStates
 > {
