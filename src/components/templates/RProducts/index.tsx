@@ -9,7 +9,8 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  Typography
+  Typography,
+  Button
 } from "@material-ui/core"
 import { Product, LayoutErrorProps } from "../../../store/appInterfaces"
 import RProductsList from "../../organisms/RProductList"
@@ -33,10 +34,9 @@ export default class RProducts extends React.Component<ProductsProps, any> {
         >
           <div className="container">
             <div className="formInput">
-              <RAddSingleItem
-                handleSubmit={this.props.handleSubmit}
-                placeHolder="Bir ürün adı girin"
-              />
+              <Button color="primary" variant="contained" onClick={() => {}}>
+                Yeni ürün ekle
+              </Button>
             </div>
             <div className="products">
               {this.props.products.length == 0 ? (
