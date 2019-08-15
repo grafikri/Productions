@@ -34,7 +34,7 @@ export const doLogin = (userName: string, password: string) => {
             formDisabled: false,
             dialogOpen: true,
             dialogTitle: "Giriş başarısız",
-            dialogDesc: error
+            dialogDesc: "Girdiğiniz kullanıcı adı şifre eşleşmiyor."
           })
         )
       })
