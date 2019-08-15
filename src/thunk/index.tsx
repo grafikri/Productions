@@ -10,7 +10,8 @@ import {
   addBulkCategory,
   addNewCategory,
   addBulkProduct,
-  updateProduct
+  updateProduct,
+  updatePropductFormPage
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
@@ -65,6 +66,58 @@ export const addCategory = (name: string) => {
       })
       .catch(error => {
         // Sunucu hata mesajı bu alanda yorumlanacak
+      })
+      .finally(() => {})
+  }
+}
+
+export const addProduct = (
+  name: string,
+  date: string,
+  time: string,
+  price: string,
+  categoryId: string
+) => {
+  return (dispatch: Dispatch) => {
+    const code = generateCategoryCode(name)
+    /**
+     * Sunucunun istediği time formatı
+     */
+    const dateTime = date + "T" + time
+
+    dispatch(
+      updatePropductFormPage({
+        formSaving: true,
+        dialogOpen: false,
+        dialogTitle: "",
+        dialogDesc: ""
+      })
+    )
+
+    return OymakApi.addProduct(name, code, dateTime, price, categoryId)
+      .then(data => {
+        dispatch(
+          updatePropductFormPage({
+            formSaving: false,
+            dialogOpen: true,
+            dialogTitle: "Kayıt başarılı",
+            dialogDesc:
+              "Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün detay sayfasına yönlendirileceksiniz",
+            productSaved: true,
+            productId: data.Data
+          })
+        )
+      })
+      .catch(error => {
+        dispatch(
+          updatePropductFormPage({
+            formSaving: false,
+            dialogOpen: true,
+            dialogTitle: "Kayıt başarısız",
+            dialogDesc: "Ürün sunucuya kayıt edilemedi. Hata mesaj: " + error,
+            productSaved: false
+          })
+        )
       })
       .finally(() => {})
   }
