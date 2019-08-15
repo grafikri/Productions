@@ -90,11 +90,11 @@ export interface Application {
    * ve layout'lar loading modune geçer
    *
    */
-  layoutLoading: boolean
+  layoutLoading?: boolean
   /**
    * Sunucu'dan hata döner ise layout içinde bu mesaj gösterilir
    */
-  layoutErrorMessage: string
+  layoutErrorMessage?: string
   /**
    * Kullanıcının token süresi dolduğunda yeniden login olması gerekebilir. Böyle bir durumda
    * bu değişkeni güncelliyoruz
