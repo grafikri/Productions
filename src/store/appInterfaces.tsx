@@ -76,8 +76,9 @@ export interface Category {
  * Giriş yapan kullanıcı bilgileri
  */
 export interface Auth {
-  id: string
-  name: string
+  id?: string
+  name?: string
+  token?: string
 }
 
 /**
