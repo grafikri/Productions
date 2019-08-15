@@ -2,16 +2,13 @@ import React from "react"
 import { connect } from "react-redux"
 
 import { default as RProductFormTemplate } from "../../templates/RProductForm"
-import {
-  ApplicationState,
-  RProductFormProps
-} from "../../../store/appInterfaces"
+import { ApplicationState } from "../../../store/appInterfaces"
 import { Form } from "../../molecules/RAddNewProductForm"
 import { addProduct } from "../../../thunk"
 import { updatePropductFormPage } from "../../../redux/actions"
 
 class RProductForm extends React.Component<
-  RProductFormProps & ReturnType<typeof mapDispatchToProps>
+  ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>
 > {
   render() {
     return (
@@ -33,7 +30,10 @@ class RProductForm extends React.Component<
   }
 }
 
-const mapStateToProps = (state: ApplicationState) => state.pageProductForm
+const mapStateToProps = (state: ApplicationState) => ({
+  productFormProps: state.pageProductForm,
+  productCategories: state.categories
+})
 
 const mapDispatchToProps = (dispatch: any) => ({
   addNewProduct: (form: Form) => {
