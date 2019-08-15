@@ -102,7 +102,8 @@ export const addProduct = (
             dialogOpen: true,
             dialogTitle: "Kayıt başarılı",
             dialogDesc:
-              "Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün detay sayfasına yönlendirileceksiniz"
+              "Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün detay sayfasına yönlendirileceksiniz",
+            productSaved: true
           })
         )
       })
@@ -112,7 +113,8 @@ export const addProduct = (
             formSaving: false,
             dialogOpen: true,
             dialogTitle: "Kayıt başarısız",
-            dialogDesc: "Ürün sunucuya kayıt edilemedi. Hata mesaj: " + error
+            dialogDesc: "Ürün sunucuya kayıt edilemedi. Hata mesaj: " + error,
+            productSaved: false
           })
         )
       })
