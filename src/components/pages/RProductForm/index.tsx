@@ -14,11 +14,10 @@ class RProductForm extends React.Component<
     return (
       <div className="p-r-product-form">
         <RProductFormTemplate
-          categories={[
-            { value: "O_1234", label: "Opel" },
-            { value: "M_1234", label: "Mazda" },
-            { value: "B_1234", label: "BMW" }
-          ]}
+          categories={this.props.productCategories.map(item => ({
+            value: item.id,
+            label: item.name
+          }))}
           dialogOpen={
             this.props.productFormProps.dialogOpen
               ? this.props.productFormProps.dialogOpen
