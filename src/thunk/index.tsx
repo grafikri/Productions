@@ -11,10 +11,37 @@ import {
   addNewCategory,
   addBulkProduct,
   updateProduct,
-  updatePropductFormPage
+  updatePropductFormPage,
+  updateLoginPage
 } from "../redux/actions"
 import { Category, Product } from "../store/appInterfaces"
 import { generateCategoryCode } from "../helpers"
+
+/**
+ * Kullanıcı adı şifre login kontrolü
+ */
+export const doLogin = (userName: string, password: string) => {
+  return function(dispatch: Dispatch) {
+    dispatch(updateLoginPage({ formDisabled: true }))
+
+    return OymakApi.login(userName, password)
+      .then(data => {
+        console.log("Login başarılı:", data)
+        dispatch(updateLoginPage({ formDisabled: false }))
+      })
+      .catch(error => {
+        dispatch(
+          updateLoginPage({
+            formDisabled: false,
+            dialogTitle: "Giriş başarısız",
+            dialogDesc: error
+          })
+        )
+        console.log("Login başarısız:", error)
+      })
+      .finally(() => {})
+  }
+}
 
 /**
  * Api'den kategoriler çekilip redux'a gönderiliyor
