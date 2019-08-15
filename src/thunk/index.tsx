@@ -59,6 +59,7 @@ export const doLogOut = (router: RouteComponentProps) => {
   return function(dispatch: Dispatch) {
     dispatch(updateApplication({ forceReLogin: false }))
     dispatch(updateAuth({ token: "", name: "" }))
+    OymakApi.setToken("")
     localStorage.clear()
     router.history.push("/login")
   }
