@@ -14,10 +14,31 @@ class RProductForm extends React.Component<
     return (
       <div className="p-r-product-form">
         <RProductFormTemplate
-          dialogOpen={this.props.dialogOpen ? this.props.dialogOpen : false}
-          formSaving={this.props.formSaving ? this.props.formSaving : false}
-          dialogTitle={this.props.dialogTitle ? this.props.dialogTitle : ""}
-          dialogDesc={this.props.dialogDesc ? this.props.dialogDesc : ""}
+          categories={[
+            { value: "O_1234", label: "Opel" },
+            { value: "M_1234", label: "Mazda" },
+            { value: "B_1234", label: "BMW" }
+          ]}
+          dialogOpen={
+            this.props.productFormProps.dialogOpen
+              ? this.props.productFormProps.dialogOpen
+              : false
+          }
+          formSaving={
+            this.props.productFormProps.formSaving
+              ? this.props.productFormProps.formSaving
+              : false
+          }
+          dialogTitle={
+            this.props.productFormProps.dialogTitle
+              ? this.props.productFormProps.dialogTitle
+              : ""
+          }
+          dialogDesc={
+            this.props.productFormProps.dialogDesc
+              ? this.props.productFormProps.dialogDesc
+              : ""
+          }
           handleSubmit={form => {
             this.props.addNewProduct(form)
           }}
