@@ -22,12 +22,6 @@ class RLogin extends React.Component<
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getAllFiles: (): void => {
-    setTimeout(() => {
-      console.log("TimeOut complate")
-    }, 1000)
-  }
-})
+const mapDispatchToProps = (dispatch: Dispatch) => ({})
 
 export default connect(mapDispatchToProps)(RLogin)
