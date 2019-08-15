@@ -15,6 +15,7 @@ export interface ApplicationState {
   products: Product[]
   application: Application
   pageProductForm: RProductFormProps
+  pageLogin: RLoginProps
 }
 
 /**
@@ -48,6 +49,20 @@ export interface RProductFormProps {
 }
 
 /**
+ * Login sayfasında kullanılacak props değerleri
+ */
+export interface RLoginProps {
+  formDisabled?: boolean
+  dialogOpen?: boolean
+  dialogTitle?: string
+  dialogDesc?: string
+  /**
+   * Giriş işlemi başarılı ise true yoksa false olur
+   */
+  loginSuccess?: boolean
+}
+
+/**
  * Bir kategorinin içeriği
  */
 export interface Category {
@@ -61,8 +76,9 @@ export interface Category {
  * Giriş yapan kullanıcı bilgileri
  */
 export interface Auth {
-  id: string
-  name: string
+  id?: string
+  name?: string
+  token?: string
 }
 
 /**
@@ -74,11 +90,16 @@ export interface Application {
    * ve layout'lar loading modune geçer
    *
    */
-  layoutLoading: boolean
+  layoutLoading?: boolean
   /**
    * Sunucu'dan hata döner ise layout içinde bu mesaj gösterilir
    */
-  layoutErrorMessage: string
+  layoutErrorMessage?: string
+  /**
+   * Kullanıcının token süresi dolduğunda yeniden login olması gerekebilir. Böyle bir durumda
+   * bu değişkeni güncelliyoruz
+   */
+  forceReLogin?: boolean
 }
 
 /**

@@ -1,42 +1,64 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import OymakApi from "../../../services/oymakApi";
-
-import { default as RLoginTemplate } from "../../templates/RLogin";
+import React from "react"
+import { connect } from "react-redux"
+import { default as RLoginTemplate } from "../../templates/RLogin"
+import { ApplicationState } from "../../../store/appInterfaces"
+import { doLogin } from "../../../thunk"
+import { updateLoginPage } from "../../../redux/actions"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RLogin extends React.Component<
-  ReturnType<typeof mapDispatchToProps>,
-  any
+  ReturnType<typeof mapDispatchToProps> &
+    ReturnType<typeof mapStateToProps> &
+    RouteComponentProps
 > {
-  componentDidMount() {
-    // OymakApi.login("serhan.coskun", "Dev9156.")
-    //   .then(response => {
-    //     console.log("success: ", response)
-    //   })
-    //   .catch(function(error) {
-    //     console.log("error: ", error)
-    //   })
-  }
   render() {
     return (
       <div>
         <RLoginTemplate
+          dialogDesc={
+            this.props.login.dialogDesc ? this.props.login.dialogDesc : ""
+          }
+          dialogTitle={
+            this.props.login.dialogTitle ? this.props.login.dialogTitle : ""
+          }
+          dialogOpen={
+            this.props.login.dialogOpen ? this.props.login.dialogOpen : false
+          }
+          formDisabled={
+            this.props.login.formDisabled
+              ? this.props.login.formDisabled
+              : false
+          }
           handleSubmit={(userName, password) => {
-            console.log("data: ", userName, password);
+            this.props.doLogin(userName, password, { ...this.props })
+          }}
+          handleClose={() => {
+            this.props.closeModal()
           }}
         />
       </div>
-    );
+    )
   }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  getAllFiles: (): void => {
-    setTimeout(() => {
-      console.log("TimeOut complate");
-    }, 1000);
-  }
-});
+const mapStateToProps = (state: ApplicationState) => ({
+  login: state.pageLogin
+})
 
-export default connect(mapDispatchToProps)(RLogin);
+const mapDispatchToProps = (dispatch: any) => ({
+  doLogin: (
+    userName: string,
+    password: string,
+    router: RouteComponentProps
+  ) => {
+    dispatch(doLogin(userName, password, router))
+  },
+  closeModal: () => {
+    dispatch(updateLoginPage({ dialogOpen: false }))
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(RLogin))
