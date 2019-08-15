@@ -53,6 +53,18 @@ export const doLogin = (
 }
 
 /**
+ * Kullanıcı çıkış yapacağı zaman kullanılır
+ */
+export const doLogOut = (router: RouteComponentProps) => {
+  return function(dispatch: Dispatch) {
+    dispatch(updateApplication({ forceReLogin: false }))
+    dispatch(updateAuth({ token: "", name: "" }))
+    localStorage.clear()
+    router.history.push("/login")
+  }
+}
+
+/**
  * Api'den kategoriler çekilip redux'a gönderiliyor
  */
 export const fetchCategories = () => {
