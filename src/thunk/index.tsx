@@ -74,11 +74,16 @@ export const addCategory = (name: string) => {
 export const addProduct = (
   name: string,
   date: string,
+  time: string,
   price: string,
   categoryId: string
 ) => {
   return (dispatch: Dispatch) => {
     const code = generateCategoryCode(name)
+    /**
+     * Sunucunun istediği time formatı
+     */
+    const dateTime = date + "T" + time
 
     dispatch(
       updatePropductFormPage({
@@ -88,34 +93,30 @@ export const addProduct = (
         dialogDesc: ""
       })
     )
-    console.log("basladi")
-    setTimeout(() => {
-      console.log("bitti")
-      dispatch(
-        updatePropductFormPage({
-          formSaving: false,
-          dialogOpen: true,
-          dialogTitle: "Kayıt başarılı",
-          dialogDesc:
-            "Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün detay sayfasına yönlendirileceksiniz"
-        })
-      )
-    }, 1000)
-    // return OymakApi.addCategory(name, code)
-    //   .then(data => {
-    //     dispatch(
-    //       addNewCategory({
-    //         id: data.Data,
-    //         name: name,
-    //         code: code,
-    //         products: []
-    //       })
-    //     )
-    //   })
-    //   .catch(error => {
-    //     // Sunucu hata mesajı bu alanda yorumlanacak
-    //   })
-    //   .finally(() => {})
+
+    return OymakApi.addProduct(name, code, dateTime, price, categoryId)
+      .then(data => {
+        dispatch(
+          updatePropductFormPage({
+            formSaving: false,
+            dialogOpen: true,
+            dialogTitle: "Kayıt başarılı",
+            dialogDesc:
+              "Ürün sunucuya kayıt edildi. Aşağıdaki butona dokunduğunuzda ürün detay sayfasına yönlendirileceksiniz"
+          })
+        )
+      })
+      .catch(error => {
+        dispatch(
+          updatePropductFormPage({
+            formSaving: false,
+            dialogOpen: true,
+            dialogTitle: "Kayıt başarısız",
+            dialogDesc: "Ürün sunucuya kayıt edilemedi. Hata mesaj: " + error
+          })
+        )
+      })
+      .finally(() => {})
   }
 }
 
