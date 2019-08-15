@@ -1,4 +1,5 @@
 import React from "react"
+import { withRouter, RouteComponentProps } from "react-router-dom"
 import {
   Dialog,
   DialogTitle,
@@ -8,7 +9,7 @@ import {
   Button
 } from "@material-ui/core"
 
-export default class RReLoginDialog extends React.Component {
+class RReLoginDialog extends React.Component<RouteComponentProps> {
   render() {
     return (
       <div className="m-r-re-login-dialog">
@@ -37,3 +38,5 @@ export default class RReLoginDialog extends React.Component {
     )
   }
 }
+
+export default withRouter(RReLoginDialog)
