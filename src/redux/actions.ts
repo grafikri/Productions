@@ -4,7 +4,8 @@ import {
   Product,
   RProductFormProps,
   RLoginProps,
-  Auth
+  Auth,
+  Application
 } from "../store/appInterfaces"
 
 export const addBulkCategory = (categories: Category[]) => ({
@@ -45,16 +46,6 @@ export const updateProduct = (product: Product) => ({
   product: product
 })
 
-export const updateLayoutLoading = (situation: boolean) => ({
-  type: types.UPDATE_LAYOUT_LOADING,
-  situation: situation
-})
-
-export const updateLayoutErrorMessage = (message: string) => ({
-  type: types.UPDATE_LAYOUT_ERROR_MESSAGE,
-  message: message
-})
-
 export const updatePropductFormPage = (productForm: RProductFormProps) => ({
   type: types.UPDATE_PAGE_PRODUCT_FORM,
   productForm: productForm
@@ -68,4 +59,9 @@ export const updateLoginPage = (loginForm: RLoginProps) => ({
 export const updateAuth = (auth: Auth) => ({
   type: types.UPDATE_AUTH,
   auth: auth
+})
+
+export const updateApplication = (application: Application) => ({
+  type: types.UPDATE_APPLICATION,
+  application: application
 })
