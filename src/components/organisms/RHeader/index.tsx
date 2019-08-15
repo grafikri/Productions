@@ -14,7 +14,9 @@ import {
 import { withRouter, RouteComponentProps } from "react-router-dom"
 import { connect } from "react-redux"
 
-class RHeader extends React.Component<ReturnType<typeof mapDispatchToProps>> {
+class RHeader extends React.Component<
+  ReturnType<typeof mapDispatchToProps> & RouteComponentProps
+> {
   state = {
     dialogOpen: false
   }
