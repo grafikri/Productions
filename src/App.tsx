@@ -36,11 +36,21 @@ export default class App extends React.Component {
           <RReLoginDialog />
           <Route exact path="/" component={RLogin} />
           <Route path="/login" component={RLogin} />
-          <Route path="/categories" component={RCategories} />
-          <Route path="/category/:id" component={RCategoryDetails} />
-          <Route path="/products" component={RProducts} />
-          <Route path="/product/:id" component={RProductDetails} />
-          <Route path="/add/product" component={RProductForm} />
+          <PrivateRoute path="/categories">
+            <RCategories />
+          </PrivateRoute>
+          <PrivateRoute path="/category/:id">
+            <RCategoryDetails />
+          </PrivateRoute>
+          <PrivateRoute path="/products">
+            <RProducts />
+          </PrivateRoute>
+          <PrivateRoute path="/product/:id">
+            <RProductDetails />
+          </PrivateRoute>
+          <PrivateRoute path="/add/product">
+            <RProductForm />
+          </PrivateRoute>
         </Router>
       </div>
     )
