@@ -18,6 +18,15 @@ export default class App extends React.Component {
      * UyguaApi'yi başlatıyoruz
      */
     new OymakApi()
+
+    /**
+     * Local storage üzerinde bir token var ise API'ye işliyoruz
+     */
+    OymakApi.setToken(
+      localStorage.getItem("token") == null
+        ? ""
+        : localStorage.getItem("token")!
+    )
   }
   render() {
     return (
