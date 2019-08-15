@@ -37,6 +37,10 @@ export interface RProductFormProps {
   formSaving?: boolean
   dialogTitle?: string
   dialogDesc?: string
+  /**
+   * Ürün sunucuya başarılı kayıt olmuş ise true olur yoksa false
+   */
+  productSaved?: boolean
 }
 
 /**
