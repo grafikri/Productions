@@ -225,6 +225,7 @@ interface CategoryCardProduct {
 interface CategoryList {
   Id: string
   Name: string
+  Code: string
 }
 
 /**
