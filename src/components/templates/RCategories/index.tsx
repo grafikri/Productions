@@ -54,7 +54,7 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
             <div className="categories">
               {this.props.list.length == 0 ? (
                 <Typography variant="subtitle1" gutterBottom>
-                  Şimdilik bir kategori bulunmuyor
+                  Kategori bulunamadı.
                 </Typography>
               ) : (
                 <Paper elevation={1}>
