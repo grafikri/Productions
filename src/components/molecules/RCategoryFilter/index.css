@@ -1,11 +1,2 @@
 .t-r-category-filter .form-container {
-  display: flex;
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
-.t-r-category-filter .form-container > div {
-  flex-grow: 1;
-  margin-left: 10px;
-  margin-right: 10px;
 }
