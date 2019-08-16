@@ -15,7 +15,8 @@ export default class RCatergoryFilter extends React.Component<{
 }> {
   state = {
     name: "",
-    code: ""
+    code: "",
+    resetButtonDisabled: true
   }
 
   render() {
@@ -28,7 +29,7 @@ export default class RCatergoryFilter extends React.Component<{
         >
           <div className="form-container">
             <Grid container spacing={3}>
-              <Grid item xs={5}>
+              <Grid item xs={4}>
                 <TextField
                   fullWidth
                   select
@@ -53,7 +54,7 @@ export default class RCatergoryFilter extends React.Component<{
                   ))}
                 </TextField>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={4}>
                 <TextField
                   fullWidth
                   select
@@ -78,27 +79,39 @@ export default class RCatergoryFilter extends React.Component<{
                   ))}
                 </TextField>
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={4}>
                 <Grid
                   container
                   direction="row"
                   justify="center"
                   alignItems="center"
-                  style={{ height: "100%" }}
+                  style={{ height: "100%", margin: "0" }}
+                  spacing={4}
                 >
-                  <Grid item xs={12}>
+                  <Grid item xs={6}>
                     <Button
                       fullWidth
                       disabled={
-                        this.state.name == "" || this.state.code == ""
-                          ? true
-                          : false
+                        this.state.name != "" || this.state.code != ""
+                          ? false
+                          : true
                       }
                       variant="contained"
                       color="primary"
                       type="submit"
                     >
                       Filtrele
+                    </Button>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Button
+                      fullWidth
+                      disabled={this.state.resetButtonDisabled}
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                    >
+                      Sıfırla
                     </Button>
                   </Grid>
                 </Grid>
