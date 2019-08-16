@@ -1,7 +1,9 @@
 import "./index.css"
 import React from "react"
+
 import CommonLayout from "../../organisms/RCommonLayout"
 import RAddSingleItem from "../../molecules/RAddSingleItem"
+import RCategoryFilter from "../../molecules/RCategoryFilter"
 import { Category, LayoutErrorProps } from "../../../store/appInterfaces"
 
 import {
@@ -36,6 +38,17 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
               <RAddSingleItem
                 handleSubmit={this.props.handleSubmit}
                 placeHolder="Bir kategori adı girin"
+              />
+            </div>
+            <div className="filter">
+              <RCategoryFilter
+                list={this.props.list}
+                handleSubmit={(name, code) => {
+                  console.log("submit: ", name, code)
+                }}
+                handleReset={() => {
+                  console.log("reset")
+                }}
               />
             </div>
             <div className="categories">
