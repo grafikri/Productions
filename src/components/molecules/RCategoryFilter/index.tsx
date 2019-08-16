@@ -75,7 +75,7 @@ export default class RCatergoryFilter extends React.Component<{
                   ))}
                 </TextField>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={4} style={{ display: "flex" }}>
                 <Grid
                   container
                   direction="row"
