@@ -23,9 +23,11 @@ interface CategoriesProps extends LayoutErrorProps {
   list: Category[]
   handleSubmit(name: string): void
   handleClick(id: string): void
+  handleFilterSubmit(name: string, code: string): void
+  handleFilterReset(): void
 }
 
-export default class RCategories extends React.Component<CategoriesProps, any> {
+export default class RCategories extends React.Component<CategoriesProps> {
   render() {
     return (
       <div className="t-r-categories">
@@ -44,10 +46,10 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
               <RCategoryFilter
                 list={this.props.list}
                 handleSubmit={(name, code) => {
-                  console.log("submit: ", name, code)
+                  this.props.handleFilterSubmit(name, code)
                 }}
                 handleReset={() => {
-                  console.log("reset")
+                  this.props.handleFilterReset()
                 }}
               />
             </div>
