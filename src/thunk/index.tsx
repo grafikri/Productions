@@ -94,7 +94,7 @@ export const fetchCategories = () => {
         const categories: Category[] = data.map(item => ({
           id: item.Id,
           name: item.Name,
-          code: "",
+          code: item.Code,
           products: []
         }))
 
@@ -109,6 +109,27 @@ export const fetchCategories = () => {
       .finally(() => {
         dispatch(updateApplication({ layoutLoading: false }))
       })
+  }
+}
+
+export const fetchFilterCategories = (name?: string, code?: string) => {
+  return function(dispatch: Dispatch) {
+    return OymakApi.getCategoryList(name, code)
+      .then(data => {
+        const categories: Category[] = data.map(item => ({
+          id: item.Id,
+          name: item.Name,
+          code: item.Code,
+          products: []
+        }))
+
+        dispatch(clearCategories())
+        dispatch(addBulkCategory(categories))
+      })
+      .catch((error: RequestErrorResponse) => {
+        checkErrorType(dispatch, error)
+      })
+      .finally(() => {})
   }
 }
 

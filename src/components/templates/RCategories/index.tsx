@@ -1,7 +1,9 @@
 import "./index.css"
 import React from "react"
+
 import CommonLayout from "../../organisms/RCommonLayout"
 import RAddSingleItem from "../../molecules/RAddSingleItem"
+import RCategoryFilter from "../../molecules/RCategoryFilter"
 import { Category, LayoutErrorProps } from "../../../store/appInterfaces"
 
 import {
@@ -21,9 +23,11 @@ interface CategoriesProps extends LayoutErrorProps {
   list: Category[]
   handleSubmit(name: string): void
   handleClick(id: string): void
+  handleFilterSubmit(name: string, code: string): void
+  handleFilterReset(): void
 }
 
-export default class RCategories extends React.Component<CategoriesProps, any> {
+export default class RCategories extends React.Component<CategoriesProps> {
   render() {
     return (
       <div className="t-r-categories">
@@ -38,10 +42,21 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                 placeHolder="Bir kategori adı girin"
               />
             </div>
+            <div className="filter">
+              <RCategoryFilter
+                list={this.props.list}
+                handleSubmit={(name, code) => {
+                  this.props.handleFilterSubmit(name, code)
+                }}
+                handleReset={() => {
+                  this.props.handleFilterReset()
+                }}
+              />
+            </div>
             <div className="categories">
               {this.props.list.length == 0 ? (
                 <Typography variant="subtitle1" gutterBottom>
-                  Şimdilik bir kategori bulunmuyor
+                  Kategori bulunamadı.
                 </Typography>
               ) : (
                 <Paper elevation={1}>
@@ -49,6 +64,7 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                     <TableHead>
                       <TableRow>
                         <TableCell>Kategori Adı</TableCell>
+                        <TableCell>Kategori Kodu</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -63,6 +79,16 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                             scope="row"
                           >
                             <Typography>{item.name}</Typography>
+                          </TableCell>
+                          <TableCell
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              this.props.handleClick(item.id)
+                            }}
+                            component="th"
+                            scope="row"
+                          >
+                            <Typography>{item.code}</Typography>
                           </TableCell>
                         </TableRow>
                       ))}

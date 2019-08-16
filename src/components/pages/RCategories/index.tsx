@@ -2,7 +2,11 @@ import React from "react"
 import { connect } from "react-redux"
 import { default as RCategoriesTemplate } from "../../templates/RCategories"
 import { ApplicationState } from "../../../store/appInterfaces"
-import { fetchCategories, addCategory } from "../../../thunk"
+import {
+  fetchCategories,
+  fetchFilterCategories,
+  addCategory
+} from "../../../thunk"
 import { withRouter, RouteComponentProps } from "react-router-dom"
 
 class RCategories extends React.Component<
@@ -25,6 +29,12 @@ class RCategories extends React.Component<
           handleClick={id => {
             this.props.history.push("/category/" + id)
           }}
+          handleFilterSubmit={(name, code) => {
+            this.props.getFilteredCategories(name, code)
+          }}
+          handleFilterReset={() => {
+            this.props.getFilteredCategories()
+          }}
           list={this.props.list}
         />
       </div>
@@ -44,6 +54,9 @@ const mapDispatchToProps = (dispatch: any) => ({
   },
   getCategories: () => {
     dispatch(fetchCategories())
+  },
+  getFilteredCategories: (name?: string, code?: string) => {
+    dispatch(fetchFilterCategories(name, code))
   }
 })
 

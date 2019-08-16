@@ -50,10 +50,18 @@ export default class OymakApi {
     })
   }
 
-  static getCategoryList(): Promise<CategoryList[]> {
+  static getCategoryList(
+    name?: string,
+    code?: string
+  ): Promise<CategoryList[]> {
     return new Promise((resolve, reject) => {
       return this.instance
-        .get("api/Product/Category/Get/AutoCompleteList")
+        .get("api/Product/Category/Get", {
+          params: {
+            name: name,
+            code: code
+          }
+        })
         .then(data => {
           resolve(data.data as CategoryList[])
         })
@@ -225,6 +233,7 @@ interface CategoryCardProduct {
 interface CategoryList {
   Id: string
   Name: string
+  Code: string
 }
 
 /**
