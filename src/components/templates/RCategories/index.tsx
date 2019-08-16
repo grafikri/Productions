@@ -49,6 +49,7 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                     <TableHead>
                       <TableRow>
                         <TableCell>Kategori Adı</TableCell>
+                        <TableCell>Kategori Kodu</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -63,6 +64,16 @@ export default class RCategories extends React.Component<CategoriesProps, any> {
                             scope="row"
                           >
                             <Typography>{item.name}</Typography>
+                          </TableCell>
+                          <TableCell
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              this.props.handleClick(item.id)
+                            }}
+                            component="th"
+                            scope="row"
+                          >
+                            <Typography>{item.code}</Typography>
                           </TableCell>
                         </TableRow>
                       ))}
