@@ -94,7 +94,7 @@ export default class RCatergoryFilter extends React.Component<{
                       onClick={() => {
                         this.props.handleSubmit(
                           this.state.name,
-                          this.state.name
+                          this.state.code
                         )
                         this.setState({
                           resetButtonDisabled: false
