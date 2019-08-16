@@ -11,7 +11,8 @@ export default class RCatergoryFilter extends React.Component<{
   state = {
     name: "",
     code: "",
-    resetButtonDisabled: true
+    resetButtonDisabled: true,
+    list: this.props.list
   }
 
   render() {
@@ -42,7 +43,7 @@ export default class RCatergoryFilter extends React.Component<{
                   margin="normal"
                   variant="outlined"
                 >
-                  {this.props.list.map(option => (
+                  {this.state.list.map(option => (
                     <MenuItem key={option.id} value={option.name}>
                       {option.name}
                     </MenuItem>
@@ -67,7 +68,7 @@ export default class RCatergoryFilter extends React.Component<{
                   margin="normal"
                   variant="outlined"
                 >
-                  {this.props.list.map(option => (
+                  {this.state.list.map(option => (
                     <MenuItem key={option.id} value={option.code}>
                       {option.code}
                     </MenuItem>
