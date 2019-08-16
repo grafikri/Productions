@@ -1,7 +1,7 @@
 import "./index.css"
 import React from "react"
 import { Category } from "../../../store/appInterfaces"
-import { TextField, MenuItem, FormControl } from "@material-ui/core"
+import { TextField, MenuItem } from "@material-ui/core"
 
 export default class RCatergoryFilter extends React.Component<{
   list: Category[]
