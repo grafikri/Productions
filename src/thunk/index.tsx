@@ -94,7 +94,7 @@ export const fetchCategories = () => {
         const categories: Category[] = data.map(item => ({
           id: item.Id,
           name: item.Name,
-          code: "",
+          code: item.Code,
           products: []
         }))
 
