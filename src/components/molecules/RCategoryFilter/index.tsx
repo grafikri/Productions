@@ -23,7 +23,7 @@ export default class RCatergoryFilter extends React.Component<{
           }}
         >
           <div className="form-container">
-            <Grid container spacing={3}>
+            <Grid container spacing={1}>
               <Grid item xs={4}>
                 <TextField
                   fullWidth
@@ -80,12 +80,12 @@ export default class RCatergoryFilter extends React.Component<{
                   direction="row"
                   justify="center"
                   alignItems="center"
-                  style={{ height: "100%", margin: "0" }}
-                  spacing={4}
+                  spacing={1}
                 >
                   <Grid item xs={6}>
                     <Button
                       fullWidth
+                      size="small"
                       disabled={
                         this.state.name != "" || this.state.code != ""
                           ? false
@@ -110,6 +110,7 @@ export default class RCatergoryFilter extends React.Component<{
                   <Grid item xs={6}>
                     <Button
                       fullWidth
+                      size="small"
                       disabled={this.state.resetButtonDisabled}
                       variant="contained"
                       color="primary"
