@@ -53,7 +53,7 @@ export default class OymakApi {
   static getCategoryList(): Promise<CategoryList[]> {
     return new Promise((resolve, reject) => {
       return this.instance
-        .get("api/Product/Category/Get/AutoCompleteList")
+        .get("api/Product/Category/Get")
         .then(data => {
           resolve(data.data as CategoryList[])
         })
