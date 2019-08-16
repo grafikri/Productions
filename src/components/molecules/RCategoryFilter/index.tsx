@@ -1,17 +1,12 @@
 import "./index.css"
 import React from "react"
 import { Category } from "../../../store/appInterfaces"
-import {
-  TextField,
-  MenuItem,
-  Button,
-  FormGroup,
-  FormControl,
-  Grid
-} from "@material-ui/core"
+import { TextField, MenuItem, Button, Grid } from "@material-ui/core"
 
 export default class RCatergoryFilter extends React.Component<{
   list: Category[]
+  handleSubmit(name: string, code: string): void
+  handleReset(): void
 }> {
   state = {
     name: "",
@@ -97,6 +92,10 @@ export default class RCatergoryFilter extends React.Component<{
                           : true
                       }
                       onClick={() => {
+                        this.props.handleSubmit(
+                          this.state.name,
+                          this.state.name
+                        )
                         this.setState({
                           resetButtonDisabled: false
                         })
@@ -116,6 +115,7 @@ export default class RCatergoryFilter extends React.Component<{
                       color="primary"
                       type="submit"
                       onClick={() => {
+                        this.props.handleReset()
                         this.setState({
                           resetButtonDisabled: true,
                           name: "",
