@@ -96,6 +96,11 @@ export default class RCatergoryFilter extends React.Component<{
                           ? false
                           : true
                       }
+                      onClick={() => {
+                        this.setState({
+                          resetButtonDisabled: false
+                        })
+                      }}
                       variant="contained"
                       color="primary"
                       type="submit"
@@ -110,6 +115,13 @@ export default class RCatergoryFilter extends React.Component<{
                       variant="contained"
                       color="primary"
                       type="submit"
+                      onClick={() => {
+                        this.setState({
+                          resetButtonDisabled: true,
+                          name: "",
+                          code: ""
+                        })
+                      }}
                     >
                       Sıfırla
                     </Button>
